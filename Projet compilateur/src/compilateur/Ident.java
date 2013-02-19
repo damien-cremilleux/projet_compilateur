@@ -1,0 +1,45 @@
+/**
+ * Projet compilateur - 2012/2013
+ * Classe abstraite Ident
+ * @author Samuel COZ - Damien Crémilleux - Lauriane HOLY - Arnaud TROUCHE
+ * date : 19/02/2013
+ * 
+ */
+package compilateur;
+
+public abstract class Ident {
+
+	/**
+	 * Le type de l'Ident est défini par un int, indiqué dans la classe
+	 * Constante
+	 */
+	private int type;
+
+	/**
+	 * Chaque Ident peut appartenir à un tabIdent
+	 */
+	public TabIdent tabIdent;
+
+	/**
+	 * Accesseur du type de l'Ident
+	 * 
+	 * @return le type de l'Ident
+	 */
+	protected int getType() {
+		return this.type;
+	}
+
+	/**
+	 * Setteur pour le type
+	 * @param type
+	 */
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	/**
+	 * Méthode toString
+	 */
+	public abstract String toString();
+
+}
