@@ -8,7 +8,7 @@ package compilateur;
 /**
  * Classe IdConst, représentation des identificateurs de constante
  * 
- * @author Samuel COZ - Damien Crémilleux - Lauriane HOLY - Arnaud TROUCHE
+ * @author Samuel COZ - Damien CRÉMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  * 
  */
 public class IdConst extends Ident {

@@ -8,7 +8,7 @@ package compilateur;
 /**
  * Classe abstraite Ident
  * 
- * @author Samuel COZ - Damien Crémilleux - Lauriane HOLY - Arnaud TROUCHE
+ * @author Samuel COZ - Damien CRÉMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  * 
  */
 public abstract class Ident {

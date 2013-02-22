@@ -8,7 +8,7 @@ package compilateur;
 /**
  * Classe IdVar, représentation des identificateurs de variables
  * 
- * @author Samuel COZ - Damien Crémilleux - Lauriane HOLY - Arnaud TROUCHE
+ * @author Samuel COZ - Damien CRÉMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  * 
  */
 public class IdVar extends Ident {

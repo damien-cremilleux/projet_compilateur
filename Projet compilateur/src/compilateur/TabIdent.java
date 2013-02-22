@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Classe TabIdent : représentation de la table des identificateurs
  * 
- * @author Samuel COZ - Damien Crémilleux - Lauriane HOLY - Arnaud TROUCHE
+ * @author Samuel COZ - Damien CRÉMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  * 
  */
 public class TabIdent {
