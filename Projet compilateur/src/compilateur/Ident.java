@@ -30,6 +30,15 @@ public abstract class Ident {
     public TabIdent tabIdent;
 
     /**
+     * Constructeur d'un Ident
+     * @param type
+     * @param nom
+     */
+    public Ident(int type, String nom) {
+	this.nom = nom;
+	this.type = type;
+    }
+    /**
      * Accesseur du type de l'Ident
      * 
      * @return le type de l'Ident

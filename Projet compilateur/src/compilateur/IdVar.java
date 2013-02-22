@@ -19,6 +19,21 @@ public class IdVar extends Ident {
     private int offset;
 
     /**
+     * Constructeur d'un IdVar
+     * 
+     * @param type
+     *            , le type (entier, booleen)
+     * @param nom
+     *            le nom de la variable)
+     * @param offset
+     *            l'offset de la variable
+     */
+    public IdVar(int type, String nom, int offset) {
+	super(type, nom);
+	this.offset = offset;
+    }
+
+    /**
      * Accesseur à l'offset
      * 
      * @return l'offset
@@ -37,17 +52,13 @@ public class IdVar extends Ident {
 	    t = "BOOLEEN";
 	    break;
 	case Constante.T_ENTIER:
-
+	    t = "ENTIER";
 	    break;
 
 	default:
 	    break;
 	}
-	if (this.type == Constante.T_BOOLEEN) {
-	    t = "BOOLEEN";
-	} else
+	return "VARIABLE : " + this.nom + ", " + t + " offset : " + this.offset;
 
-	    return "VARIABLE :" + this.nom;
     }
-
 }
