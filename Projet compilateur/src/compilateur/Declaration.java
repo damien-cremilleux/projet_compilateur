@@ -37,13 +37,13 @@ public class Declaration {
     	else{
     		/* Crée l'ident */
     		offsetCourant -= 2;
-    		IdVar id = new IdVar(typeVar, this.nomIdent, offsetCourant);
-    		Yaka.tabIdent.rangeIdent(this.nomIdent, id);
+    		IdVar id = new IdVar(typeVar, nomIdent, offsetCourant);
+    		Yaka.tabIdent.rangeIdent(nomIdent, id);
     	}
     }
 
     public boolean existe() {        
-        return Yaka.tabIdent.existeIdent(this.nomIdent);
+        return Yaka.tabIdent.existeIdent(nomIdent);
     }
 
 }
