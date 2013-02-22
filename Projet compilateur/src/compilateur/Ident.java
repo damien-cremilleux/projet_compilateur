@@ -14,10 +14,15 @@ package compilateur;
 public abstract class Ident {
 
     /**
+     * Nom de l'identificateur
+     */
+    protected String nom;
+
+    /**
      * Le type de l'Ident est défini par un int, indiqué dans la classe
      * Constante
      */
-    private int type;
+    protected int type;
 
     /**
      * Chaque Ident peut appartenir à un tabIdent

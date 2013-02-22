@@ -2,10 +2,10 @@ package compilateur;
 
 
 public class IdConst extends Ident {
-    private String valeur;
+    private int valeur;
 
 
-    public String getValeur() {
+    public int getValeur() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.valeur;
     }
