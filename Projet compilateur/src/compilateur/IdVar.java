@@ -1,6 +1,16 @@
+/**
+ * Projet compilateur - 2012/2013
+ * date : 22/02/2013
+ * 
+ */
 package compilateur;
 
 
+/**
+ * 
+ * @author damienc
+ *
+ */
 public class IdVar extends Ident {
     private int offset;
 
