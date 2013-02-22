@@ -1,5 +1,5 @@
 /*	Auteur: Pedrono Marie-Jo
- *  crÃ©ation : 13 fÃ©vrier 2002
+ *  création : 13 février 2002
  *  nature : projet etudiant
  */
 
@@ -14,12 +14,13 @@ options{
 
 PARSER_BEGIN(Yaka)
 
-
+package compilateur;
 
 public class Yaka {
 	public static TabIdent tabIdent;
 	public static Declaration declaration;
 	public static Expression expression;
+	public static Erreur erreur;
 	public static YVM yVM;
 	
 
@@ -82,7 +83,7 @@ SKIP :
 }
 
 
-/* Mots rÃ©servÃ©s*/
+/* Mots réservés*/
 
 TOKEN :
 {
