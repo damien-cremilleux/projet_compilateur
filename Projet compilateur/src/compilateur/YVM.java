@@ -1,184 +1,210 @@
 /**
- * Pojet compilateur - 2012-2013 Classe YVM Samuel Coz - Arnaud Trouche - Damien
- * Cremilleux - Lauriane Holy
+ * Projet compilateur - 2012/2013
+ * date : 22/02/2013
+ * 
  */
+package compilateur;
 
+import java.io.OutputStream;
+
+/**
+ * Classe YVM, génération des instructions pour la Yaka Virual Machine
+ * 
+ * @author Samuel COZ - Damien CRÉMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * 
+ */
 public class YVM {
-	public OutputStream fichierSortie;
+    /**
+     * fichier de sortie, contenant les instructions YVM
+     */
+    public OutputStream fichierSortie;
 
-	/**
-	 * Constructeur de la classe
-	 */
-	public YVM(flot f) {
-		fichierSortie = f;
-	}
-
-	/**
-	 * Methode entete
-	 * affiche entete au debut du fichier YAKA 
-	 */
-	public void entete(){
-		Ecriture.ecrireString(fichierSortie, "entete");
-	}
-	
-	/**
-	 * Methode iadd
-	 */
-	public void iadd() {
-		Ecriture.ecrireString(fichierSortie, "iadd");
-	}
-
-	/**
-	 * Methode isub
-	 */
-	public void isub() {
-		Ecriture.ecrireString(fichierSortie, "isub");
-	}
-
-	/**
-	 * Methode imul
-	 */
-	public void imul() {
-		Ecriture.ecrireString(fichierSortie, "imul");
-	}
-
-	/**
-	 * Methode idiv
-	 */
-	public void idiv() {
-		Ecriture.ecrireString(fichierSortie, "idiv");
-	}
-
-	/**
-	 * Methode inot
-	 */
-	public void inot() {
-		Ecriture.ecrireString(fichierSortie, "iadd");
-	}
-
-	/**
-	 * Methode ineg
-	 */
-	public void ineg() {
-		Ecriture.ecrireString(fichierSortie, "ineg");
-	}
-
-	/**
-	 * Methode ior
-	 */
-	public void ior() {
-		Ecriture.ecrireString(fichierSortie, "ior");
-	}
-
-	/**
-	 * Methode iand
-	 */
-	public void iand() {
-		Ecriture.ecrireString(fichierSortie, "iand");
-	}
-
-	/**
-	 * Methode iinf
-	 */
-	public void iinf() {
-		Ecriture.ecrireString(fichierSortie, "iadd");
-	}
-
-	/**
-	 * Methode isup
-	 */
-	public void isup() {
-		Ecriture.ecrireString(fichierSortie, "isup");
-	}
-
-	/**
-	 * Methode iinfegal
-	 */
-	public void iinfegal() {
-		Ecriture.ecrireString(fichierSortie, "iinfegal");
-	}
-
-	/**
-	 * Method isupegal
-	 */
-	public void isupegal() {
-    	Ecriture.ecrireString(fichierSortie,"isupegal);
+    /**
+     * Constructeur de la classe
+     * 
+     * @param f
+     *            le fichier de sortie
+     */
+    public YVM(OutputStream f) {
+	fichierSortie = f;
     }
 
-	/**
-	 * Methode iegal
-	 */
-	public void iegal() {
-		Ecriture.ecrireString(fichierSortie, "iegal");
-	}
+    /**
+     * Methode entete affiche entete au debut du fichier YAKA
+     */
+    public void entete() {
+	Ecriture.ecrireStringln(fichierSortie, "entete");
+    }
 
-	/**
-	 * Methode idiff
-	 */
-	public void idiff() {
-		Ecriture.ecrireString(fichierSortie, "idiff");
-	}
+    /**
+     * Methode ouvrePrinc affiche ouvrPrinc et l'espace reservé pour l'ensemble
+     * des variables dans la pile
+     * 
+     * @param nb le nombre de variables dans la pile
+     */
 
-	/**
-	 * Methode iload 
-	 * affiche iload et l'offset de la variable dans le fichier de sortie
-	 *  @param offset de la variable
-	 */
-	public void iload(final int offset) {
-		Ecriture.ecrireString(fichierSortie, "iload " + offset);
-	}
+    public void ouvrePrinc(final int nb) {
+	Ecriture.ecrireStringln(fichierSortie, "ouvrePrinc " + nb);
+    }
 
-	/**
-	 * Methode istore
-	 * affiche istore et l'offset de la variable dans le fichier de sortie
-	 * @param offset de la variable
-	 */
-	public void istore(final int offset) {
-		Ecriture.ecrireString(fichierSortie, "istore " + offset);
-	}
+    /**
+     * Methode iadd
+     */
+    public void iadd() {
+	Ecriture.ecrireStringln(fichierSortie, "iadd");
+    }
 
-	/**
-	 * Methode iconst
-	 * affiche iconst et la valeur de la constante dans le fichier de sortie
-	 * @param valeur de la constante
-	 */
-	public void iconst(final int valeur) {
-		Ecriture.ecrireString(fichierSortie, "iconst " + valeur);
-	}
+    /**
+     * Methode isub
+     */
+    public void isub() {
+	Ecriture.ecrireStringln(fichierSortie, "isub");
+    }
 
-	/**
-	 * Methode ifeq
-	 * affiche ifeq et l'étiquette de saut dans le fichier de sortie
-	 * @param etiquette de saut
-	 */
-	public void ifeq(final String etiquette) {
-		Ecriture.ecrireString(fichierSortie, "ifeq " + etiquette);
-	}
-	
-	/**
-	 * Methode gotoYVM
-	 * affiche goto et  l'étiquette de saut dans le fichier de sortie
-	 *@param etiquette de saut
-	 */
-	public void gotoYVM(final String etiquette) {
-		Ecriture.ecrireString(fichierSortie, "goto " + etiquette);
-	}
+    /**
+     * Methode imul
+     */
+    public void imul() {
+	Ecriture.ecrireStringln(fichierSortie, "imul");
+    }
 
-	/**
-	 * Methode ouvrePrinc
-	 * affiche ouvrPrinc et l'espace resevé pour l'ensemble des variables dans la pile
-	 * @param nb
-	 */
-	public void ouvrePrinc(final int nb) {
-		Ecriture.ecrireString(fichierSortie, "ouvrePrinc " + nb);
-	}
-	
-	/**
-	 * Methode queue
-	 * affiche queue à la fin du fichier YAKA 
-	 */
-	public void queue(){
-		Ecriture.ecrireString(fichierSortie, "queue");
-	}
+    /**
+     * Methode idiv
+     */
+    public void idiv() {
+	Ecriture.ecrireStringln(fichierSortie, "idiv");
+    }
+
+    /**
+     * Methode inot
+     */
+    public void inot() {
+	Ecriture.ecrireStringln(fichierSortie, "iadd");
+    }
+
+    /**
+     * Methode ineg
+     */
+    public void ineg() {
+	Ecriture.ecrireStringln(fichierSortie, "ineg");
+    }
+
+    /**
+     * Methode ior
+     */
+    public void ior() {
+	Ecriture.ecrireStringln(fichierSortie, "ior");
+    }
+
+    /**
+     * Methode iand
+     */
+    public void iand() {
+	Ecriture.ecrireStringln(fichierSortie, "iand");
+    }
+
+    /**
+     * Methode iinf
+     */
+    public void iinf() {
+	Ecriture.ecrireStringln(fichierSortie, "iadd");
+    }
+
+    /**
+     * Methode isup
+     */
+    public void isup() {
+	Ecriture.ecrireStringln(fichierSortie, "isup");
+    }
+
+    /**
+     * Methode iinfegal
+     */
+    public void iinfegal() {
+	Ecriture.ecrireStringln(fichierSortie, "iinfegal");
+    }
+
+    /**
+     * Method isupegal
+     */
+    public void isupegal() {
+	Ecriture.ecrireStringln(fichierSortie, "isupegal");
+    }
+
+    /**
+     * Methode iegal
+     */
+    public void iegal() {
+	Ecriture.ecrireStringln(fichierSortie, "iegal");
+    }
+
+    /**
+     * Methode idiff
+     */
+    public void idiff() {
+	Ecriture.ecrireStringln(fichierSortie, "idiff");
+    }
+
+    /**
+     * Methode iload affiche iload et l'offset de la variable dans le fichier de
+     * sortie
+     * 
+     * @param offset
+     *            de la variable
+     */
+    public void iload(final int offset) {
+	Ecriture.ecrireStringln(fichierSortie, "iload " + offset);
+    }
+
+    /**
+     * Methode istore affiche istore et l'offset de la variable dans le fichier
+     * de sortie
+     * 
+     * @param offset
+     *            de la variable
+     */
+    public void istore(final int offset) {
+	Ecriture.ecrireStringln(fichierSortie, "istore " + offset);
+    }
+
+    /**
+     * Methode iconst affiche iconst et la valeur de la constante dans le
+     * fichier de sortie
+     * 
+     * @param valeur
+     *            de la constante
+     */
+    public void iconst(final int valeur) {
+	Ecriture.ecrireStringln(fichierSortie, "iconst " + valeur);
+    }
+
+    /**
+     * Methode ifeq affiche ifeq et l'étiquette de saut dans le fichier de
+     * sortie
+     * 
+     * @param etiquette
+     *            de saut
+     */
+    public void ifeq(final String etiquette) {
+	Ecriture.ecrireStringln(fichierSortie, "ifeq " + etiquette);
+    }
+
+    /**
+     * Methode gotoYVM affiche goto et l'étiquette de saut dans le fichier de
+     * sortie
+     * 
+     * @param etiquette
+     *            de saut
+     */
+    public void gotoYVM(final String etiquette) {
+	Ecriture.ecrireStringln(fichierSortie, "goto " + etiquette);
+    }
+
+    /**
+     * Methode queue affiche queue à la fin du fichier YAKA
+     */
+    public void queue() {
+	Ecriture.ecrireStringln(fichierSortie, "queue");
+    }
 
 }

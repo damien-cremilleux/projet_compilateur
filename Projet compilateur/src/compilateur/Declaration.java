@@ -1,49 +1,122 @@
+/**
+ * Projet compilateur - 2012/2013
+ * date : 22/02/2013
+ * 
+ */
 package compilateur;
 
-
+/**
+ * Classe Declaration, contenant les fonctions nÃ©cessaires Ã  la gestion des
+ * dÃ©clarations
+ * 
+ * @author Samuel COZ - Damien CRÃ‰MILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * 
+ */
 public class Declaration {
+    /**
+     * Le nom de l'Ident courant
+     */
     private static String nomIdent;
+
+    /**
+     * Le type de la variable (exemple : entier, booleen, etc)
+     */
     private static int typeVar;
+
+    /**
+     * L'offset en cours, utilisÃ© par les variables. Il commence Ã  0
+     */
     private static int offsetCourant = 0;
 
-    public void setNomIdent(String name){
-    	nomIdent = name;
+    /**
+     * MÃ©thode pour modifier le nom de l'Ident courant
+     * 
+     * @param name
+     *            , le nouveau nom
+     */
+    public void setNomIdent(String name) {
+	nomIdent = name;
     }
-    
+
+    /**
+     * MÃ©thode pour affecter une constante
+     * 
+     * @param val
+     *            la valeur de la constante
+     * @param type
+     *            le type de la constante
+     */
     public void affectationConst(final int val, final int type) {
-    	if(existe()){ Yaka.erreur.ajouterErreur("Constante "+nomIdent+" déjà définie");}
-    	else{
-    		/* Crée l'ident */
-    		IdConst id = new IdConst(type, nomIdent, val);
-    		Yaka.tabIdent.rangeIdent(nomIdent, id);
-    	}
+	if (existe()) {
+	    Yaka.erreur
+		    .ajouterErreur("Constante " + nomIdent + " deja definie"); // TODO
+	    // rajouter
+	    // le
+	    // numÃ©ro
+	    // de
+	    // la
+	    // ligne
+	    // provoquant
+	    // l'erreur
+	} else {
+	    /* Cree l'ident */
+	    IdConst id = new IdConst(type, nomIdent, val);
+	    Yaka.tabIdent.rangeIdent(nomIdent, id);
+	}
     }
 
-    public void affectationConstCopie(final String clefACopier){
-		if(Yaka.tabIdent.existeIdent(clefACopier)){
-				IdConst id = (IdConst) Yaka.tabIdent.chercheIdent(clefACopier);
-				this.affectationConst(id.getValeur(), id.getType());
-		}else{ 
-			Yaka.erreur.ajouterErreur("Constante "+clefACopier+" pas définie");
-		}
+    /**
+     * MÃ©thode pour affecter une constante
+     * 
+     * @param clefACopier
+     *            , le nom de la constante
+     */
+    public void affectationConstCopie(final String clefACopier) {
+	if (Yaka.tabIdent.existeIdent(clefACopier)) {
+	    IdConst id = (IdConst) Yaka.tabIdent.chercheIdent(clefACopier);
+	    this.affectationConst(id.getValeur(), id.getType());
+	} else {
+	    Yaka.erreur.ajouterErreur("Constante " + clefACopier
+		    + " pas definie");
+	}
     }
-    
-    public void setTypeVar(final int type){
-    	typeVar = type;	
+
+    /**
+     * Modifier le type de l'Ident courant
+     * 
+     * @param type
+     *            le nouveau type
+     */
+    public void setTypeVar(final int type) {
+	typeVar = type;
     }
-    
+
+    /**
+     * MÃ©thode pour affecter une variable
+     * 
+     * @param clef
+     *            le nom de la variable
+     */
     public void affectationVal(final String clef) {
-    	if(Yaka.tabIdent.existeIdent(clef)){ Yaka.erreur.ajouterErreur("Variable "+clef+" déjà définie");}
-    	else{
-    		/* Crée l'ident */
-    		offsetCourant -= 2;
-    		IdVar id = new IdVar(typeVar, nomIdent, offsetCourant);
-    		Yaka.tabIdent.rangeIdent(nomIdent, id);
-    	}
+	if (Yaka.tabIdent.existeIdent(clef)) {
+	    Yaka.erreur.ajouterErreur("Variable " + clef + " deja definie");
+	} else {
+	    /* Cree l'ident */
+	    offsetCourant -= 2;
+	    IdVar id = new IdVar(typeVar, nomIdent, offsetCourant); // TODO que
+								    // devient
+								    // la clef ?
+	    Yaka.tabIdent.rangeIdent(nomIdent, id);
+	}
     }
 
-    public boolean existe() {        
-        return Yaka.tabIdent.existeIdent(nomIdent);
+    /**
+     * Test de l'existence prÃ©alable de l'identificateur
+     * 
+     * @return vrai si l'identificateur existait deja, faux sinon
+     */
+    public boolean existe() {
+	return Yaka.tabIdent.existeIdent(nomIdent);
     }
 
 }
