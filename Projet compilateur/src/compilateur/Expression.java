@@ -18,12 +18,12 @@ public class Expression {
     /**
      * Pile contenant les opérandes 
      */
-    public List<Integer> PileVal = new Stack<Integer>();
+    public List<Integer> pileVal = new Stack<Integer>();
 
     /**
      * Pile contenant les operateurs (exemple : +, -, etc)
      */
-    public List<Integer> PileOp = new Stack<Integer>();
+    public List<Integer> pileOp = new Stack<Integer>();
 
     /**
      * Methode ajoute
@@ -114,6 +114,7 @@ public class Expression {
      * ajouteType : ajoute le type à la pile de type
      */
     public void ajouteType(int typeConstante){
+    	
     }
     /**
      * ajouteType : ajoute le type de l'ident dont le nom est clef à la pile de type s'il existe
