@@ -103,9 +103,7 @@ public class Declaration {
 	} else {
 	    /* Cree l'ident */
 	    offsetCourant -= 2;
-	    IdVar id = new IdVar(typeVar, nomIdent, offsetCourant); // TODO que
-								    // devient
-								    // la clef ?
+	    IdVar id = new IdVar(typeVar, clef, offsetCourant);
 	    Yaka.tabIdent.rangeIdent(nomIdent, id);
 	}
     }
