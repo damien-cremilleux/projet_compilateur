@@ -1,5 +1,5 @@
 /*	Auteur: Pedrono Marie-Jo
- *  création : 13 février 2002
+ *  crÃ©ation : 13 fÃ©vrier 2002
  *  nature : projet etudiant
  */
 
@@ -83,7 +83,7 @@ SKIP :
 }
 
 
-/* Mots réservés*/
+/* Mots rÃ©servÃ©s*/
 
 TOKEN :
 {
@@ -192,7 +192,8 @@ void type() :{}
  * Syntaxe des instructions.
  */
 void suiteExpr() : {}
-{ (expression() (";" (expression())? )*)? }
+{ 	(expression() (";" {expression.affiche();}
+	(expression())? )*)? }
 
 
 
@@ -236,39 +237,39 @@ void primaire (): {}
 }
 
 void valeur () : {}
-{ <entier> 		
- | <ident> 		
- | <VRAI> 		
- | <FAUX> 		
+{ <entier> {expression.ajouteType(T_ENTIER);expression.ajouteVal(YakaTokenManager.entierLu);}	
+ | <ident> {expression.ajouteType(YakaTokenManager.identLu);}		
+ | <VRAI>  {expression.ajouteType(T_BOOLEEN);expression.ajouteVal(true);}	
+ | <FAUX>  {expression.ajouteType(T_BOOLEEN);expression.ajouteVal(false);}		
  
 }
 
 void opRel() : {}
 {
-   "=" 		
- | "<>" 	
- | "<" 		
- | "<=" 	
- | ">" 		
- | ">=" 	
+   "=" 	{expression.ajouteOp(OP_EQ);} 		
+ | "<>" {expression.ajouteOp(OP_DIF);}	
+ | "<" 	{expression.ajouteOp(OP_INF);}
+ | "<=" {expression.ajouteOp(OP_INFEQ);}
+ | ">" 	{expression.ajouteOp(OP_SUP);}
+ | ">=" {expression.ajouteOp(OP_SUPEQ);}
 } 
 
 void opAdd() : {}
 {
-    "+"		
-  |  "-"  
-  | <OU> 	
+    "+"		{expression.ajouteOp(OP_PLUS);}
+  |  "-"  	{expression.ajouteOp(OP_MOINS);}
+  | <OU> 	{expression.ajouteOp(OP_OU);}
 }
 
 void opMul() : {}
 {
-  "*"		
-  | "/"		
-  | <ET>	
+  "*"		{expression.ajouteOp(OP_FOIS);}
+  | "/"		{expression.ajouteOp(OP_DIV);}
+  | <ET>	{expression.ajouteOp(OP_ET);}
 } 
 
 void opNeg() : {}
-{ "-" 		
- | <NON>	
+{ "-" 		{expression.ajouteOp(OP_NEG);}	
+ | <NON>	{expression.ajouteOp(OP_NON);}
 }
 
