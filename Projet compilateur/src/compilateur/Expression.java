@@ -9,84 +9,84 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Classe Expression, contient les fonctions nécessaires à la gestion des déclarations et des expressions
+ * Classe Expression, contient les fonctions necessaires Ã  la gestion des declarations et des expressions
  * 
- * @author Samuel COZ - Damien CRÉMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * @author Samuel COZ - Damien CRÃ‰MILLEUX - Lauriane HOLY - Arnaud TROUCHE
  */
 public class Expression {
     
     /**
-     * Pile contenant les types des expressions (exemple : entier, booleens, etc)
+     * Pile contenant les opérandes 
      */
-    public List<String> PileType = new Stack<String>();
+    public List<Integer> PileVal = new Stack<Integer>();
 
     /**
-     * Pile contenant les opérateurs (exemple : +, -, etc)
+     * Pile contenant les operateurs (exemple : +, -, etc)
      */
-    public List<String> PileOp = new Stack<String>();
+    public List<Integer> PileOp = new Stack<Integer>();
 
     /**
-     * Méthode ajoute
+     * Methode ajoute
      */
     public void ajoute() {
     }
 
     /**
-     * Méthode soustraire
+     * Methode soustraire
      */
     public void soustraire() {
     }
 
     /**
-     * Méthode multiplier
+     * Methode multiplier
      */
     public void multiplier() {
     }
 
     /**
-     * Méthode diviser
+     * Methode diviser
      */
     public void diviser() {
     }
 
     /**
-     * Méthode inférieur
+     * Methode inferieur
      */
     public void inferieur() {
     }
 
     /**
-     * Méthode supérieur
+     * Methode superieur
      */
     public void superieur() {
     }
 
     /**
-     * Méthode infouegal
+     * Methode infouegal
      */
     public void infouegal() {
     }
 
     /**
-     * Méthode supouegal
+     * Methode supouegal
      */
     public void supouegal() {
     }
 
     /**
-     * Méthode egal
+     * Methode egal
      */
     public void egal() {
     }
 
     /**
-     * Méthode nonegal
+     * Methode nonegal
      */
     public void nonegal() {
     }
 
     /**
-     * Méthode et
+     * Methode et
      */
     public void et() {
     }
@@ -98,15 +98,51 @@ public class Expression {
     }
 
     /**
-     * Méthode negationEntier
+     * Methode negationEntier
      */
     public void negationEntier() {
     }
 
     /**
-     * Méthode negationBool
+     * Methode negationBool
      */
     public void negationBool() {
     }
-
+    
+    
+    /**
+     * ajouteType : ajoute le type à la pile de type
+     */
+    public void ajouteType(int typeConstante){
+    }
+    /**
+     * ajouteType : ajoute le type de l'ident dont le nom est clef à la pile de type s'il existe
+     */
+    public void ajouteType(String clef){
+    }
+    
+    /**
+     * ajouteOp : ajoute l'operateur à la pile d'op
+     */
+    public void ajouteOp(int typeOp){
+    }
+    
+    /**
+     * ajouteVal : ajoute l'opérande entier à la pile de val
+     */
+    public void ajouteVal(int valeur){
+    }
+    /**
+     * ajouteVal : ajoute l'opérande booleen à la pile de val
+     */
+    public void ajouteVal(boolean valeur){
+    }
+    
+    
+    /**
+     * affiche : à la fin de la ligne, vide les piles et ecrit dans le fichier
+     */
+    public void affiche(){
+    	
+    }
 }
