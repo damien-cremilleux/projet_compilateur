@@ -46,6 +46,7 @@ public class ControleType {
 				pileT.push(Constante.T_ENTIER);
 			} else {
 				pileT.push(Constante.T_ERREUR);
+				Erreur.ajouterErreur("Probleme de type : une addition doit prendre deux entiers en parametres.");
 			}
 			break;
 		case Constante.OP_MOINS:
@@ -54,6 +55,7 @@ public class ControleType {
 				pileT.push(Constante.T_ENTIER);
 			} else {
 				pileT.push(Constante.T_ERREUR);
+				Erreur.ajouterErreur("Probleme de type : une soustraction doit prendre deux entiers en parametres.");
 			}
 			break;
 		case Constante.OP_FOIS:
@@ -62,6 +64,7 @@ public class ControleType {
 				pileT.push(Constante.T_ENTIER);
 			} else {
 				pileT.push(Constante.T_ERREUR);
+				Erreur.ajouterErreur("Probleme de type : une multiplication doit prendre deux entiers en parametres.");
 			}
 			break;
 		case Constante.OP_DIV:
@@ -70,6 +73,7 @@ public class ControleType {
 				pileT.push(Constante.T_ENTIER);
 			} else {
 				pileT.push(Constante.T_ERREUR);
+				Erreur.ajouterErreur("Probleme de type : une division doit prendre deux entiers en parametres.");
 			}
 			break;
 		case Constante.OP_INF:
@@ -78,6 +82,7 @@ public class ControleType {
 				pileT.push(Constante.T_BOOLEEN);
 			} else {
 				pileT.push(Constante.T_ERREUR);
+				Erreur.ajouterErreur("Probleme de type : une comparaison doit prendre deux entiers en parametres.");
 			}
 			break;
 		case Constante.OP_INFEQ:
@@ -86,6 +91,7 @@ public class ControleType {
 				pileT.push(Constante.T_BOOLEEN);
 			} else {
 				pileT.push(Constante.T_ERREUR);
+				Erreur.ajouterErreur("Probleme de type : une comparaison doit prendre deux entiers en parametres.");
 			}
 			break;
 		case Constante.OP_SUP:
@@ -94,6 +100,7 @@ public class ControleType {
 				pileT.push(Constante.T_BOOLEEN);
 			} else {
 				pileT.push(Constante.T_ERREUR);
+				Erreur.ajouterErreur("Probleme de type : une comparaison doit prendre deux entiers en parametres.");
 			}
 			break;
 		case Constante.OP_SUPEQ:
@@ -102,6 +109,7 @@ public class ControleType {
 				pileT.push(Constante.T_BOOLEEN);
 			} else {
 				pileT.push(Constante.T_ERREUR);
+				Erreur.ajouterErreur("Probleme de type : une comparaison doit prendre deux entiers en parametres.");
 			}
 			break;
 		case Constante.OP_EQ:
@@ -114,6 +122,7 @@ public class ControleType {
 					pileT.push(Constante.T_BOOLEEN);
 				} else {
 					pileT.push(Constante.T_ERREUR);
+					Erreur.ajouterErreur("Probleme de type : une egalite doit prendre deux entiers ou deux booleens en parametres.");
 				}
 			}
 			break;
@@ -127,6 +136,7 @@ public class ControleType {
 					pileT.push(Constante.T_BOOLEEN);
 				} else {
 					pileT.push(Constante.T_ERREUR);
+					Erreur.ajouterErreur("Probleme de type : une différence doit prendre deux entiers ou deux booleens en parametres.");
 				}
 			}
 			break;
@@ -136,6 +146,7 @@ public class ControleType {
 				pileT.push(Constante.T_BOOLEEN);
 			} else {
 				pileT.push(Constante.T_ERREUR);
+				Erreur.ajouterErreur("Probleme de type : un et doit prendre deux booleens en parametres.");
 			}
 			break;
 		case Constante.OP_OU:
@@ -144,6 +155,7 @@ public class ControleType {
 				pileT.push(Constante.T_BOOLEEN);
 			} else {
 				pileT.push(Constante.T_ERREUR);
+				Erreur.ajouterErreur("Probleme de type : un ou doit prendre deux booleens en parametres.");
 			}
 			break;
 		case Constante.OP_NON:
@@ -151,6 +163,7 @@ public class ControleType {
 				pileT.push(Constante.T_BOOLEEN);			
 			} else {
 				pileT.push(Constante.T_ERREUR);
+				Erreur.ajouterErreur("Probleme de type : un non doit prendre un booleen en parametres.");
 			}
 			break;
 		case Constante.OP_NEG:
@@ -158,6 +171,7 @@ public class ControleType {
 				pileT.push(Constante.T_ENTIER);
 			} else {
 				pileT.push(Constante.T_ERREUR);
+				Erreur.ajouterErreur("Probleme de type : une negation doit prendre un entier en parametres.");
 			}
 		default:
 			break;

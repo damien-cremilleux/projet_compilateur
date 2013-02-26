@@ -5,6 +5,8 @@
  */
 package compilateur;
 
+import java.util.ArrayList;
+
 /**
  * Classe Constante
  * 
@@ -12,13 +14,21 @@ package compilateur;
  * 
  */
 public class Erreur {
-    
-    /**
-     * Ajout d'une erreur
-     * 
-     * @param e
-     *            le message d'erreur à ajouter
-     */
-    public void ajouterErreur(String e) {
-    }
+
+	/**
+	 * Tableau contenant les messages d'erreurs
+	 */
+	public static ArrayList<String> tabErreur = new ArrayList<String>();
+
+	/**
+	 * Ajout d'une erreur, et affichage de celle-ci
+	 * 
+	 * @param e
+	 *            le message d'erreur a ajouter
+	 */
+	public static void ajouterErreur(String e) {
+		System.out.println(e);
+		tabErreur.add(e);
+	}
+
 }
