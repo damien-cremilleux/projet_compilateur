@@ -24,19 +24,25 @@ public class Expression {
      */
     public Stack<Integer> pileOp = new Stack<Integer>();    
     
+    
+    
     /**
      * ajouteType : ajoute le type à la pile de type
      */
-    public void ajouteType(int typeConstante){
-    	Yaka.controleT.ajouteType(typeConstante);
+    public void ajouteType(int type){
+    	Yaka.controleT.ajouteType(type);
     }
     /**
-     * ajouteType : ajoute le type de l'ident dont le nom est clef à la pile de type s'il existe
+     * ajouteType : ajoute le type et la valeur de l'ident dont le nom est clef à la pile de type s'il existe
      */
-    public void ajouteType(String clef){
+    public void ajoute(String clef){
     	if(Yaka.tabIdent.existeIdent(clef)){
     		Ident id = Yaka.tabIdent.chercheIdent(clef);
-    		Yaka.controleT.ajouteType(id.getType());
+    		int type = id.getType();
+    		Yaka.controleT.ajouteType(type);
+    		if(id instanceof IdConst){
+    			//ajouteVal(id.get)
+    		}
     	}else{
     		Yaka.erreur.ajouterErreur("Identificateur "+clef+" non défini");
     	}
