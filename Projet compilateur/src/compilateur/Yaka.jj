@@ -237,39 +237,39 @@ void primaire (): {}
 }
 
 void valeur () : {}
-{ <entier> {expression.ajouteType(T_ENTIER);expression.ajouteVal(YakaTokenManager.entierLu);}	
+{ <entier> {expression.ajouteType(Constante.T_ENTIER);expression.ajouteVal(YakaTokenManager.entierLu);}	
  | <ident> {expression.ajouteType(YakaTokenManager.identLu);}		
- | <VRAI>  {expression.ajouteType(T_BOOLEEN);expression.ajouteVal(true);}	
- | <FAUX>  {expression.ajouteType(T_BOOLEEN);expression.ajouteVal(false);}		
+ | <VRAI>  {expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(true);}	
+ | <FAUX>  {expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(false);}		
  
 }
 
 void opRel() : {}
 {
-   "=" 	{expression.ajouteOp(OP_EQ);} 		
- | "<>" {expression.ajouteOp(OP_DIF);}	
- | "<" 	{expression.ajouteOp(OP_INF);}
- | "<=" {expression.ajouteOp(OP_INFEQ);}
- | ">" 	{expression.ajouteOp(OP_SUP);}
- | ">=" {expression.ajouteOp(OP_SUPEQ);}
+   "=" 	{expression.ajouteOp(Constante.OP_EQ);} 		
+ | "<>" {expression.ajouteOp(Constante.OP_DIF);}	
+ | "<" 	{expression.ajouteOp(Constante.OP_INF);}
+ | "<=" {expression.ajouteOp(Constante.OP_INFEQ);}
+ | ">" 	{expression.ajouteOp(Constante.OP_SUP);}
+ | ">=" {expression.ajouteOp(Constante.OP_SUPEQ);}
 } 
 
 void opAdd() : {}
 {
-    "+"		{expression.ajouteOp(OP_PLUS);}
-  |  "-"  	{expression.ajouteOp(OP_MOINS);}
-  | <OU> 	{expression.ajouteOp(OP_OU);}
+    "+"		{expression.ajouteOp(Constante.OP_PLUS);}
+  |  "-"  	{expression.ajouteOp(Constante.OP_MOINS);}
+  | <OU> 	{expression.ajouteOp(Constante.OP_OU);}
 }
 
 void opMul() : {}
 {
-  "*"		{expression.ajouteOp(OP_FOIS);}
-  | "/"		{expression.ajouteOp(OP_DIV);}
-  | <ET>	{expression.ajouteOp(OP_ET);}
+  "*"		{expression.ajouteOp(Constante.OP_FOIS);}
+  | "/"		{expression.ajouteOp(Constante.OP_DIV);}
+  | <ET>	{expression.ajouteOp(Constante.OP_ET);}
 } 
 
 void opNeg() : {}
-{ "-" 		{expression.ajouteOp(OP_NEG);}	
- | <NON>	{expression.ajouteOp(OP_NON);}
+{ "-" 		{expression.ajouteOp(Constante.OP_NEG);}	
+ | <NON>	{expression.ajouteOp(Constante.OP_NON);}
 }
 
