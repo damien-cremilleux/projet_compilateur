@@ -7,6 +7,7 @@ public class Yaka implements YakaConstants {
         public static Expression expression;
         public static Erreur erreur;
         public static YVM yVM;
+        public static ControleType controleT;
 
 
         public static void main(String args[]) {

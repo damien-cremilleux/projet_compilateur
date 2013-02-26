@@ -5,108 +5,68 @@
  */
 package compilateur;
 
-import java.util.List;
 import java.util.Stack;
 
 /**
- * Classe Expression, contient les fonctions nécessaires à la gestion des déclarations et des expressions
+ * Classe Expression, contient les fonctions necessaires Ã  la gestion des declarations et des expressions
  * 
- * @author Samuel COZ - Damien CRÉMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * @author Samuel COZ - Damien CRÃ‰MILLEUX - Lauriane HOLY - Arnaud TROUCHE
  */
 public class Expression {
     
     /**
-     * Pile contenant les types des expressions (exemple : entier, booleens, etc)
+     * Pile contenant les opérandes 
      */
-    public List<String> PileType = new Stack<String>();
+    public Stack<Object> pileVal = new Stack<Object>();
 
     /**
-     * Pile contenant les opérateurs (exemple : +, -, etc)
+     * Pile contenant les operateurs (exemple : +, -, etc)
      */
-    public List<String> PileOp = new Stack<String>();
-
+    public Stack<Integer> pileOp = new Stack<Integer>();    
+    
     /**
-     * Méthode ajoute
+     * ajouteType : ajoute le type à la pile de type
      */
-    public void ajoute() {
+    public void ajouteType(int typeConstante){
+    	Yaka.controleT.ajouteType(typeConstante);
     }
-
     /**
-     * Méthode soustraire
+     * ajouteType : ajoute le type de l'ident dont le nom est clef à la pile de type s'il existe
      */
-    public void soustraire() {
+    public void ajouteType(String clef){
+    	if(Yaka.tabIdent.existeIdent(clef)){
+    		Ident id = Yaka.tabIdent.chercheIdent(clef);
+    		Yaka.controleT.ajouteType(id.getType());
+    	}else{
+    		Yaka.erreur.ajouterErreur("Identificateur "+clef+" non défini");
+    	}
     }
-
+    
     /**
-     * Méthode multiplier
+     * ajouteOp : ajoute l'operateur à la pile d'op
      */
-    public void multiplier() {
+    public void ajouteOp(int typeOp){
+    	pileOp.push(typeOp);
     }
-
+    
     /**
-     * Méthode diviser
+     * ajouteVal : ajoute l'opérande entier à la pile de val
      */
-    public void diviser() {
+    public void ajouteVal(int valeur){
+    	pileVal.push(valeur);
     }
-
     /**
-     * Méthode inférieur
+     * ajouteVal : ajoute l'opérande booleen à la pile de val
      */
-    public void inferieur() {
+    public void ajouteVal(boolean valeur){
+    	pileVal.push(valeur);
     }
-
+    
+    
     /**
-     * Méthode supérieur
+     * affiche : à la fin de la ligne, vide les piles et ecrit dans le fichier
      */
-    public void superieur() {
+    public void affiche(){
+    	
     }
-
-    /**
-     * Méthode infouegal
-     */
-    public void infouegal() {
-    }
-
-    /**
-     * Méthode supouegal
-     */
-    public void supouegal() {
-    }
-
-    /**
-     * Méthode egal
-     */
-    public void egal() {
-    }
-
-    /**
-     * Méthode nonegal
-     */
-    public void nonegal() {
-    }
-
-    /**
-     * Méthode et
-     */
-    public void et() {
-    }
-
-    /**
-     * Méthode ou
-     */
-    public void ou() {
-    }
-
-    /**
-     * Méthode negationEntier
-     */
-    public void negationEntier() {
-    }
-
-    /**
-     * Méthode negationBool
-     */
-    public void negationBool() {
-    }
-
 }
