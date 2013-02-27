@@ -13,11 +13,6 @@ import java.util.Stack;
  * @author Samuel COZ - Damien CRÃ‰MILLEUX - Lauriane HOLY - Arnaud TROUCHE
  */
 public class Expression {
-    
-    /**
-     * Pile contenant les opérandes 
-     */
-    public Stack<Object> pileVal = new Stack<Object>();
 
     /**
      * Pile contenant les operateurs (exemple : +, -, etc)
@@ -41,7 +36,10 @@ public class Expression {
     		int type = id.getType();
     		Yaka.controleT.ajouteType(type);
     		if(id instanceof IdConst){
-    			//ajouteVal(id.get)
+    			Yaka.yVM.iconst(((IdConst) id).getValeur());
+    		}
+    		if(id instanceof IdVar){
+    			Yaka.yVM.iload(((IdVar) id).getOffset());
     		}
     	}else{
     		Yaka.erreur.ajouterErreur("Identificateur "+clef+" non défini");
@@ -56,16 +54,10 @@ public class Expression {
     }
     
     /**
-     * ajouteVal : ajoute l'opérande entier à la pile de val
+     * ajouteVal : ajoute l'operande au fichier yVM
      */
-    public void ajouteVal(int valeur){
-    	pileVal.push(valeur);
-    }
-    /**
-     * ajouteVal : ajoute l'opérande booleen à la pile de val
-     */
-    public void ajouteVal(boolean valeur){
-    	pileVal.push(valeur);
+    public void ajouteVal(int val){
+    	Yaka.yVM.iconst(val);
     }
     
     
@@ -73,6 +65,70 @@ public class Expression {
      * affiche : à la fin de la ligne, vide les piles et ecrit dans le fichier
      */
     public void affiche(){
-    	
+    	while(!pileOp.empty()){
+    		int operateur = pileOp.pop();
+    		Yaka.controleT.controlerType(operateur);
+    		
+    		
+    		switch(operateur){
+    			case Constante.OP_PLUS:
+    				Yaka.yVM.iadd();
+    				break;
+    				
+    			case Constante.OP_MOINS:
+    				Yaka.yVM.isub();
+    				break;
+    			
+    			case Constante.OP_FOIS:
+    				Yaka.yVM.imul();
+    				break;
+    			
+    			case Constante.OP_DIV:
+    				Yaka.yVM.idiv();
+    				break;
+    				
+    			case Constante.OP_SUP:
+    				Yaka.yVM.isup();
+    				break;
+    				
+    			case Constante.OP_INF:
+    				Yaka.yVM.iinf();
+    				break;
+    				
+    			case Constante.OP_SUPEQ:
+    				Yaka.yVM.isupegal();
+    				break;
+    				
+    			case Constante.OP_INFEQ:
+    				Yaka.yVM.iinfegal();
+    				break;
+    				
+    			case Constante.OP_EQ:
+    				Yaka.yVM.iegal();
+    				break;
+    				
+    			case Constante.OP_DIF:
+    				Yaka.yVM.idiff();
+    				break;
+    				
+    			case Constante.OP_ET:
+    				Yaka.yVM.iand();
+    				break;
+    				
+    			case Constante.OP_OU:
+    				Yaka.yVM.ior();
+    				break;
+    				
+    			case Constante.OP_NEG:
+    				Yaka.yVM.ineg();
+    				break;
+    				
+    			case Constante.OP_NON:
+    				Yaka.yVM.inot();
+    				break;
+    		}
+  
+    	}
+    
     }
 }

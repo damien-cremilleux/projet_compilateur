@@ -149,7 +149,7 @@ void analyse() : {}
 
 void bloc() : {}{
  (declConst())*
- (declVar())*		
+ (declVar())*	{declaration.ouvrePrinc();}	
    suiteExpr() 
 }
 
@@ -238,7 +238,7 @@ void primaire (): {}
 }
 
 void valeur () : {}
-{ <entier> {expression.ajouteType(Constante.T_ENTIER);expression.ajouteVal(YakaTokenManager.entierLu);}	
+{ <entier> {expression.ajouteType(Constante.T_ENTIER);expression.ajouteVal(YakaTokenManager.entierLu));}	
  | <ident> {expression.ajoute(YakaTokenManager.identLu);}		
  | <VRAI>  {expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(true);}	
  | <FAUX>  {expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(false);}		

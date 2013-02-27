@@ -5,11 +5,13 @@
  */
 package compilateur;
 
+import java.util.Map;
+
 /**
- * Classe Declaration, contenant les fonctions necessaires a la gestion des
- * declarations
+ * Classe Declaration, contenant les fonctions nécessaires à la gestion des
+ * déclarations
  * 
- * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * @author Samuel COZ - Damien CRÉMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  * 
  */
 public class Declaration {
@@ -24,12 +26,12 @@ public class Declaration {
     private static int typeVar;
 
     /**
-     * L'offset en cours, utilise par les variables. Il commence a 0
+     * L'offset en cours, utilisé par les variables. Il commence à 0
      */
     private static int offsetCourant = 0;
 
     /**
-     * Methode pour modifier le nom de l'Ident courant
+     * Méthode pour modifier le nom de l'Ident courant
      * 
      * @param name
      *            , le nouveau nom
@@ -39,7 +41,7 @@ public class Declaration {
     }
 
     /**
-     * Methode pour affecter une constante
+     * Méthode pour affecter une constante
      * 
      * @param val
      *            la valeur de la constante
@@ -66,7 +68,7 @@ public class Declaration {
     }
 
     /**
-     * Methode pour affecter une constante
+     * Méthode pour affecter une constante
      * 
      * @param clefACopier
      *            , le nom de la constante
@@ -109,12 +111,20 @@ public class Declaration {
     }
 
     /**
-     * Test de l'existence prealable de l'identificateur
+     * Test de l'existence préalable de l'identificateur
      * 
      * @return vrai si l'identificateur existait deja, faux sinon
      */
     public boolean existe() {
 	return Yaka.tabIdent.existeIdent(nomIdent);
+    }
+    
+    /**
+     * Appelle la methode ouvrePrinc de yVM avec le nombre de variables du programme
+     */
+    public void ouvrePrinc(){    	
+    	Yaka.yVM.ouvrePrinc(-offsetCourant); //La variable offsetCourant nous donne le dernier offset utilisé, 
+    										 //le nombre à envoyer à ouvrePrinc correspond exactement à son opposé
     }
 
 }
