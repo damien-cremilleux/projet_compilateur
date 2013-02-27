@@ -36,8 +36,8 @@ public class TabIdent {
      * 
      * @param taille
      */
-    public TabIdent(final int taille) {
-	table = new HashMap<String, Ident>(taille);
+    public TabIdent() {
+	table = new HashMap<String, Ident>();
     }
 
     /**

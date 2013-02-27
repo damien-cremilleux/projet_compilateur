@@ -42,7 +42,7 @@ public class Expression {
     			Yaka.yVM.iload(((IdVar) id).getOffset());
     		}
     	}else{
-    		Yaka.erreur.ajouterErreur("Identificateur "+clef+" non défini");
+    		Erreur.ajouterErreur("Identificateur "+clef+" non défini");
     	}
     }
     

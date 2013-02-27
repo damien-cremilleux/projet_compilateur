@@ -5,6 +5,7 @@
  */
 package compilateur;
 
+import java.io.IOException;
 import java.io.OutputStream;
 
 /**
@@ -25,7 +26,15 @@ public class YVM {
      * @param f
      *            le fichier de sortie
      */
-    public YVM(OutputStream f) {
+    public YVM() {
+	OutputStream f = new OutputStream() {
+	    
+	    @Override
+	    public void write(int b) throws IOException {
+		// TODO Auto-generated method stub
+		
+	    }
+	};
 	fichierSortie = f;
     }
 

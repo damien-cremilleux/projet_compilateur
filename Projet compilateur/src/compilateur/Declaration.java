@@ -5,7 +5,6 @@
  */
 package compilateur;
 
-import java.util.Map;
 
 /**
  * Classe Declaration, contenant les fonctions nécessaires à la gestion des
@@ -37,6 +36,7 @@ public class Declaration {
      *            , le nouveau nom
      */
     public void setNomIdent(String name) {
+	System.out.println("dans setNomIdent");
 	nomIdent = name;
     }
 
@@ -49,8 +49,9 @@ public class Declaration {
      *            le type de la constante
      */
     public void affectationConst(final int val, final int type) {
+	System.out.println("test");
 	if (existe()) {
-	    Yaka.erreur
+	    Erreur
 		    .ajouterErreur("Constante " + nomIdent + " deja definie"); // TODO
 	    // rajouter
 	    // le
@@ -78,7 +79,7 @@ public class Declaration {
 	    IdConst id = (IdConst) Yaka.tabIdent.chercheIdent(clefACopier);
 	    this.affectationConst(id.getValeur(), id.getType());
 	} else {
-	    Yaka.erreur.ajouterErreur("Constante " + clefACopier
+	    Erreur.ajouterErreur("Constante " + clefACopier
 		    + " pas definie");
 	}
     }
@@ -101,7 +102,7 @@ public class Declaration {
      */
     public void affectationVal(final String clef) {
 	if (Yaka.tabIdent.existeIdent(clef)) {
-	    Yaka.erreur.ajouterErreur("Variable " + clef + " deja definie");
+	    Erreur.ajouterErreur("Variable " + clef + " deja definie");
 	} else {
 	    /* Cree l'ident */
 	    offsetCourant -= 2;

@@ -21,7 +21,7 @@ public class YVMasm extends YVM {
 	 *            le fichier de sortie, contenant les instructions assembleurs
 	 */
 	public YVMasm(OutputStream f) {
-		super(f);
+		super();
 		// TODO Auto-generated constructor stub
 	}
 
