@@ -10,7 +10,7 @@ import java.util.Stack;
 /**
  * Classe Expression, contient les fonctions necessaires Ã  la gestion des declarations et des expressions
  * 
- * @author Samuel COZ - Damien CRÃ‰MILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  */
 public class Expression {
 
@@ -55,9 +55,19 @@ public class Expression {
     
     /**
      * ajouteVal : ajoute l'operande au fichier yVM
+     * @param val le booleen a empiler
      */
+    public void ajouteVal(boolean val){
+	if(val) {
+	    Yaka.yVM.iconst(-1); //TODO mettre en constante
+	} else {
+	    Yaka.yVM.iconst(0);
+	}
+    	
+    }
     public void ajouteVal(int val){
-    	Yaka.yVM.iconst(val);
+	    Yaka.yVM.iconst(val);
+    	
     }
     
     
