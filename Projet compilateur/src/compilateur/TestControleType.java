@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * Classe TestControleType - Test de ControleType
+ * Classe TestControleType - Test JUnit de ControleType
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  * 
