@@ -1,5 +1,5 @@
 /*	Auteur: Pedrono Marie-Jo
- *  création : 13 février 2002
+ *  crÃ©ation : 13 fÃ©vrier 2002
  *  nature : projet etudiant
  */
 
@@ -22,6 +22,7 @@ public class Yaka {
 	public static Expression expression;
 	public static Erreur erreur;
 	public static YVM yVM;
+	public static ControleType controleT;
 	
 
 	public static void main(String args[]) { 
@@ -83,7 +84,7 @@ SKIP :
 }
 
 
-/* Mots réservés*/
+/* Mots rÃ©servÃ©s*/
 
 TOKEN :
 {
@@ -192,7 +193,8 @@ void type() :{}
  * Syntaxe des instructions.
  */
 void suiteExpr() : {}
-{ (expression() (";" (expression())? )*)? }
+{ 	(expression() (";" {expression.affiche();}
+	(expression())? )*)? }
 
 
 
@@ -236,39 +238,39 @@ void primaire (): {}
 }
 
 void valeur () : {}
-{ <entier> 		
- | <ident> 		
- | <VRAI> 		
- | <FAUX> 		
+{ <entier> {expression.ajouteType(Constante.T_ENTIER);expression.ajouteVal(YakaTokenManager.entierLu);}	
+ | <ident> {expression.ajoute(YakaTokenManager.identLu);}		
+ | <VRAI>  {expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(true);}	
+ | <FAUX>  {expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(false);}		
  
 }
 
 void opRel() : {}
 {
-   "=" 		
- | "<>" 	
- | "<" 		
- | "<=" 	
- | ">" 		
- | ">=" 	
+   "=" 	{expression.ajouteOp(Constante.OP_EQ);} 		
+ | "<>" {expression.ajouteOp(Constante.OP_DIF);}	
+ | "<" 	{expression.ajouteOp(Constante.OP_INF);}
+ | "<=" {expression.ajouteOp(Constante.OP_INFEQ);}
+ | ">" 	{expression.ajouteOp(Constante.OP_SUP);}
+ | ">=" {expression.ajouteOp(Constante.OP_SUPEQ);}
 } 
 
 void opAdd() : {}
 {
-    "+"		
-  |  "-"  
-  | <OU> 	
+    "+"		{expression.ajouteOp(Constante.OP_PLUS);}
+  |  "-"  	{expression.ajouteOp(Constante.OP_MOINS);}
+  | <OU> 	{expression.ajouteOp(Constante.OP_OU);}
 }
 
 void opMul() : {}
 {
-  "*"		
-  | "/"		
-  | <ET>	
+  "*"		{expression.ajouteOp(Constante.OP_FOIS);}
+  | "/"		{expression.ajouteOp(Constante.OP_DIV);}
+  | <ET>	{expression.ajouteOp(Constante.OP_ET);}
 } 
 
 void opNeg() : {}
-{ "-" 		
- | <NON>	
+{ "-" 		{expression.ajouteOp(Constante.OP_NEG);}	
+ | <NON>	{expression.ajouteOp(Constante.OP_NON);}
 }
 
