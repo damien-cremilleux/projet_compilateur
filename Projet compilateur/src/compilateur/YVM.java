@@ -188,6 +188,14 @@ public class YVM {
     public void ifeq(final String etiquette) {
 	Ecriture.ecrireStringln(fichierSortie, "ifeq " + etiquette);
     }
+    
+    /**
+     * Methode iffaux affiche iffaux et l'etiquette de saut 
+     * @param etiquette
+     */
+    public void iffaux(final String etiquette) {
+    	Ecriture.ecrireStringln(fichierSortie, "iffaux "+etiquette);
+    }
 
     /**
      * Methode gotoYVM affiche goto et l'étiquette de saut dans le fichier de

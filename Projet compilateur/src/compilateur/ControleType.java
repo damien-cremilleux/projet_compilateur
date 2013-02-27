@@ -24,17 +24,17 @@ public class ControleType {
 	 * Ajoute un type sur la pile
 	 * 
 	 * @param type
-	 *            le type à ajouter
+	 *            le type a ajouter
 	 */
 	public void ajouteType(int type) {
 		pileT.push(type);
 	}
 
 	/**
-	 * Controle du type pour une opération
+	 * Controle du type pour une operation
 	 * 
 	 * @param op
-	 *            l'opérateur
+	 *            l'operateur
 	 * 
 	 * 
 	 */
@@ -136,7 +136,7 @@ public class ControleType {
 					pileT.push(Constante.T_BOOLEEN);
 				} else {
 					pileT.push(Constante.T_ERREUR);
-					Erreur.ajouterErreur("Probleme de type : une différence doit prendre deux entiers ou deux booleens en parametres.");
+					Erreur.ajouterErreur("Probleme de type : une difference doit prendre deux entiers ou deux booleens en parametres.");
 				}
 			}
 			break;
