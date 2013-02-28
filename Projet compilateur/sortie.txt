@@ -1,0 +1,33 @@
+entete
+ouvrePrinc 14
+iload -2
+iconst 10
+iconst 10
+iconst 2
+idiv
+iadd
+iconst 5
+idiv
+iegal
+iload -4
+iload -2
+iconst 3
+iload -2
+imul
+iadd
+iconst 10
+isub
+iegal
+iload -12
+iconst -1
+iconst -1
+ior
+iegal
+iload -14
+iload -2
+iload -4
+iconst 4
+iadd
+iinfegal
+iegal
+queue

@@ -14,12 +14,12 @@ package compilateur;
 public class Constante {
 	/* CONSTANTES ASM */
 	/**
-	 * 	Définition du type Vrai pour YVM et ASM
+	 * 	Definition du type Vrai pour YVM et ASM
 	 */
 	public static final int V_VRAI = -1;
 	
 	/**
-	 *  Définition du type Faux pour YVM et ASM
+	 *  Definition du type Faux pour YVM et ASM
 	 */
 	public static final int V_FAUX = 0;
 	
