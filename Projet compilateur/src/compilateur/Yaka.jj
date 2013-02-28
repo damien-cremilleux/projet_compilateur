@@ -160,7 +160,7 @@ void bloc() : {}{
  (declConst())*
  (declVar())*	
  {declaration.ouvrePrinc();}	
-  suiteExpr() 
+  suiteInstr() 
 }
 
 void declConst() : {}
@@ -202,11 +202,21 @@ void type() :{}
 /*
  * Syntaxe des instructions.
  */
-void suiteExpr() : {}
-{ 	(expression() (";" 
-	(expression())? )*)? }
+void suiteInstr() : {}
+{ 	(instruction() (";" 
+	(instruction())? )*)? }
 
+void instruction(): {}
+{ affectation() | lecture() | ecriture() }
 
+void affectation() : {}
+{ <ident> "=" expression() }
+
+void lecture() : {}
+{ <LIRE> "(" <ident> ")" }
+
+void ecriture() : {}
+{ ( <ECRIRE> "(" (expression() | <chaine> ) ")" ) | <ALALIGNE> }
 
 /*
  * Expression .
