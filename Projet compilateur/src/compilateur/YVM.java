@@ -23,7 +23,7 @@ public class YVM {
     public static OutputStream fichierSortie;
 
     /**
-     * Methode pour définir le fichier de sortie
+     * Methode pour definir le fichier de sortie
      * 
      * @param f le fichier de sortie
      * @throws FileNotFoundException 
@@ -40,7 +40,7 @@ public class YVM {
     }
 
     /**
-     * Methode ouvrePrinc affiche ouvrPrinc et l'espace reservÃ© pour l'ensemble
+     * Methode ouvrePrinc affiche ouvrPrinc et l'espace reserve pour l'ensemble
      * des variables dans la pile
      * 
      * @param nb le nombre de variables dans la pile

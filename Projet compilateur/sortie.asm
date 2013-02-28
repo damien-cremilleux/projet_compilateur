@@ -10,25 +10,38 @@ STARTUPCODE
 mov bp,sp
 sub sp,6
 
-;iconst
-push 1
-
 ;istore
 pop ax
 move word ptr[bp-2,ax]
+
+;iconst
+push 0
+
+;istore
+pop ax
+move word ptr[bp-4,ax]
 
 ;iconst
 push 2
 
 ;istore
 pop ax
-move word ptr[bp-4,ax]
+move word ptr[bp-2,ax]
 
 ;iload
 push word ptr[bp-2]
 
-;iload
-push word ptr[bp-4]
+;iconst
+push 5
+
+;iconst
+push 10
+
+;imul
+pop bx
+pop ax
+imul bx
+push ax
 
 ;iadd
 pop bx
@@ -36,19 +49,14 @@ pop ax
 add ax,bx
 push ax
 
-;iconst
-push 2
+;iload
+push word ptr[bp-4]
 
-;idiv
+;isub
 pop bx
 pop ax
-cwd
-idiv bx
+sub ax,bx
 push ax
-
-;istore
-pop ax
-move word ptr[bp-4,ax]
 
 ;queue
 nop

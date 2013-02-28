@@ -8,7 +8,7 @@ package compilateur;
 import java.util.Stack;
 
 /**
- * Classe Expression, contient les fonctions necessaires ÃÂ  la gestion des
+ * Classe Expression, contient les fonctions necessaires a la gestion des
  * declarations et des expressions
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
@@ -21,10 +21,10 @@ public class Expression {
     public Stack<Integer> pileOp = new Stack<Integer>();
 
     /**
-     * ajouteType : ajoute le type Ã  la pile de type
+     * ajouteType : ajoute le type a la pile de type
      * 
      * @param type
-     *            le type Ã  ajouter
+     *            le type a ajouter
      */
     public void ajouteType(int type) {
 	Yaka.controleT.ajouteType(type);
@@ -32,7 +32,7 @@ public class Expression {
 
     /**
      * ajouteType : ajoute le type et la valeur de l'ident dont le nom est clef
-     * Ã  la pile de type s'il existe
+     * a la pile de type s'il existe
      * 
      * @param clef
      *            nom de l'ident
@@ -167,6 +167,7 @@ public class Expression {
     	    int type = id.getType();
     	    Yaka.controleT.ajouteType(type);
     	    if (id instanceof IdVar) {
+    		System.out.println(clef);
     	    	Yaka.yVM.istore(((IdVar) id).getOffset());
     	    }else{
     	    	Erreur.ajouterErreur("Affectation à une constante impossible");
