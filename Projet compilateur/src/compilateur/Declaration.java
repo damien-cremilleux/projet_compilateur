@@ -17,7 +17,7 @@ public class Declaration {
     /**
      * Le nom de l'Ident courant
      */
-    private static String nomIdent;
+    public static String nomIdent = "ae";
 
     /**
      * Le type de la variable (exemple : entier, booleen, etc)
@@ -36,8 +36,7 @@ public class Declaration {
      *            , le nouveau nom
      */
     public void setNomIdent(String name) {
-	System.out.println("dans setNomIdent");
-	nomIdent = name;
+    	Yaka.declaration.nomIdent = name;
     }
 
     /**
@@ -49,7 +48,6 @@ public class Declaration {
      *            le type de la constante
      */
     public void affectationConst(final int val, final int type) {
-	System.out.println("test");
 	if (existe()) {
 	    Erreur
 		    .ajouterErreur("Constante " + nomIdent + " deja definie"); // TODO
@@ -64,7 +62,7 @@ public class Declaration {
 	} else {
 	    /* Cree l'ident */
 	    IdConst id = new IdConst(type, nomIdent, val);
-	    Yaka.tabIdent.rangeIdent(nomIdent, id);
+    	Yaka.tabIdent.rangeIdent(nomIdent, id);
 	}
     }
 
@@ -107,8 +105,8 @@ public class Declaration {
 	    /* Cree l'ident */
 	    offsetCourant -= 2;
 	    IdVar id = new IdVar(typeVar, clef, offsetCourant);
-	    Yaka.tabIdent.rangeIdent(nomIdent, id);
-	}
+	    Yaka.tabIdent.rangeIdent(clef, id);
+		}
     }
 
     /**
@@ -124,6 +122,7 @@ public class Declaration {
      * Appelle la methode ouvrePrinc de yVM avec le nombre de variables du programme
      */
     public void ouvrePrinc(){    	
+    	Yaka.yVM.entete();
     	Yaka.yVM.ouvrePrinc(-offsetCourant); //La variable offsetCourant nous donne le dernier offset utilisé, 
     										 //le nombre à envoyer à ouvrePrinc correspond exactement à son opposé
     }

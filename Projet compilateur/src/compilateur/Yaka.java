@@ -7,18 +7,20 @@ public class Yaka implements YakaConstants {
         public static Declaration declaration = new Declaration();
         public static Expression expression = new Expression();
         public static Erreur erreur = new Erreur();
-        public static YVM yVM= new YVM();
+        public static YVM yVM= new YVMasm();
         public static ControleType controleT = new ControleType();
 
 
         public static void main(String args[]) {
                 Yaka analyseur;
                 java.io.InputStream input;
+                String output;
 
                 if (args.length==1) {
                   System.out.print(args[args.length-1] + ": ");
                   try {
                         input = new java.io.FileInputStream(args[args.length-1]+".yaka");
+                        output = args[args.length-1];
                   } catch (java.io.FileNotFoundException e) {
                         System.out.println("Fichier introuvable.");
                         return;
@@ -26,18 +28,24 @@ public class Yaka implements YakaConstants {
                 } else if (args.length==0) {
                   System.out.println("Lecture sur l'entree standard...");
                   input = System.in;
+                  output = "sortie";
                 } else {
                   System.out.println("Usage: java Gram [fichier]");
                   return;
                 }
                 try {
                   analyseur = new Yaka(input);
+                  yVM.setFichierSortie(output);
                   analyseur.analyse();
+
                   System.out.println("analyse syntaxique reussie!");
                 } catch (ParseException e) {
                   String msg = e.getMessage();
                   msg = msg.substring(0,msg.indexOf("\u005cn"));
                   System.out.println("Erreur de syntaxe : "+msg);
+                } catch (java.io.FileNotFoundException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
                 }
     }
 
@@ -49,6 +57,7 @@ public class Yaka implements YakaConstants {
     jj_consume_token(ident);
     bloc();
     jj_consume_token(FPROGRAMME);
+                  yVM.queue();
   }
 
   static final public void bloc() throws ParseException {
@@ -76,7 +85,7 @@ public class Yaka implements YakaConstants {
       }
       declVar();
     }
-
+  declaration.ouvrePrinc();
     suiteExpr();
   }
 
@@ -101,9 +110,9 @@ public class Yaka implements YakaConstants {
 
   static final public void defConst() throws ParseException {
     jj_consume_token(ident);
+           declaration.setNomIdent(YakaTokenManager.identLu);
     jj_consume_token(42);
     valConst();
-                   declaration.setNomIdent(YakaTokenManager.identLu);
   }
 
   static final public void valConst() throws ParseException {
@@ -118,11 +127,11 @@ public class Yaka implements YakaConstants {
       break;
     case VRAI:
       jj_consume_token(VRAI);
-                 declaration.affectationConst(YakaTokenManager.entierLu, Constante.T_BOOLEEN);
+                 declaration.affectationConst(Constante.V_VRAI, Constante.T_BOOLEEN);
       break;
     case FAUX:
       jj_consume_token(FAUX);
-                 declaration.affectationConst(YakaTokenManager.entierLu, Constante.T_BOOLEEN);
+                 declaration.affectationConst(Constante.V_FAUX, Constante.T_BOOLEEN);
       break;
     default:
       jj_la1[3] = jj_gen;
@@ -194,7 +203,6 @@ public class Yaka implements YakaConstants {
           break label_5;
         }
         jj_consume_token(41);
-                            expression.affiche();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case VRAI:
         case FAUX:
@@ -231,6 +239,7 @@ public class Yaka implements YakaConstants {
     case 49:
       opRel();
       simpleExpr();
+   expression.operation();
       break;
     default:
       jj_la1[9] = jj_gen;
@@ -254,6 +263,7 @@ public class Yaka implements YakaConstants {
       }
       opAdd();
       terme();
+                 expression.operation();
     }
   }
 
@@ -273,6 +283,7 @@ public class Yaka implements YakaConstants {
       }
       opMul();
       facteur();
+                 expression.operation();
     }
   }
 
@@ -289,6 +300,7 @@ public class Yaka implements YakaConstants {
     case 51:
       opNeg();
       primaire();
+                         expression.operation();
       break;
     default:
       jj_la1[12] = jj_gen;

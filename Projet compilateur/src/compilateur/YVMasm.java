@@ -5,6 +5,8 @@
  */
 package compilateur;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 /**
@@ -15,20 +17,14 @@ import java.io.OutputStream;
  */
 public class YVMasm extends YVM {
 	/**
-	 * Constructeur
-	 * 
-	 * @param f
-	 *            le fichier de sortie, contenant les instructions assembleurs
-	 */
-	public YVMasm(OutputStream f) {
-		super();
-		// TODO Auto-generated constructor stub
+     * Methode pour d�finir le fichier de sortie
+     * 
+     * @param f le fichier de sortie
+     * @throws FileNotFoundException 
+     */
+    public void setFichierSortie(String f) throws FileNotFoundException {
+    	fichierSortie = new FileOutputStream(f+".asm");
 	}
-
-	/**
-	 * Le fichier de sortie contenant les instructions assembleurs
-	 */
-	public OutputStream fichierSortie; // TODO a voir avec l'héritage
 
 	/**
 	 * Réalise l'entete d'un fichier
@@ -48,7 +44,7 @@ public class YVMasm extends YVM {
 	 *            le nombre de variables
 	 */
 	public void ouvrePrinc(final int nb) {
-		Ecriture.ecrireStringln(fichierSortie, "move bp,sp");
+		Ecriture.ecrireStringln(fichierSortie, "mov bp,sp");
 		Ecriture.ecrireStringln(fichierSortie, "sub sp," + nb);
 	}
 
@@ -81,7 +77,6 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push ax");
 	}
 
-	// avec ax ?
 	public void inot() {
 		Ecriture.ecrireStringln(fichierSortie, "pop ax");
 		Ecriture.ecrireStringln(fichierSortie, "not ax");
@@ -89,7 +84,6 @@ public class YVMasm extends YVM {
 
 	}
 
-	// avec ax ?
 	public void ineg() {
 		Ecriture.ecrireStringln(fichierSortie, "neg ax");
 		Ecriture.ecrireStringln(fichierSortie, "push ax");

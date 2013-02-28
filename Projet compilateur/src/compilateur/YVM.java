@@ -5,6 +5,8 @@
  */
 package compilateur;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -18,25 +20,17 @@ public class YVM {
     /**
      * fichier de sortie, contenant les instructions YVM
      */
-    public OutputStream fichierSortie;
+    public static OutputStream fichierSortie;
 
     /**
-     * Constructeur de la classe
+     * Methode pour définir le fichier de sortie
      * 
-     * @param f
-     *            le fichier de sortie
+     * @param f le fichier de sortie
+     * @throws FileNotFoundException 
      */
-    public YVM() {
-	OutputStream f = new OutputStream() {
-	    
-	    @Override
-	    public void write(int b) throws IOException {
-		// TODO Auto-generated method stub
-		
-	    }
-	};
-	fichierSortie = f;
-    }
+    public void setFichierSortie(String f) throws FileNotFoundException {
+    	fichierSortie = new FileOutputStream(f+".txt");     	
+	}
 
     /**
      * Methode entete affiche entete au debut du fichier YAKA

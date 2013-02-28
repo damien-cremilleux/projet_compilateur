@@ -22,18 +22,20 @@ public class Yaka {
 	public static Declaration declaration = new Declaration();
 	public static Expression expression = new Expression();
 	public static Erreur erreur = new Erreur();
-	public static YVM yVM= new YVM();
+	public static YVM yVM= new YVMasm();
 	public static ControleType controleT = new ControleType();
 	
 
 	public static void main(String args[]) { 
 		Yaka analyseur;
 		java.io.InputStream input;
+		String output;
 	
 		if (args.length==1) {
 		  System.out.print(args[args.length-1] + ": ");
 		  try {
 			input = new java.io.FileInputStream(args[args.length-1]+".yaka");
+			output = args[args.length-1];
 		  } catch (java.io.FileNotFoundException e) {
 			System.out.println("Fichier introuvable.");
 			return;
@@ -41,18 +43,24 @@ public class Yaka {
 		} else if (args.length==0) {
 		  System.out.println("Lecture sur l'entree standard...");
 		  input = System.in;
+		  output = "sortie";
 		} else {
 		  System.out.println("Usage: java Gram [fichier]");
 		  return;
 		}
 		try {
 		  analyseur = new Yaka(input);
+		  yVM.setFichierSortie(output);
 		  analyseur.analyse();
+	  		
 		  System.out.println("analyse syntaxique reussie!");
 		} catch (ParseException e) {
 		  String msg = e.getMessage();
 		  msg = msg.substring(0,msg.indexOf("\n"));
 		  System.out.println("Erreur de syntaxe : "+msg);
+		} catch (java.io.FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
     } 
 }
@@ -145,14 +153,14 @@ void analyse() : {}
 {
    <PROGRAMME> <ident>	
    bloc()
-   <FPROGRAMME> 
+   <FPROGRAMME> { yVM.queue();}
 }
 
 void bloc() : {}{
  (declConst())*
- (declVar())*	{
- }	
-   suiteExpr() 
+ (declVar())*	
+ {declaration.ouvrePrinc();}	
+  suiteExpr() 
 }
 
 void declConst() : {}
@@ -163,16 +171,16 @@ void declConst() : {}
 void defConst() : {}
 {
 	
-  <ident>  	  	
-   "=" valConst() {declaration.setNomIdent(YakaTokenManager.identLu); }
+  <ident> {declaration.setNomIdent(YakaTokenManager.identLu); } 	  	
+   "=" valConst() 
     
 }
 
 void valConst() : {}{
   <entier> 	{declaration.affectationConst(YakaTokenManager.entierLu, Constante.T_ENTIER); }	
  | <ident>	{declaration.affectationConstCopie(YakaTokenManager.identLu); }	
- | <VRAI> 	{declaration.affectationConst(YakaTokenManager.entierLu, Constante.T_BOOLEEN); }	
- | <FAUX> 	{declaration.affectationConst(YakaTokenManager.entierLu, Constante.T_BOOLEEN); }	
+ | <VRAI> 	{declaration.affectationConst(Constante.V_VRAI, Constante.T_BOOLEEN); }	
+ | <FAUX> 	{declaration.affectationConst(Constante.V_FAUX, Constante.T_BOOLEEN); }	
 }
 
 
@@ -195,7 +203,7 @@ void type() :{}
  * Syntaxe des instructions.
  */
 void suiteExpr() : {}
-{ 	(expression() (";" {expression.affiche();}
+{ 	(expression() (";" 
 	(expression())? )*)? }
 
 
@@ -207,7 +215,8 @@ void expression() : {}
 {
   simpleExpr() 
   (opRel() 
-  simpleExpr() 
+  simpleExpr()
+  {expression.operation();} 
   )?
 }
 
@@ -217,19 +226,19 @@ void simpleExpr() : {}
 {
    terme() 
    (opAdd() 
-   terme()	
+   terme()	{expression.operation();}
    )*
 } 
 void terme() : {}
 {
   facteur() 
   (opMul() 
-  facteur()	
+  facteur()	{expression.operation();}
   )*
 }
 void facteur() : {}
 {   primaire() 
-  |  opNeg() primaire() 
+  |  opNeg() primaire() {expression.operation();}
 }
 
 void primaire (): {}
