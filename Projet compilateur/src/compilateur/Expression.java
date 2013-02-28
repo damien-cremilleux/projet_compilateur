@@ -160,7 +160,7 @@ public class Expression {
     * @param clef : l'identificateur de la variable
     */
     public void affectation(String clef){
-    	Yaka.controleT.controlerType(Constante.OP_AFFEC);
+    	//Yaka.controleT.controlerType(Constante.OP_AFFEC);
     	
     	if(Yaka.tabIdent.existeIdent(clef)) {
     	    Ident id = Yaka.tabIdent.chercheIdent(clef);

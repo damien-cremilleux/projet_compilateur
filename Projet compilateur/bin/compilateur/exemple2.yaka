@@ -1,0 +1,6 @@
+PROGRAMME max
+VAR ENTIER x,y,z;
+	x=1;
+	y=2;
+	z=(x+y)/2;
+FPROGRAMME

@@ -17,7 +17,7 @@ import java.io.OutputStream;
  */
 public class YVMasm extends YVM {
 	/**
-     * Methode pour définir le fichier de sortie
+     * Methode pour definir le fichier de sortie
      * 
      * @param f le fichier de sortie
      * @throws FileNotFoundException 
@@ -208,7 +208,7 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, ";istore");
 		Ecriture.ecrireStringln(fichierSortie, "pop ax");
 		Ecriture.ecrireStringln(fichierSortie, "move word ptr[bp" + offset
-				+ ",ax");
+				+ ",ax]");
 	}
 
 	public void iconst(final int valeur) {
