@@ -8,7 +8,7 @@ package compilateur;
 import java.util.Stack;
 
 /**
- * Classe Expression, contient les fonctions necessaires Ã  la gestion des
+ * Classe Expression, contient les fonctions necessaires a la gestion des
  * declarations et des expressions
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
@@ -21,7 +21,7 @@ public class Expression {
     public Stack<Integer> pileOp = new Stack<Integer>();
 
     /**
-     * ajouteType : ajoute le type à la pile de type
+     * ajouteType : ajoute le type a la pile de type
      * 
      * @param type
      *            le type à ajouter
@@ -32,7 +32,7 @@ public class Expression {
 
     /**
      * ajouteType : ajoute le type et la valeur de l'ident dont le nom est clef
-     * à la pile de type s'il existe
+     * a la pile de type s'il existe
      * 
      * @param clef
      *            nom de l'ident
@@ -54,7 +54,7 @@ public class Expression {
     }
 
     /**
-     * ajouteOp : ajoute l'operateur à la pile d'op
+     * ajouteOp : ajoute l'operateur a la pile d'op
      * 
      * @param typeOp
      *            le type de l'opérateur
@@ -90,7 +90,7 @@ public class Expression {
     }
 
     /**
-     * operation : à la fin de la ligne, vide les piles et ecrit dans le fichier
+     * operation : a la fin de la ligne, vide les piles et ecrit dans le fichier
      */
     public void operation() {
 	int operateur = pileOp.pop();

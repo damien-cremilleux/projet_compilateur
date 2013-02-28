@@ -172,6 +172,13 @@ public class ControleType {
 		pileT.push(Constante.T_ERREUR);
 		Erreur.ajouterErreur("Probleme de type : une negation doit prendre un entier en parametres.");
 	    }
+	case Constante.OP_AFFEC:
+	    if (pileT.pop() == pileT.pop()) {
+		pileT.push(Constante.T_ENTIER);
+	    } else {
+		pileT.push(Constante.T_ERREUR);
+		Erreur.ajouterErreur("Probleme de type : une affectation doit prendre le meme type de chaque cote de l'affectation.");
+	    }
 	default:
 	    break;
 	}
