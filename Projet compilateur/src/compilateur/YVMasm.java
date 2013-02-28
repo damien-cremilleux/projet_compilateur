@@ -38,7 +38,7 @@ public class YVMasm extends YVM {
 	}
 
 	/**
-	 * Fonction ouvPrinc
+	 * Fonction ouvrePrinc
 	 * 
 	 * @param nb
 	 *            le nombre de variables

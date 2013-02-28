@@ -17,7 +17,7 @@ public class Declaration {
     /**
      * Le nom de l'Ident courant
      */
-    public static String nomIdent = "ae";
+    public static String nomIdent;
 
     /**
      * Le type de la variable (exemple : entier, booleen, etc)
@@ -36,7 +36,7 @@ public class Declaration {
      *            , le nouveau nom
      */
     public void setNomIdent(String name) {
-    	Yaka.declaration.nomIdent = name;
+    	nomIdent = name;
     }
 
     /**

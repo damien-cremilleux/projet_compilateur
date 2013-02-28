@@ -7,7 +7,7 @@ public class Yaka implements YakaConstants {
         public static Declaration declaration = new Declaration();
         public static Expression expression = new Expression();
         public static Erreur erreur = new Erreur();
-        public static YVM yVM= new YVMasm();
+        public static YVM yVM= new YVM();
         public static ControleType controleT = new ControleType();
 
 
