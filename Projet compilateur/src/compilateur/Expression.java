@@ -8,7 +8,7 @@ package compilateur;
 import java.util.Stack;
 
 /**
- * Classe Expression, contient les fonctions necessaires a la gestion des
+ * Classe Expression, contient les fonctions necessaires ÃÂ  la gestion des
  * declarations et des expressions
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
@@ -21,10 +21,10 @@ public class Expression {
     public Stack<Integer> pileOp = new Stack<Integer>();
 
     /**
-     * ajouteType : ajoute le type a la pile de type
+     * ajouteType : ajoute le type Ã  la pile de type
      * 
      * @param type
-     *            le type à ajouter
+     *            le type Ã  ajouter
      */
     public void ajouteType(int type) {
 	Yaka.controleT.ajouteType(type);
@@ -32,7 +32,7 @@ public class Expression {
 
     /**
      * ajouteType : ajoute le type et la valeur de l'ident dont le nom est clef
-     * a la pile de type s'il existe
+     * Ã  la pile de type s'il existe
      * 
      * @param clef
      *            nom de l'ident
@@ -49,15 +49,15 @@ public class Expression {
 		Yaka.yVM.iload(((IdVar) id).getOffset());
 	    }
 	} else {
-	    Erreur.ajouterErreur("Identificateur " + clef + " non défini");
+	    Erreur.ajouterErreur("Identificateur " + clef + " non dÃ©fini");
 	}
     }
 
     /**
-     * ajouteOp : ajoute l'operateur a la pile d'op
+     * ajouteOp : ajoute l'operateur Ã  la pile d'op
      * 
      * @param typeOp
-     *            le type de l'opérateur
+     *            le type de l'opÃ©rateur
      */
     public void ajouteOp(int typeOp) {
 	pileOp.push(typeOp);
@@ -90,7 +90,7 @@ public class Expression {
     }
 
     /**
-     * operation : a la fin de la ligne, vide les piles et ecrit dans le fichier
+     * operation : Ã  la fin de la ligne, vide les piles et ecrit dans le fichier
      */
     public void operation() {
 	int operateur = pileOp.pop();
@@ -154,4 +154,26 @@ public class Expression {
 	    break;
 	}
     }
+    
+   /**
+    * methode pour affecter une valeur à une variable
+    * @param clef : l'identificateur de la variable
+    */
+    public void affectation(String clef){
+    	Yaka.controleT.controlerType(Constante.OP_AFFEC);
+    	
+    	if(Yaka.tabIdent.existeIdent(clef)) {
+    	    Ident id = Yaka.tabIdent.chercheIdent(clef);
+    	    int type = id.getType();
+    	    Yaka.controleT.ajouteType(type);
+    	    if (id instanceof IdVar) {
+    	    	Yaka.yVM.istore(((IdVar) id).getOffset());
+    	    }else{
+    	    	Erreur.ajouterErreur("Affectation à une constante impossible");
+    	    }
+    	} else {
+    	    Erreur.ajouterErreur("Identificateur " + clef + " non defini");
+    	}
+    }
+    
 }
