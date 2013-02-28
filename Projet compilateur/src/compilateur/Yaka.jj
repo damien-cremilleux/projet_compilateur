@@ -218,7 +218,7 @@ void instruction(): {}
 
 void affectation() : {}
 {
-  	<ident> {expression.affectation(YakaTokenManager.identLu);} "=" expression() 
+  	<ident> {String i = YakaTokenManager.identLu;} "=" expression() {expression.affectation(i);}
 }
 
 

@@ -167,8 +167,7 @@ public class Expression {
     	    int type = id.getType();
     	    Yaka.controleT.ajouteType(type);
     	    if (id instanceof IdVar) {
-    		System.out.println(clef);
-    	    	Yaka.yVM.istore(((IdVar) id).getOffset());
+    		Yaka.yVM.istore(((IdVar) id).getOffset());
     	    }else{
     	    	Erreur.ajouterErreur("Affectation à une constante impossible");
     	    }

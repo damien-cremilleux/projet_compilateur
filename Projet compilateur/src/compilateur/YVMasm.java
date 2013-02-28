@@ -178,10 +178,10 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "pop bx");
 		Ecriture.ecrireStringln(fichierSortie, "pop ax");
 		Ecriture.ecrireStringln(fichierSortie, "cmp ax,bx");
-		Ecriture.ecrireStringln(fichierSortie, "jne $+6");
-		Ecriture.ecrireStringln(fichierSortie, "push -1");
-		Ecriture.ecrireStringln(fichierSortie, "jmp $+4");
+		Ecriture.ecrireStringln(fichierSortie, "je $+6");
 		Ecriture.ecrireStringln(fichierSortie, "push 0");
+		Ecriture.ecrireStringln(fichierSortie, "jmp $+4");
+		Ecriture.ecrireStringln(fichierSortie, "push -1");
 	}
 
 	public void idiff() {
@@ -198,14 +198,14 @@ public class YVMasm extends YVM {
 
 	public void iload(final int offset) {
 		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";iload");
+		Ecriture.ecrireStringln(fichierSortie, ";iload" + offset);
 		Ecriture.ecrireStringln(fichierSortie, "push word ptr[bp" + offset
 				+ "]");
 	}
 
 	public void istore(final int offset) {
 		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";istore");
+		Ecriture.ecrireStringln(fichierSortie, ";istore" + offset);
 		Ecriture.ecrireStringln(fichierSortie, "pop ax");
 		Ecriture.ecrireStringln(fichierSortie, "move word ptr[bp" + offset
 				+ ",ax]");
@@ -213,13 +213,13 @@ public class YVMasm extends YVM {
 
 	public void iconst(final int valeur) {
 		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";iconst");
+		Ecriture.ecrireStringln(fichierSortie, ";iconst " + valeur);
 		Ecriture.ecrireStringln(fichierSortie, "push " + valeur);
 	}
 
 	public void ifeq(final String etiquette) {
 		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";ifeq");
+		Ecriture.ecrireStringln(fichierSortie, ";ifeq" + etiquette);
 		Ecriture.ecrireStringln(fichierSortie, "pop bx");
 		Ecriture.ecrireStringln(fichierSortie, "cmp 0, bx");
 		Ecriture.ecrireStringln(fichierSortie, "je $+6");
@@ -235,9 +235,9 @@ public class YVMasm extends YVM {
 	 */
 	public void iffaux(final String etiquette) {
 		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";iffaux");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "cmp 0, bx");
+		Ecriture.ecrireStringln(fichierSortie, ";iffaux" + etiquette);
+		Ecriture.ecrireStringln(fichierSortie, "pop ax");
+		Ecriture.ecrireStringln(fichierSortie, "cmp ax, -1");
 		Ecriture.ecrireStringln(fichierSortie, "jne $+6");
 		Ecriture.ecrireStringln(fichierSortie, "jmp "+etiquette);
 		
@@ -250,7 +250,7 @@ public class YVMasm extends YVM {
 	 */
 	public void gotoYVM(final String etiquette) {
 		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";gotoYVM");
+		Ecriture.ecrireStringln(fichierSortie, ";gotoYVM" + etiquette);
 		Ecriture.ecrireStringln(fichierSortie, "jump " + etiquette);
 	}
 

@@ -240,9 +240,10 @@ public class Yaka implements YakaConstants {
 
   static final public void affectation() throws ParseException {
     jj_consume_token(ident);
-                 expression.affectation(YakaTokenManager.identLu);
+                 String i = YakaTokenManager.identLu;
     jj_consume_token(42);
     expression();
+                                                                         expression.affectation(i);
   }
 
   static final public void lecture() throws ParseException {
