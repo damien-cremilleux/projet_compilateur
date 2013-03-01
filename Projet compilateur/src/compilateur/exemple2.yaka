@@ -4,4 +4,5 @@ CONST
 VAR BOOLEEN b1, b2;
 	b2 = FAUX;
 	b1 = NON b2;
+	b1 = 10;
 FPROGRAMME

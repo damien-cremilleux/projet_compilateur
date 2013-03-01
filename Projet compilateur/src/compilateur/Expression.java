@@ -178,7 +178,6 @@ public class Expression {
 	    break;
 	}
     }
-
     /**
      * methode pour affecter une valeur à une variable
      * 

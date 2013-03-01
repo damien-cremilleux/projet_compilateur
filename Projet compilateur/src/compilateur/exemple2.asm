@@ -20,6 +20,18 @@ mov word ptr[bp-4],ax
 ;iload-4
 push word ptr[bp-4]
 
+;inot
+pop ax
+not ax
+push ax
+
+;istore-2
+pop ax
+mov word ptr[bp-2],ax
+
+;iconst 10
+push 10
+
 ;istore-2
 pop ax
 mov word ptr[bp-2],ax

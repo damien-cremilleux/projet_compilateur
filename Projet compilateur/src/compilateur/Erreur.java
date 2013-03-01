@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * 
  */
 public class Erreur {
-
+	
 	/**
 	 * Tableau contenant les messages d'erreurs
 	 */
@@ -27,7 +27,7 @@ public class Erreur {
 	 *            le message d'erreur a ajouter
 	 */
 	public static void ajouterErreur(String e) {
-		System.out.println(e);
+		System.out.println("ligne " + Integer.toString(Yaka.token.beginLine) + " colonne " + Integer.toString(Yaka.token.beginColumn) + " : "+e);
 		tabErreur.add(e);
 	}
 
