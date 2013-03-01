@@ -55,7 +55,7 @@ public class Yaka implements YakaConstants {
   static final public void analyse() throws ParseException {
     jj_consume_token(PROGRAMME);
     jj_consume_token(ident);
-
+      yVM.setFichierSortie(YakaTokenManager.identLu);
     bloc();
     jj_consume_token(FPROGRAMME);
                   yVM.queue();
