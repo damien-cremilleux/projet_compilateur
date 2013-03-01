@@ -257,7 +257,7 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";queue");
 		Ecriture.ecrireStringln(fichierSortie, "nop");
-		Ecriture.ecrireStringln(fichierSortie, "EXIT CODE");
+		Ecriture.ecrireStringln(fichierSortie, "EXITCODE");
 		Ecriture.ecrireStringln(fichierSortie, "end debut");
 	}
 }
