@@ -31,9 +31,18 @@ public class Expression {
      *            , le nouveau nom
      */
     public void setNomAffec(String name) {
-    	nomAffec = name;
+
+	nomAffec = name;
+	if (Yaka.tabIdent.existeIdent(nomAffec)) {
+	    Ident id = Yaka.tabIdent.chercheIdent(nomAffec);
+	    int type = id.getType();
+	    Yaka.controleT.ajouteType(type);
+	} else {
+	    Erreur.ajouterErreur("Identificateur " + nomAffec + " non defini");
+	}
+
     }
-    
+
     /**
      * ajouteType : ajoute le type a la pile de type
      * 
@@ -104,7 +113,8 @@ public class Expression {
     }
 
     /**
-     * operation : Ã  la fin de la ligne, vide les piles et ecrit dans le fichier
+     * operation : Ã  la fin de la ligne, vide les piles et ecrit dans le
+     * fichier
      */
     public void operation() {
 	int operateur = pileOp.pop();
@@ -168,26 +178,28 @@ public class Expression {
 	    break;
 	}
     }
-    
-   /**
-    * methode pour affecter une valeur à une variable
-    * @param clef : l'identificateur de la variable
-    */
-    public void affectation(){
-    	//Yaka.controleT.controlerType(Constante.OP_AFFEC);
-    	
-    	if(Yaka.tabIdent.existeIdent(nomAffec)) {
-    	    Ident id = Yaka.tabIdent.chercheIdent(nomAffec);
-    	    int type = id.getType();
-    	    Yaka.controleT.ajouteType(type);
-    	    if (id instanceof IdVar) {
-    		Yaka.yVM.istore(((IdVar) id).getOffset());
-    	    }else{
-    	    	Erreur.ajouterErreur("Affectation à une constante impossible");
-    	    }
-    	} else {
-    	    Erreur.ajouterErreur("Identificateur " + nomAffec + " non defini");
-    	}
+
+    /**
+     * methode pour affecter une valeur à une variable
+     * 
+     * @param clef
+     *            : l'identificateur de la variable
+     */
+    public void affectation() {
+
+	if (Yaka.tabIdent.existeIdent(nomAffec)) { //TODO à raccourcir
+	    Ident id = Yaka.tabIdent.chercheIdent(nomAffec);
+	    int type = id.getType();
+	    Yaka.controleT.ajouteType(type);
+	    Yaka.controleT.controlerType(Constante.OP_AFFEC);
+	    if (id instanceof IdVar) {
+		Yaka.yVM.istore(((IdVar) id).getOffset());
+	    } else {
+		Erreur.ajouterErreur("Affectation à une constante impossible");
+	    }
+	} else {
+	    Erreur.ajouterErreur("Identificateur " + nomAffec + " non defini");
+	}
     }
-    
+
 }
