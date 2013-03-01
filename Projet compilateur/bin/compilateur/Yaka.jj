@@ -151,7 +151,7 @@ TOKEN  :
 /**************************************/
 void analyse() : {}
 {
-   <PROGRAMME> <ident>	
+   <PROGRAMME> <ident>   {      yVM.setFichierSortie(YakaTokenManager.entierLu);   }   
    bloc()
    <FPROGRAMME> { yVM.queue();}
 }
