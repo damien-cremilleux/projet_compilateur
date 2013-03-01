@@ -70,7 +70,7 @@ public class Expression {
 				Yaka.yVM.iload(((IdVar) id).getOffset());
 			}
 		} else {
-			Erreur.ajouterErreur("Identificateur " + clef + " non dÃ©fini");
+			Erreur.ajouterErreur("Identificateur " + clef + " non defini");
 		}
 	}
 
@@ -78,7 +78,7 @@ public class Expression {
 	 * ajouteOp : ajoute l'operateur Ã  la pile d'op
 	 * 
 	 * @param typeOp
-	 *            le type de l'opÃ©rateur
+	 *            le type de l'operateur
 	 */
 	public void ajouteOp(int typeOp) {
 		pileOp.push(typeOp);
