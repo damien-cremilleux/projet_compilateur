@@ -7,7 +7,6 @@ package compilateur;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.OutputStream;
 
 /**
  * Classe YVM, generation des instructions assembleurs

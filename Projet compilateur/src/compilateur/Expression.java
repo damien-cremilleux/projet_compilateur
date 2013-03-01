@@ -14,12 +14,26 @@ import java.util.Stack;
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  */
 public class Expression {
+    /**
+     * Le nom de l'Ident à affecter
+     */
+    public static String nomAffec;
 
     /**
      * Pile contenant les operateurs (exemple : +, -, etc)
      */
     public Stack<Integer> pileOp = new Stack<Integer>();
 
+    /**
+     * Méthode pour modifier le nom de l'Ident à affecter
+     * 
+     * @param name
+     *            , le nouveau nom
+     */
+    public void setNomAffec(String name) {
+    	nomAffec = name;
+    }
+    
     /**
      * ajouteType : ajoute le type a la pile de type
      * 
@@ -159,11 +173,11 @@ public class Expression {
     * methode pour affecter une valeur à une variable
     * @param clef : l'identificateur de la variable
     */
-    public void affectation(String clef){
+    public void affectation(){
     	//Yaka.controleT.controlerType(Constante.OP_AFFEC);
     	
-    	if(Yaka.tabIdent.existeIdent(clef)) {
-    	    Ident id = Yaka.tabIdent.chercheIdent(clef);
+    	if(Yaka.tabIdent.existeIdent(nomAffec)) {
+    	    Ident id = Yaka.tabIdent.chercheIdent(nomAffec);
     	    int type = id.getType();
     	    Yaka.controleT.ajouteType(type);
     	    if (id instanceof IdVar) {
@@ -172,7 +186,7 @@ public class Expression {
     	    	Erreur.ajouterErreur("Affectation à une constante impossible");
     	    }
     	} else {
-    	    Erreur.ajouterErreur("Identificateur " + clef + " non defini");
+    	    Erreur.ajouterErreur("Identificateur " + nomAffec + " non defini");
     	}
     }
     
