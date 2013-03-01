@@ -115,4 +115,18 @@ public class Constante {
      */
     public static final int OP_AFFEC = 14;
 
+    /**
+     * Definition de l'operande pour l'ecriture
+     */
+    public static final int OP_ECRIRE = 15;
+    
+    /**
+     * Definition de l'operande pour la lecture
+     */
+    public static final int OP_LIRE = 16;
+    
+    /**
+     * Definition de l'operande pour aller a la ligne
+     */
+    public static final int OP_ALALIGNE = 17;
 }

@@ -24,12 +24,13 @@ public class YVM {
     /**
      * Methode pour definir le fichier de sortie
      * 
-     * @param f le fichier de sortie
-     * @throws FileNotFoundException 
+     * @param f
+     *            le fichier de sortie
+     * @throws FileNotFoundException
      */
     public void setFichierSortie(String f) throws FileNotFoundException {
-    	fichierSortie = new FileOutputStream(f+".txt");     	
-	}
+	fichierSortie = new FileOutputStream(f + ".txt");
+    }
 
     /**
      * Methode entete affiche entete au debut du fichier YAKA
@@ -42,7 +43,8 @@ public class YVM {
      * Methode ouvrePrinc affiche ouvrPrinc et l'espace reserve pour l'ensemble
      * des variables dans la pile
      * 
-     * @param nb le nombre de variables dans la pile
+     * @param nb
+     *            le nombre de variables dans la pile
      */
 
     public void ouvrePrinc(final int nb) {
@@ -190,13 +192,14 @@ public class YVM {
     public void ifeq(final String etiquette) {
 	Ecriture.ecrireStringln(fichierSortie, "ifeq " + etiquette);
     }
-    
+
     /**
-     * Methode iffaux affiche iffaux et l'etiquette de saut 
+     * Methode iffaux affiche iffaux et l'etiquette de saut
+     * 
      * @param etiquette
      */
     public void iffaux(final String etiquette) {
-    	Ecriture.ecrireStringln(fichierSortie, "iffaux "+etiquette);
+	Ecriture.ecrireStringln(fichierSortie, "iffaux " + etiquette);
     }
 
     /**
@@ -215,6 +218,24 @@ public class YVM {
      */
     public void queue() {
 	Ecriture.ecrireStringln(fichierSortie, "queue");
+    }
+
+    /**
+     * Methode pour ecrire dans le fichier de sortie
+     * 
+     * @param var la variable à lire
+     */
+    public void ecrire(final String var) {
+	Ecriture.ecrireStringln(fichierSortie, "ecrireChaine " + '"' + var
+		+ '"');
+    }
+    
+    /**
+     * Methode pour lire
+     * @param offset l'offset de la variable à lire
+     */
+    public void lire(final int offset) {
+	Ecriture.ecrireString(fichierSortie,"lireEnt "+offset );
     }
 
 }

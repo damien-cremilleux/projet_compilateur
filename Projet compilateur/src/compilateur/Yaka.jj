@@ -232,7 +232,7 @@ void lecture() : {}
 
 void ecriture() : {}
 {
-  	( <ECRIRE> "(" (expression() | <chaine> ) ")" ) | <ALALIGNE>
+  	( <ECRIRE> "(" (expression() | <chaine> ) ")" )  	{  	  expression.ecrire(YakaTokenManager.chaineLue);  	}  	 | <ALALIGNE>
 }
 
 

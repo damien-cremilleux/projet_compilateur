@@ -277,6 +277,7 @@ public class Yaka implements YakaConstants {
         throw new ParseException();
       }
       jj_consume_token(44);
+          expression.ecrire(YakaTokenManager.chaineLue);
       break;
     case ALALIGNE:
       jj_consume_token(ALALIGNE);
