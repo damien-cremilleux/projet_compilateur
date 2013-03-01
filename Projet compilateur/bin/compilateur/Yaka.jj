@@ -151,7 +151,10 @@ TOKEN  :
 /**************************************/
 void analyse() : {}
 {
-   <PROGRAMME> <ident>   {      yVM.setFichierSortie(YakaTokenManager.identLu);   }   
+   <PROGRAMME> <ident>   /*{      try      {       // yVM.setFichierSortie(YakaTokenManager.identLu);
+      } catch (java.io.FileNotFoundException e) {
+	e.printStackTrace();
+    }   }*/   
    bloc()
    <FPROGRAMME> { yVM.queue();}
 }
