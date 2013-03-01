@@ -100,6 +100,7 @@ public class YVMasm extends YVM {
 	public void ineg() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";ineg");
+		Ecriture.ecrireStringln(fichierSortie, "pop ax");
 		Ecriture.ecrireStringln(fichierSortie, "neg ax");
 		Ecriture.ecrireStringln(fichierSortie, "push ax");
 
