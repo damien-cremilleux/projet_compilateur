@@ -1,9 +1,17 @@
+/**
+ * Projet compilateur - 2012/2013
+ * date : 22/02/2013
+ * 
+ */
 package compilateur;
 
 import java.io.*;
 
-//quelques primitives d'ecriture a l'ecran ou dans un fichier
-
+/**
+ * quelques primitives d'ecriture a l'ecran ou dans un fichier
+ * @author dpt-info
+ *
+ */
 public class Ecriture {   
     private static void erreur(IOException e) {
         System.out.println(e.getMessage());
