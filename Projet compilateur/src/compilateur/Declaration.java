@@ -49,16 +49,7 @@ public class Declaration {
      */
     public void affectationConst(final int val, final int type) {
 	if (existe()) {
-	    Erreur
-		    .ajouterErreur("Constante " + nomIdent + " deja definie"); // TODO
-	    // rajouter
-	    // le
-	    // numéro
-	    // de
-	    // la
-	    // ligne
-	    // provoquant
-	    // l'erreur
+	    Erreur.ajouterErreur("Constante " + nomIdent + " deja definie"); 
 	} else {
 	    /* Cree l'ident */
 	    IdConst id = new IdConst(type, nomIdent, val);

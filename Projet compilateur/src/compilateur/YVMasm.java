@@ -16,13 +16,14 @@ import java.io.FileOutputStream;
  */
 public class YVMasm extends YVM {
 	/**
-     * Methode pour definir le fichier de sortie
-     * 
-     * @param f le fichier de sortie
-     * @throws FileNotFoundException 
-     */
-    public void setFichierSortie(String f) throws FileNotFoundException {
-    	fichierSortie = new FileOutputStream(f+".asm");
+	 * Methode pour definir le fichier de sortie
+	 * 
+	 * @param f
+	 *            le fichier de sortie
+	 * @throws FileNotFoundException
+	 */
+	public void setFichierSortie(String f) throws FileNotFoundException {
+		fichierSortie = new FileOutputStream(f + ".asm");
 	}
 
 	/**
@@ -46,11 +47,14 @@ public class YVMasm extends YVM {
 	 */
 	public void ouvrePrinc(final int nb) {
 		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";ouvrePrinc "+nb);
+		Ecriture.ecrireStringln(fichierSortie, ";ouvrePrinc " + nb);
 		Ecriture.ecrireStringln(fichierSortie, "mov bp,sp");
 		Ecriture.ecrireStringln(fichierSortie, "sub sp," + nb);
 	}
 
+	/**
+	 * Methode iadd
+	 */
 	public void iadd() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";iadd");
@@ -60,6 +64,9 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push ax");
 	}
 
+	/**
+	 * Methode isub
+	 */
 	public void isub() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";isub");
@@ -69,6 +76,9 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push ax");
 	}
 
+	/**
+	 * Methode imul
+	 */
 	public void imul() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";imul");
@@ -78,6 +88,9 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push ax");
 	}
 
+	/**
+	 * Methode idiv
+	 */
 	public void idiv() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";idiv");
@@ -88,6 +101,9 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push ax");
 	}
 
+	/**
+	 * Methode inot
+	 */
 	public void inot() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";inot");
@@ -97,6 +113,9 @@ public class YVMasm extends YVM {
 
 	}
 
+	/**
+	 * Methode ineg
+	 */
 	public void ineg() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";ineg");
@@ -106,6 +125,9 @@ public class YVMasm extends YVM {
 
 	}
 
+	/**
+	 * Methode ior
+	 */
 	public void ior() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";ior");
@@ -115,6 +137,9 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push ax");
 	}
 
+	/**
+	 * Methode iand
+	 */
 	public void iand() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";iand");
@@ -124,6 +149,9 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push ax");
 	}
 
+	/**
+	 * Methode iinf
+	 */
 	public void iinf() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";iinf");
@@ -136,6 +164,9 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push 0");
 	}
 
+	/**
+	 * Methode isup
+	 */
 	public void isup() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";isup");
@@ -148,6 +179,9 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push 0");
 	}
 
+	/**
+	 * Methode iinfegal
+	 */
 	public void iinfegal() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";iinfegal");
@@ -160,6 +194,9 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push 0");
 	}
 
+	/**
+	 * Methode isupegal
+	 */
 	public void isupegal() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";isupegal");
@@ -172,6 +209,9 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push 0");
 	}
 
+	/**
+	 * Methode iegal
+	 */
 	public void iegal() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";iegal");
@@ -184,6 +224,9 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push -1");
 	}
 
+	/**
+	 * Methode idiff
+	 */
 	public void idiff() {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";idiff");
@@ -196,6 +239,9 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "push 0");
 	}
 
+	/**
+	 * Methode iload
+	 */
 	public void iload(final int offset) {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";iload" + offset);
@@ -203,6 +249,9 @@ public class YVMasm extends YVM {
 				+ "]");
 	}
 
+	/**
+	 * Methode istore
+	 */
 	public void istore(final int offset) {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";istore" + offset);
@@ -211,21 +260,26 @@ public class YVMasm extends YVM {
 				+ "],ax");
 	}
 
+	/**
+	 * Methode iconst
+	 */
 	public void iconst(final int valeur) {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";iconst " + valeur);
 		Ecriture.ecrireStringln(fichierSortie, "push " + valeur);
 	}
 
+	/**
+	 * Methode ifeq
+	 */
 	public void ifeq(final String etiquette) {
 		Ecriture.ecrireStringln(fichierSortie, "");
 		Ecriture.ecrireStringln(fichierSortie, ";ifeq" + etiquette);
 		Ecriture.ecrireStringln(fichierSortie, "pop bx");
 		Ecriture.ecrireStringln(fichierSortie, "cmp 0, bx");
 		Ecriture.ecrireStringln(fichierSortie, "je $+6");
-		Ecriture.ecrireStringln(fichierSortie, "jmp "+etiquette);
+		Ecriture.ecrireStringln(fichierSortie, "jmp " + etiquette);
 
-		
 	}
 
 	/**
@@ -239,8 +293,8 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, "pop ax");
 		Ecriture.ecrireStringln(fichierSortie, "cmp ax, -1");
 		Ecriture.ecrireStringln(fichierSortie, "jne $+6");
-		Ecriture.ecrireStringln(fichierSortie, "jmp "+etiquette);
-		
+		Ecriture.ecrireStringln(fichierSortie, "jmp " + etiquette);
+
 	}
 
 	/**
