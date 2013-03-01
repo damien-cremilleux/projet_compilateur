@@ -6,16 +6,19 @@
 debut:
 STARTUPCODE
 
-;ouvrePrinc 10
+;ouvrePrinc 4
 mov bp,sp
-sub sp,10
+sub sp,4
 
-;iconst 10
-push 10
+;iconst 0
+push 0
 
-;ineg
-neg ax
-push ax
+;istore-4
+pop ax
+mov word ptr[bp-4],ax
+
+;iload-4
+push word ptr[bp-4]
 
 ;istore-2
 pop ax

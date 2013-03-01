@@ -1,7 +1,7 @@
 PROGRAMME expr
 CONST
 	a=10;
-VAR ENTIER c1,c2,c3;
 VAR BOOLEEN b1, b2;
-	c1 = -a;
+	b2 = FAUX;
+	b1 = NON b2;
 FPROGRAMME
