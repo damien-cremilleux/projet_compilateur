@@ -207,7 +207,7 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(fichierSortie, ";istore" + offset);
 		Ecriture.ecrireStringln(fichierSortie, "pop ax");
 		Ecriture.ecrireStringln(fichierSortie, "mov word ptr[bp" + offset
-				+ ",ax]");
+				+ "],ax");
 	}
 
 	public void iconst(final int valeur) {
