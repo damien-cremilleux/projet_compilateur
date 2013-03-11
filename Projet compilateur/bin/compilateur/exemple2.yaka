@@ -2,7 +2,6 @@ PROGRAMME expr
 CONST
 	a=10;
 VAR ENTIER c1,c2,c3;
-	c1=0;
-	c2=2;
-	c1=c1+5*a-c2;
+VAR BOOLEEN b1, b2;
+	c1 = -a;
 FPROGRAMME

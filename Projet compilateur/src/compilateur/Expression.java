@@ -198,6 +198,37 @@ public class Expression {
 		} else {
 			Erreur.ajouterErreur("Identificateur " + nomAffec + " non defini");
 		}
+    }
+
+    /**
+     * Methode pour l'ecriture
+     * 
+     * @param chaine la chaine a afficher
+     */
+    public void ecrire(final String chaine) {
+	Yaka.yVM.ecrire(chaine);
+    }
+
+    /**
+     * Methode pour la lecture
+     * 
+     * @param chaine la variable à lire
+     */
+    public void lecture(final String chaine) {
+	if (Yaka.tabIdent.existeIdent(nomAffec)) {
+	    Ident id = Yaka.tabIdent.chercheIdent(chaine);
+	    int type = id.getType();
+	    Yaka.controleT.ajouteType(type);
+	    Yaka.controleT.controlerType(Constante.OP_AFFEC);
+	    if (id instanceof IdVar) {
+		Yaka.yVM.istore(((IdVar) id).getOffset());
+	    } else {
+		Erreur.ajouterErreur("Affectation à une constante impossible");
+	    }
+	} else {
+	    Erreur.ajouterErreur("Identificateur " + chaine + " non defini");
+	}
+	Yaka.yVM.ecrire(chaine);
 	}
 
 }
