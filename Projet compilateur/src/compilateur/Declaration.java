@@ -5,12 +5,11 @@
  */
 package compilateur;
 
-
 /**
- * Classe Declaration, contenant les fonctions nécessaires à la gestion des
- * déclarations
+ * Classe Declaration, contenant les fonctions necessaires a la gestion des
+ * declarations
  * 
- * @author Samuel COZ - Damien CRÉMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  * 
  */
 public class Declaration {
@@ -25,22 +24,22 @@ public class Declaration {
     private static int typeVar;
 
     /**
-     * L'offset en cours, utilisé par les variables. Il commence à 0
+     * L'offset en cours, utilise par les variables. Il commence a 0
      */
     private static int offsetCourant = 0;
 
     /**
-     * Méthode pour modifier le nom de l'Ident courant
+     * Methode pour modifier le nom de l'Ident courant
      * 
      * @param name
      *            , le nouveau nom
      */
     public void setNomIdent(String name) {
-    	nomIdent = name;
+	nomIdent = name;
     }
 
     /**
-     * Méthode pour affecter une constante
+     * Methode pour affecter une constante
      * 
      * @param val
      *            la valeur de la constante
@@ -49,16 +48,16 @@ public class Declaration {
      */
     public void affectationConst(final int val, final int type) {
 	if (existe()) {
-	    Erreur.ajouterErreur("Constante " + nomIdent + " deja definie"); 
+	    Erreur.ajouterErreur("Constante " + nomIdent + " deja definie");
 	} else {
 	    /* Cree l'ident */
 	    IdConst id = new IdConst(type, nomIdent, val);
-    	Yaka.tabIdent.rangeIdent(nomIdent, id);
+	    Yaka.tabIdent.rangeIdent(nomIdent, id);
 	}
     }
 
     /**
-     * Méthode pour affecter une constante
+     * Methode pour affecter une constante
      * 
      * @param clefACopier
      *            , le nom de la constante
@@ -68,8 +67,7 @@ public class Declaration {
 	    IdConst id = (IdConst) Yaka.tabIdent.chercheIdent(clefACopier);
 	    this.affectationConst(id.getValeur(), id.getType());
 	} else {
-	    Erreur.ajouterErreur("Constante " + clefACopier
-		    + " pas definie");
+	    Erreur.ajouterErreur("Constante " + clefACopier + " pas definie");
 	}
     }
 
@@ -84,7 +82,7 @@ public class Declaration {
     }
 
     /**
-     * Méthode pour affecter une variable
+     * Methode pour affecter une variable
      * 
      * @param clef
      *            le nom de la variable
@@ -97,25 +95,27 @@ public class Declaration {
 	    offsetCourant -= 2;
 	    IdVar id = new IdVar(typeVar, clef, offsetCourant);
 	    Yaka.tabIdent.rangeIdent(clef, id);
-		}
+	}
     }
 
     /**
-     * Test de l'existence préalable de l'identificateur
+     * Test de l'existence prealable de l'identificateur
      * 
      * @return vrai si l'identificateur existait deja, faux sinon
      */
     public boolean existe() {
 	return Yaka.tabIdent.existeIdent(nomIdent);
     }
-    
+
     /**
-     * Appelle la methode ouvrePrinc de yVM avec le nombre de variables du programme
+     * Appelle la methode ouvrePrinc de yVM avec le nombre de variables du
+     * programme
      */
-    public void ouvrePrinc(){    	
-    	Yaka.yVM.entete();
-    	Yaka.yVM.ouvrePrinc(-offsetCourant); //La variable offsetCourant nous donne le dernier offset utilisé, 
-    										 //le nombre à envoyer à ouvrePrinc correspond exactement à son opposé
+    public void ouvrePrinc() {
+	Yaka.yVM.entete();
+	Yaka.yVM.ouvrePrinc(-offsetCourant); // La variable offsetCourant nous
+	// donne le dernier offset utilise,
+	// le nombre a envoyer a ouvrePrinc correspond exactement à son oppose
     }
 
 }

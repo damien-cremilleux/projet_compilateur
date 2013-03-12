@@ -181,14 +181,15 @@ public class ControleType {
 	    break;
 	}
     }
-    
-    
+
     /**
-     * Vérifie si une expression est booléenne (et la supprime de la pile)
+     * Verifie si une expression est booleenne (et la supprime de la pile)
+     * 
+     * @return vrai si une expression est booleenne, faux sinon
      * 
      */
     public boolean isBoolean() {
-    	 return (pileT.pop() == Constante.T_BOOLEEN);
+	return (pileT.pop() == Constante.T_BOOLEEN);
     }
 
 }

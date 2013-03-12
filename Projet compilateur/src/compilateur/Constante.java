@@ -119,12 +119,12 @@ public class Constante {
      * Definition de l'operande pour l'ecriture
      */
     public static final int OP_ECRIRE = 15;
-    
+
     /**
      * Definition de l'operande pour la lecture
      */
     public static final int OP_LIRE = 16;
-    
+
     /**
      * Definition de l'operande pour aller a la ligne
      */

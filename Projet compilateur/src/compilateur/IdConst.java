@@ -8,7 +8,7 @@ package compilateur;
 /**
  * Classe IdConst, représentation des identificateurs de constante
  * 
- * @author Samuel COZ - Damien CRÉMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  * 
  */
 public class IdConst extends Ident {
@@ -43,7 +43,7 @@ public class IdConst extends Ident {
     }
 
     /**
-     * Méthode toString
+     * Methode toString
      */
     public String toString() {
 	String t = new String();
@@ -59,7 +59,7 @@ public class IdConst extends Ident {
 	    break;
 	}
 	return "CONSTANTE : " + this.nom + ", " + t + " VALEUR : "
-		+ this.valeur;
+	+ this.valeur;
 
     }
 

@@ -14,21 +14,23 @@ import java.util.ArrayList;
  * 
  */
 public class Erreur {
-	
-	/**
-	 * Tableau contenant les messages d'erreurs
-	 */
-	public static ArrayList<String> tabErreur = new ArrayList<String>();
 
-	/**
-	 * Ajout d'une erreur, et affichage de celle-ci
-	 * 
-	 * @param e
-	 *            le message d'erreur a ajouter
-	 */
-	public static void ajouterErreur(String e) {
-		System.out.println("ligne " + Integer.toString(Yaka.token.beginLine) + " colonne " + Integer.toString(Yaka.token.beginColumn) + " : "+e);
-		tabErreur.add(e);
-	}
+    /**
+     * Tableau contenant les messages d'erreurs
+     */
+    public static ArrayList<String> tabErreur = new ArrayList<String>();
+
+    /**
+     * Ajout d'une erreur, et affichage de celle-ci
+     * 
+     * @param e
+     *            le message d'erreur a ajouter
+     */
+    public static void ajouterErreur(String e) {
+	System.out.println("ligne " + Integer.toString(Yaka.token.beginLine)
+		+ " colonne " + Integer.toString(Yaka.token.beginColumn)
+		+ " : " + e);
+	tabErreur.add(e);
+    }
 
 }

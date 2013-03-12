@@ -75,7 +75,7 @@ public class Expression {
     }
 
     /**
- * ajouteOp : ajoute l'operateur a la pile d'op
+     * ajouteOp : ajoute l'operateur a la pile d'op
      * 
      * @param typeOp
      *            le type de l'operateur
@@ -111,8 +111,7 @@ public class Expression {
     }
 
     /**
-	 * operation : a la fin de la ligne, vide les piles et ecrit dans le
-     * fichier
+     * operation : a la fin de la ligne, vide les piles et ecrit dans le fichier
      */
     public void operation() {
 	int operateur = pileOp.pop();
@@ -185,7 +184,7 @@ public class Expression {
      */
     public void affectation() {
 
-		if (Yaka.tabIdent.existeIdent(nomAffec)) { // TODO à raccourcir
+	if (Yaka.tabIdent.existeIdent(nomAffec)) { // TODO à raccourcir
 	    Ident id = Yaka.tabIdent.chercheIdent(nomAffec);
 	    int type = id.getType();
 	    Yaka.controleT.ajouteType(type);
@@ -220,8 +219,8 @@ public class Expression {
     /**
      * Methode pour la lecture
      * 
-     * @param chaine la variable à lire
-     *            la variable à lire
+     * @param chaine
+     *            la variabla a lire
      */
     public void lire(final String chaine) {
 	if (Yaka.tabIdent.existeIdent(chaine)) {
@@ -229,7 +228,7 @@ public class Expression {
 	    if (id instanceof IdVar) {
 		Yaka.yVM.lire(((IdVar) id).getOffset());
 	    } else {
-		Erreur.ajouterErreur("Affectation a� une constante impossible");
+		Erreur.ajouterErreur("Affectation a une constante impossible");
 	    }
 	} else {
 	    Erreur.ajouterErreur("Identificateur " + chaine + " non defini");

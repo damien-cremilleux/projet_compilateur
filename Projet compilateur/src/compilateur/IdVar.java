@@ -6,9 +6,9 @@
 package compilateur;
 
 /**
- * Classe IdVar, représentation des identificateurs de variables
+ * Classe IdVar, representation des identificateurs de variables
  * 
- * @author Samuel COZ - Damien CRÉMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  * 
  */
 public class IdVar extends Ident {
@@ -34,7 +34,7 @@ public class IdVar extends Ident {
     }
 
     /**
-     * Accesseur à l'offset
+     * Accesseur de l'offset
      * 
      * @return l'offset
      */
@@ -43,7 +43,7 @@ public class IdVar extends Ident {
     }
 
     /**
-     * Méthode toString
+     * Methode toString
      */
     public String toString() {
 	String t = new String();

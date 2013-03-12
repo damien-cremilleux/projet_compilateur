@@ -5,7 +5,6 @@
  */
 package compilateur;
 
-
 /**
  * Classe Iteration, contient les fonctions necessaires a la gestion des
  * iterations
@@ -13,44 +12,42 @@ package compilateur;
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  */
 public class Iteration {
-	/**
-	 * integer qui représente à quelle boucle on en est, pour les etiquettes
-	 */
-	public static int nbBoucles = 0;
+    /**
+     * integer qui represente a quelle boucle on en est, pour les etiquettes
+     */
+    public static int nbBoucles = 0;
 
-	/**
-	 * entreeIteration : ecrit le mot-clé de début
-	 * 
-	 */
-	public void entreeIteration() {
-		nbBoucles++;
-		Yaka.yVM.etiquette("FAIRE"+nbBoucles);
+    /**
+     * entreeIteration : ecrit le mot-clef de debut
+     * 
+     */
+    public void entreeIteration() {
+	nbBoucles++;
+	Yaka.yVM.etiquette("FAIRE" + nbBoucles);
+    }
+
+    /**
+     * conditionIteration : Verifie que l'expression est bien booleenne et ecrit
+     * la condition de saut
+     */
+    public void conditionIteration() {
+	if (Yaka.controleT.isBoolean()) {
+	    Yaka.yVM.iffaux("FAIT" + nbBoucles);
+
+	} else {
+	    Erreur.ajouterErreur("La condition de l'iteration n'est pas une expression booleenne");
 	}
 
-	
-	/**
-	 * conditionIteration : Verifie que l'expression est bien booléenne et ecrit la 
-	 * condition de saut
-	 */
-	public void conditionIteration() {
-		if(Yaka.controleT.isBoolean()){
-			Yaka.yVM.iffaux("FAIT"+nbBoucles);
-			
-		}else{
-			Erreur.ajouterErreur("La condition de l'itération n'est pas une expression booléenne");
-		}
-		
-	}
+    }
 
-	/**
-	 * sortieIteration : ecrit le mot-clé de fin
-	 * 
-	 */
-	public void sortieIteration() {
-		Yaka.yVM.gotoYVM("FAIRE"+nbBoucles);
-		Yaka.yVM.etiquette("FAIT"+nbBoucles);
-		nbBoucles--;
-	}
+    /**
+     * sortieIteration : ecrit le mot-clef de fin
+     * 
+     */
+    public void sortieIteration() {
+	Yaka.yVM.gotoYVM("FAIRE" + nbBoucles);
+	Yaka.yVM.etiquette("FAIT" + nbBoucles);
+	nbBoucles--;
+    }
 
-	
 }

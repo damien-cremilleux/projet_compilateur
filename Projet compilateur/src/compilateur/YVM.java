@@ -10,9 +10,9 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 /**
- * Classe YVM, génération des instructions pour la Yaka Virual Machine
+ * Classe YVM, generation des instructions pour la Yaka Virtual Machine
  * 
- * @author Samuel COZ - Damien CRÉMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  * 
  */
 public class YVM {
@@ -31,23 +31,28 @@ public class YVM {
     public void setFichierSortie(String f) throws FileNotFoundException {
 	fichierSortie = new FileOutputStream(f + ".txt");
     }
-	/**
-	 *  Methode pour ecrire les fonctions et permettre l'identation
-	 *   0 indentation si etiquette
-	 *   1 sinon
-	 */
-	public void presentation(int ind, String s){
-		if (ind == 0)
-			Ecriture.ecrireStringln(fichierSortie,""+s);
-		else
-			Ecriture.ecrireStringln(fichierSortie," "+s);
-	}
+
+    /**
+     * Methode pour ecrire les fonctions et permettre l'identation 0 indentation
+     * si etiquette 1 sinon
+     * 
+     * @param ind
+     *            le nombre d'indentation
+     * @param s
+     *            la chaine de caractere a ecrire
+     */
+    public void presentation(int ind, String s) {
+	if (ind == 0)
+	    Ecriture.ecrireStringln(fichierSortie, "" + s);
+	else
+	    Ecriture.ecrireStringln(fichierSortie, " " + s);
+    }
 
     /**
      * Methode entete affiche entete au debut du fichier YAKA
      */
     public void entete() {
-		presentation(1,"entete");
+	presentation(1, "entete");
     }
 
     /**
@@ -59,105 +64,105 @@ public class YVM {
      */
 
     public void ouvrePrinc(final int nb) {
-		presentation(1,"ouvrePrinc " + nb);
+	presentation(1, "ouvrePrinc " + nb);
     }
 
     /**
      * Methode iadd
      */
     public void iadd() {
-		presentation(1,"iadd");
+	presentation(1, "iadd");
     }
 
     /**
      * Methode isub
      */
     public void isub() {
-		presentation(1,"isub");
+	presentation(1, "isub");
     }
 
     /**
      * Methode imul
      */
     public void imul() {
-		presentation(1,"imul");
+	presentation(1, "imul");
     }
 
     /**
      * Methode idiv
      */
     public void idiv() {
-		presentation(1,"idiv");
+	presentation(1, "idiv");
     }
 
     /**
      * Methode inot
      */
     public void inot() {
-		presentation(1,"iadd");
+	presentation(1, "iadd");
     }
 
     /**
      * Methode ineg
      */
     public void ineg() {
-		presentation(1,"ineg");
+	presentation(1, "ineg");
     }
 
     /**
      * Methode ior
      */
     public void ior() {
-		presentation(1,"ior");
+	presentation(1, "ior");
     }
 
     /**
      * Methode iand
      */
     public void iand() {
-		presentation(1,"iand");
+	presentation(1, "iand");
     }
 
     /**
      * Methode iinf
      */
     public void iinf() {
-		presentation(1,"iadd");
+	presentation(1, "iadd");
     }
 
     /**
      * Methode isup
      */
     public void isup() {
-		presentation(1,"isup");
+	presentation(1, "isup");
     }
 
     /**
      * Methode iinfegal
      */
     public void iinfegal() {
-		presentation(1,"iinfegal");
+	presentation(1, "iinfegal");
     }
 
     /**
      * Method isupegal
      */
     public void isupegal() {
-		presentation(1,"isupegal");
+	presentation(1, "isupegal");
     }
 
     /**
      * Methode iegal
      */
     public void iegal() {
-		presentation(1,"iegal");
+	presentation(1, "iegal");
     }
 
     /**
      * Methode idiff
      */
     public void idiff() {
-		presentation(1,"idiff");
+	presentation(1, "idiff");
     }
 
     /**
@@ -168,7 +173,7 @@ public class YVM {
      *            de la variable
      */
     public void iload(final int offset) {
-		presentation(1,"iload " + offset);
+	presentation(1, "iload " + offset);
     }
 
     /**
@@ -179,7 +184,7 @@ public class YVM {
      *            de la variable
      */
     public void istore(final int offset) {
-		presentation(1,"istore " + offset);
+	presentation(1, "istore " + offset);
     }
 
     /**
@@ -190,7 +195,7 @@ public class YVM {
      *            de la constante
      */
     public void iconst(final int valeur) {
-		presentation(1,"iconst " + valeur);
+	presentation(1, "iconst " + valeur);
     }
 
     /**
@@ -201,7 +206,7 @@ public class YVM {
      *            de saut
      */
     public void ifeq(final String etiquette) {
-		presentation(1,"ifeq " + etiquette);
+	presentation(1, "ifeq " + etiquette);
     }
 
     /**
@@ -210,7 +215,7 @@ public class YVM {
      * @param etiquette
      */
     public void iffaux(final String etiquette) {
-	presentation(1,"iffaux " + etiquette);
+	presentation(1, "iffaux " + etiquette);
     }
 
     /**
@@ -221,14 +226,14 @@ public class YVM {
      *            de saut
      */
     public void gotoYVM(final String etiquette) {
-		presentation(1 ,"goto " + etiquette);
+	presentation(1, "goto " + etiquette);
     }
 
     /**
      * Methode queue affiche queue à la fin du fichier YAKA
      */
     public void queue() {
-		presentation(1,"queue");
+	presentation(1, "queue");
     }
 
     /**
@@ -238,9 +243,9 @@ public class YVM {
      *            la variable à lire
      */
     public void ecrireChaine(final String var) {
-    	presentation(1,"ecrireChaine " + '"' + var
-    			+ '"');
+	presentation(1, "ecrireChaine " + '"' + var + '"');
     }
+
     /**
      * Ecriture d'une expresssion
      */
@@ -256,17 +261,25 @@ public class YVM {
      *            l'offset de la variable à lire
      */
     public void lire(final int offset) {
-    	presentation(1,"lireEnt "+offset );
-	}
-    
-    public void etiquette(final String etiquette){
-    	presentation(0,etiquette + " :");
+	presentation(1, "lireEnt " + offset);
     }
-    
+
+    /**
+     * Ajouter une etiquette
+     * 
+     * @param etiquette
+     *            l'etiquette a ajouter
+     */
+    public void etiquette(final String etiquette) {
+	presentation(0, etiquette + " :");
+    }
+
+    /**
+     * Methode aLaLigne : realiser un saut de ligne
+     */
     public void aLaLigne() {
 	Ecriture.ecrireStringln(fichierSortie, "aLaLigne");
-	
+
     }
-    
 
 }
