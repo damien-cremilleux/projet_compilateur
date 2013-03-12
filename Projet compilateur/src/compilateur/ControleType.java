@@ -187,7 +187,7 @@ public class ControleType {
      * Vérifie si une expression est booléenne (et la supprime de la pile)
      * 
      */
-    public void isBoolean() {
+    public boolean isBoolean() {
     	 return (pileT.pop() == Constante.T_BOOLEEN);
     }
 

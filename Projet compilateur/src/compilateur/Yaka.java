@@ -9,7 +9,7 @@ public class Yaka implements YakaConstants {
         public static Erreur erreur = new Erreur();
         public static YVM yVM= new YVM();
         public static ControleType controleT = new ControleType();
-        public static Interation iteration = new Iteration();
+        public static Iteration iteration = new Iteration();
 
 
         public static void main(String args[]) {
