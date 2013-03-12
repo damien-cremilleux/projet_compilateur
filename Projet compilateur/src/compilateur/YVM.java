@@ -248,7 +248,7 @@ public class YVM {
 	}
     
     public void etiquette(final String etiquette){
-    	presenation(0,etiquette + " :");
+    	presentation(0,etiquette + " :");
     }
     
 
