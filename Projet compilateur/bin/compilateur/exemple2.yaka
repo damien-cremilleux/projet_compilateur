@@ -1,7 +1,8 @@
 PROGRAMME expr
 CONST
 	a=10;
-VAR ENTIER c1,c2,c3;
-VAR BOOLEEN b1, b2;
-	c1 = -a;
+VAR ENTIER b2;
+VAR BOOLEEN b1;
+	b1 = 10 < 20;
+	b2 = 10 < 20;
 FPROGRAMME

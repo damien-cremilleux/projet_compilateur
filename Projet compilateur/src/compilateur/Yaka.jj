@@ -227,11 +227,19 @@ void affectation() : {}
 void lecture() : {}
 {
   	<LIRE> "(" <ident> ")"
+  	{  	 expression.lire(YakaTokenManager.identLu);
+  	}
 }
 
 void ecriture() : {}
 {
-  	( <ECRIRE> "(" (expression() | <chaine> ) ")" )  	{  	  expression.ecrire(YakaTokenManager.chaineLue);  	}  	 | <ALALIGNE>
+  	( <ECRIRE> "(" (expression()
+  	{
+  	  expression.ecrireExpr();	}	
+  	  | <chaine>  	{
+  	  expression.ecrireChaine(YakaTokenManager.chaineLue); 	}
+    	) ")" )  	 | <ALALIGNE>  	 {  	   expression.aLaLigne();
+  	 }
 }
 
 /*
