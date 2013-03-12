@@ -251,7 +251,7 @@ public class Yaka implements YakaConstants {
     jj_consume_token(43);
     jj_consume_token(ident);
     jj_consume_token(44);
-
+         expression.lire(YakaTokenManager.identLu);
   }
 
   static final public void ecriture() throws ParseException {

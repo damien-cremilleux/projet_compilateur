@@ -18,6 +18,11 @@ lea dx,mess0
 push dx
 call ecrch
 
+; lireEnt -2
+lea dx,[bp-2]
+push dx
+call lirent
+
 ; aLaLigne
 call ligsuiv
 
@@ -28,6 +33,11 @@ mess1 DB "y=$"
 lea dx,mess1
 push dx
 call ecrch
+
+; lireEnt -4
+lea dx,[bp-4]
+push dx
+call lirent
 
 ; aLaLigne
 call ligsuiv

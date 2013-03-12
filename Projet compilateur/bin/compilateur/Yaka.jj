@@ -228,7 +228,7 @@ void affectation() : {}
 void lecture() : {}
 {
   	<LIRE> "(" <ident> ")"
-  	{  	 // expression.lire(YakaTokenManager.identLu);
+  	{  	 expression.lire(YakaTokenManager.identLu);
   	}
 }
 

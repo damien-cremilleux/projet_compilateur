@@ -15,7 +15,7 @@ import java.util.Stack;
  */
 public class Expression {
     /**
-     * Le nom de l'Ident à affecter
+     * Le nom de l'Ident a affecter
      */
     public static String nomAffec;
 
@@ -25,7 +25,7 @@ public class Expression {
     public Stack<Integer> pileOp = new Stack<Integer>();
 
     /**
-     * Méthode pour modifier le nom de l'Ident à affecter
+     * Méthode pour modifier le nom de l'Ident a affecter
      * 
      * @param name
      *            , le nouveau nom
@@ -201,7 +201,7 @@ public class Expression {
     }
 
     /**
-     * Methode pour l'ecriture
+     * Methode pour l'ecriture d'une chaine
      * 
      * @param chaine
      *            la chaine a afficher
@@ -211,7 +211,7 @@ public class Expression {
     }
 
     /**
-     * 
+     * Methode pour l'ecriture d'une expression
      */
     public void ecrireExpr() {
 	Yaka.yVM.ecrireExpr();
@@ -223,24 +223,23 @@ public class Expression {
      * @param chaine
      *            la variable à lire
      */
-    public void lecture(final String chaine) {
-	if (Yaka.tabIdent.existeIdent(nomAffec)) {
+    public void lire(final String chaine) {
+	if (Yaka.tabIdent.existeIdent(chaine)) {
 	    Ident id = Yaka.tabIdent.chercheIdent(chaine);
-	    int type = id.getType();
-	    Yaka.controleT.ajouteType(type);
-	    Yaka.controleT.controlerType(Constante.OP_AFFEC);
 	    if (id instanceof IdVar) {
-		Yaka.yVM.istore(((IdVar) id).getOffset());
+		Yaka.yVM.lire(((IdVar) id).getOffset());
 	    } else {
 		Erreur.ajouterErreur("Affectation à une constante impossible");
 	    }
 	} else {
 	    Erreur.ajouterErreur("Identificateur " + chaine + " non defini");
 	}
-	Yaka.yVM.ecrireChaine(chaine);
     }
 
-    	public void aLaLigne() {
-    	Yaka.yVM.aLaLigne();
-    	}
+    /**
+     * Methode pour ajouter un saut de ligne
+     */
+    public void aLaLigne() {
+	Yaka.yVM.aLaLigne();
+    }
 }
