@@ -219,7 +219,7 @@ public class YVM {
 	 *            de saut
 	 */
 	public void gotoYVM(final String etiquette) {
-		presentation(0,"goto " + etiquette);
+		presentation(1 ,"goto " + etiquette);
 	}
 
 	/**
@@ -247,8 +247,8 @@ public class YVM {
     	presentation(1,"lireEnt "+offset );
 	}
     
-    public void etiquette(final etiquette){
-    	presenation(0,etiquette + " :")
+    public void etiquette(final String etiquette){
+    	presenation(0,etiquette + " :");
     }
     
 

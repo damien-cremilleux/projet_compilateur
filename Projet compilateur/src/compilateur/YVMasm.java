@@ -310,9 +310,9 @@ public class YVMasm extends YVM {
 	 * @param etiquette
 	 */
 	public void gotoYVM(final String etiquette) {
-		presentation(0, "");
-		presentation(0, ";gotoYVM" + etiquette);
-		presentation(0, "jump " + etiquette);
+		presentation(1, "");
+		presentation(1, ";gotoYVM" + etiquette);
+		presentation(1, "jump " + etiquette);
 	}
 
 	/**
