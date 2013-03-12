@@ -296,11 +296,10 @@ public class YVMasm extends YVM {
 	 */
 	public void iffaux(final String etiquette) {
 		presentation(1, "");
-		presentation(1, ";iffaux" + etiquette);
+		presentation(1, ";iffaux " + etiquette);
 		presentation(1, "pop ax");
-		presentation(1, "cmp ax, -1");
-		presentation(1, "jne $+6");
-		presentation(1, "jmp " + etiquette);
+		presentation(1, "cmp ax, 0");
+		presentation(1, "je " + etiquette);
 
 	}
 
@@ -312,7 +311,7 @@ public class YVMasm extends YVM {
 	public void gotoYVM(final String etiquette) {
 		presentation(1, "");
 		presentation(1, ";gotoYVM" + etiquette);
-		presentation(1, "jump " + etiquette);
+		presentation(1, "jmp " + etiquette);
 	}
 
 	/**
@@ -332,7 +331,7 @@ public class YVMasm extends YVM {
 	 * @param etiquette
 	 */
 	public void etiquette(final String etiquette){
-		presentation(0, etiquette + " :");
+		presentation(0, etiquette + ":");
 		
 	}
 }

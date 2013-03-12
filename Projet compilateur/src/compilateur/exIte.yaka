@@ -5,6 +5,9 @@ VAR ENTIER s,i,n;
 	s=0;
 	TANTQUE i<= n FAIRE
 		s=s+i;
+		TANTQUE s < 10 FAIRE
+			s=s+1;
+		FAIT;
 		i=i+1;
 	FAIT;
 FPROGRAMME
