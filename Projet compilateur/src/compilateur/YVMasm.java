@@ -332,7 +332,7 @@ public class YVMasm extends YVM {
 	 * @param etiquette
 	 */
 	public void etiquette(final String etiquette){
-		presentation(0, etiquette + " :")
+		presentation(0, etiquette + " :");
 		
 	}
 }
