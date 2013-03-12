@@ -47,7 +47,7 @@ public class Iteration {
 	 * 
 	 */
 	public void sortieIteration() {
-		Yaka.yVM.etiquette("FAIRE"+nbBoucles);
+		Yaka.yVM.gotoYVM("FAIRE"+nbBoucles);
 		Yaka.yVM.etiquette("FAIT"+nbBoucles);
 	}
 
