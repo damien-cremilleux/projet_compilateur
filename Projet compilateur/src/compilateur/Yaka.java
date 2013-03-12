@@ -251,6 +251,7 @@ public class Yaka implements YakaConstants {
     jj_consume_token(43);
     jj_consume_token(ident);
     jj_consume_token(44);
+
   }
 
   static final public void ecriture() throws ParseException {
@@ -267,9 +268,11 @@ public class Yaka implements YakaConstants {
       case 43:
       case 51:
         expression();
+          expression.ecrireExpr();
         break;
       case chaine:
         jj_consume_token(chaine);
+          expression.ecrireChaine(YakaTokenManager.chaineLue);
         break;
       default:
         jj_la1[10] = jj_gen;
@@ -277,7 +280,6 @@ public class Yaka implements YakaConstants {
         throw new ParseException();
       }
       jj_consume_token(44);
-          expression.ecrire(YakaTokenManager.chaineLue);
       break;
     case ALALIGNE:
       jj_consume_token(ALALIGNE);
