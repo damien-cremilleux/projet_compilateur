@@ -22,8 +22,9 @@ public class Yaka {
 	public static Declaration declaration = new Declaration();
 	public static Expression expression = new Expression();
 	public static Erreur erreur = new Erreur();
-	public static YVM yVM= new YVMasm();
+	public static YVM yVM= new YVM();
 	public static ControleType controleT = new ControleType();
+	public static Interation iteration = new Iteration();
 	
 
 	public static void main(String args[]) { 
@@ -151,10 +152,7 @@ TOKEN  :
 /**************************************/
 void analyse() : {}
 {
-   <PROGRAMME> <ident>   /*{      try      {       // yVM.setFichierSortie(YakaTokenManager.identLu);
-      } catch (java.io.FileNotFoundException e) {
-	e.printStackTrace();
-    }   }*/   
+   <PROGRAMME> <ident>
    bloc()
    <FPROGRAMME> { yVM.queue();}
 }
@@ -213,9 +211,10 @@ void suiteInstr() : {}
 
 void instruction(): {}
 {
-  	affectation()
-  | lecture()
-  | ecriture()
+  	 affectation()
+  |  lecture()
+  |  ecriture()
+  |  iteration() 
 }
 
 
@@ -234,6 +233,20 @@ void ecriture() : {}
 {
   	( <ECRIRE> "(" (expression() | <chaine> ) ")" )  	{  	  expression.ecrire(YakaTokenManager.chaineLue);  	}  	 | <ALALIGNE>
 }
+
+/*
+ * Iteration
+ */
+void iteration() : {}
+{	<TANTQUE> {iteration.entreeIteration();}
+	expression() <FAIRE> {iteration.conditionIteration();}
+	
+	(instruction() (";" 
+	(instruction())? )*)?
+	
+	<FAIT> {iteration.sortieIteration();}
+}
+
 
 
 /*
