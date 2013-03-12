@@ -25,7 +25,7 @@ public class Expression {
 	public Stack<Integer> pileOp = new Stack<Integer>();
 
 	/**
-	 * MÃ©thode pour modifier le nom de l'Ident Ã  affecter
+	 * MÃ©thode pour modifier le nom de l'Ident a  affecter
 	 * 
 	 * @param name
 	 *            , le nouveau nom
@@ -75,7 +75,7 @@ public class Expression {
 	}
 
 	/**
-	 * ajouteOp : ajoute l'operateur ÃƒÂ  la pile d'op
+	 * ajouteOp : ajoute l'operateur a la pile d'op
 	 * 
 	 * @param typeOp
 	 *            le type de l'operateur
@@ -111,7 +111,7 @@ public class Expression {
 	}
 
 	/**
-	 * operation : ÃƒÂ  la fin de la ligne, vide les piles et ecrit dans le
+	 * operation : a  la fin de la ligne, vide les piles et ecrit dans le
 	 * fichier
 	 */
 	public void operation() {
@@ -185,7 +185,7 @@ public class Expression {
 	 */
 	public void affectation() {
 
-		if (Yaka.tabIdent.existeIdent(nomAffec)) { // TODO Ã  raccourcir
+		if (Yaka.tabIdent.existeIdent(nomAffec)) { // TODO a  raccourcir
 			Ident id = Yaka.tabIdent.chercheIdent(nomAffec);
 			int type = id.getType();
 			Yaka.controleT.ajouteType(type);
@@ -193,7 +193,7 @@ public class Expression {
 			if (id instanceof IdVar) {
 				Yaka.yVM.istore(((IdVar) id).getOffset());
 			} else {
-				Erreur.ajouterErreur("Affectation Ã  une constante impossible");
+				Erreur.ajouterErreur("Affectation a  une constante impossible");
 			}
 		} else {
 			Erreur.ajouterErreur("Identificateur " + nomAffec + " non defini");
@@ -212,7 +212,7 @@ public class Expression {
     /**
      * Methode pour la lecture
      * 
-     * @param chaine la variable Ã  lire
+     * @param chaine la variable a  lire
      */
     public void lecture(final String chaine) {
 	if (Yaka.tabIdent.existeIdent(nomAffec)) {
@@ -223,7 +223,7 @@ public class Expression {
 	    if (id instanceof IdVar) {
 		Yaka.yVM.istore(((IdVar) id).getOffset());
 	    } else {
-		Erreur.ajouterErreur("Affectation Ã  une constante impossible");
+		Erreur.ajouterErreur("Affectation a  une constante impossible");
 	    }
 	} else {
 	    Erreur.ajouterErreur("Identificateur " + chaine + " non defini");

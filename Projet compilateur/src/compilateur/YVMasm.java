@@ -26,17 +26,24 @@ public class YVMasm extends YVM {
 		fichierSortie = new FileOutputStream(f + ".asm");
 	}
 
+	public void presentation(int ind, String s){
+		if (ind == 0)
+			Ecriture.ecrireStringln(fichierSortie,""+s);
+		else
+			Ecriture.ecrireStringln(fichierSortie," "+s);
+	}
+	
 	/**
-	 * Réalise l'entete d'un fichier
+	 * Realise l'entete d'un fichier
 	 */
 	public void entete() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";entete");
-		Ecriture.ecrireStringln(fichierSortie, ".model SMALL");
-		Ecriture.ecrireStringln(fichierSortie, ".586");
-		Ecriture.ecrireStringln(fichierSortie, ".CODE");
-		Ecriture.ecrireStringln(fichierSortie, "debut:");
-		Ecriture.ecrireStringln(fichierSortie, "STARTUPCODE");
+		presentation(0, "");
+		presentation(0, ";entete");
+		presentation(0, ".model SMALL");
+		presentation(0, ".586");
+		presentation(0, ".CODE");
+		presentation(0, "debut:");
+		presentation(0, "STARTUPCODE");
 	}
 
 	/**
@@ -46,70 +53,70 @@ public class YVMasm extends YVM {
 	 *            le nombre de variables
 	 */
 	public void ouvrePrinc(final int nb) {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";ouvrePrinc " + nb);
-		Ecriture.ecrireStringln(fichierSortie, "mov bp,sp");
-		Ecriture.ecrireStringln(fichierSortie, "sub sp," + nb);
+		presentation(0, "");
+		presentation(0, ";ouvrePrinc " + nb);
+		presentation(0, "mov bp,sp");
+		presentation(0, "sub sp," + nb);
 	}
 
 	/**
 	 * Methode iadd
 	 */
 	public void iadd() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";iadd");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "add ax,bx");
-		Ecriture.ecrireStringln(fichierSortie, "push ax");
+		presentation(1, "");
+		presentation(1, ";iadd");
+		presentation(1, "pop bx");
+		presentation(1, "pop ax");
+		presentation(1, "add ax,bx");
+		presentation(1, "push ax");
 	}
 
 	/**
 	 * Methode isub
 	 */
 	public void isub() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";isub");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "sub ax,bx");
-		Ecriture.ecrireStringln(fichierSortie, "push ax");
+		presentation(1, "");
+		presentation(1, ";isub");
+		presentation(1, "pop bx");
+		presentation(1, "pop ax");
+		presentation(1, "sub ax,bx");
+		presentation(1, "push ax");
 	}
 
 	/**
 	 * Methode imul
 	 */
 	public void imul() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";imul");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "imul bx");
-		Ecriture.ecrireStringln(fichierSortie, "push ax");
+		presentation(1, "");
+		presentation(1, ";imul");
+		presentation(1, "pop bx");
+		presentation(1, "pop ax");
+		presentation(1, "imul bx");
+		presentation(1, "push ax");
 	}
 
 	/**
 	 * Methode idiv
 	 */
 	public void idiv() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";idiv");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "cwd");
-		Ecriture.ecrireStringln(fichierSortie, "idiv bx");
-		Ecriture.ecrireStringln(fichierSortie, "push ax");
+		presentation(1, "");
+		presentation(1, ";idiv");
+		presentation(1, "pop bx");
+		presentation(1, "pop ax");
+		presentation(1, "cwd");
+		presentation(1, "idiv bx");
+		presentation(1, "push ax");
 	}
 
 	/**
 	 * Methode inot
 	 */
 	public void inot() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";inot");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "not ax");
-		Ecriture.ecrireStringln(fichierSortie, "push ax");
+		presentation(1, "");
+		presentation(1, ";inot");
+		presentation(1, "pop ax");
+		presentation(1, "not ax");
+		presentation(1, "push ax");
 
 	}
 
@@ -117,11 +124,11 @@ public class YVMasm extends YVM {
 	 * Methode ineg
 	 */
 	public void ineg() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";ineg");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "neg ax");
-		Ecriture.ecrireStringln(fichierSortie, "push ax");
+		presentation(1, "");
+		presentation(1, ";ineg");
+		presentation(1, "pop ax");
+		presentation(1, "neg ax");
+		presentation(1, "push ax");
 
 	}
 
@@ -129,123 +136,123 @@ public class YVMasm extends YVM {
 	 * Methode ior
 	 */
 	public void ior() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";ior");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "or ax,bx");
-		Ecriture.ecrireStringln(fichierSortie, "push ax");
+		presentation(1, "");
+		presentation(1, ";ior");
+		presentation(1, "pop bx");
+		presentation(1, "pop ax");
+		presentation(1, "or ax,bx");
+		presentation(1, "push ax");
 	}
 
 	/**
 	 * Methode iand
 	 */
 	public void iand() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";iand");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "and ax,bx");
-		Ecriture.ecrireStringln(fichierSortie, "push ax");
+		presentation(1, "");
+		presentation(1, ";iand");
+		presentation(1, "pop bx");
+		presentation(1, "pop ax");
+		presentation(1, "and ax,bx");
+		presentation(1, "push ax");
 	}
 
 	/**
 	 * Methode iinf
 	 */
 	public void iinf() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";iinf");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "cmp ax,bx");
-		Ecriture.ecrireStringln(fichierSortie, "jge $+6");
-		Ecriture.ecrireStringln(fichierSortie, "push -1");
-		Ecriture.ecrireStringln(fichierSortie, "jmp $+4");
-		Ecriture.ecrireStringln(fichierSortie, "push 0");
+		presentation(1, "");
+		presentation(1, ";iinf");
+		presentation(1, "pop bx");
+		presentation(1, "pop ax");
+		presentation(1, "cmp ax,bx");
+		presentation(1, "jge $+6");
+		presentation(1, "push -1");
+		presentation(1, "jmp $+4");
+		presentation(1, "push 0");
 	}
 
 	/**
 	 * Methode isup
 	 */
 	public void isup() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";isup");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "cmp ax,bx");
-		Ecriture.ecrireStringln(fichierSortie, "jle $+6");
-		Ecriture.ecrireStringln(fichierSortie, "push -1");
-		Ecriture.ecrireStringln(fichierSortie, "jmp $+4");
-		Ecriture.ecrireStringln(fichierSortie, "push 0");
+		presentation(1, "");
+		presentation(1, ";isup");
+		presentation(1, "pop bx");
+		presentation(1, "pop ax");
+		presentation(1, "cmp ax,bx");
+		presentation(1, "jle $+6");
+		presentation(1, "push -1");
+		presentation(1, "jmp $+4");
+		presentation(1, "push 0");
 	}
 
 	/**
 	 * Methode iinfegal
 	 */
 	public void iinfegal() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";iinfegal");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "cmp ax,bx");
-		Ecriture.ecrireStringln(fichierSortie, "jg $+6");
-		Ecriture.ecrireStringln(fichierSortie, "push -1");
-		Ecriture.ecrireStringln(fichierSortie, "jmp $+4");
-		Ecriture.ecrireStringln(fichierSortie, "push 0");
+		presentation(1, "");
+		presentation(1, ";iinfegal");
+		presentation(1, "pop bx");
+		presentation(1, "pop ax");
+		presentation(1, "cmp ax,bx");
+		presentation(1, "jg $+6");
+		presentation(1, "push -1");
+		presentation(1, "jmp $+4");
+		presentation(1, "push 0");
 	}
 
 	/**
 	 * Methode isupegal
 	 */
 	public void isupegal() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";isupegal");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "cmp ax,bx");
-		Ecriture.ecrireStringln(fichierSortie, "jl $+6");
-		Ecriture.ecrireStringln(fichierSortie, "push -1");
-		Ecriture.ecrireStringln(fichierSortie, "jmp $+4");
-		Ecriture.ecrireStringln(fichierSortie, "push 0");
+		presentation(1, "");
+		presentation(1, ";isupegal");
+		presentation(1, "pop bx");
+		presentation(1, "pop ax");
+		presentation(1, "cmp ax,bx");
+		presentation(1, "jl $+6");
+		presentation(1, "push -1");
+		presentation(1, "jmp $+4");
+		presentation(1, "push 0");
 	}
 
 	/**
 	 * Methode iegal
 	 */
 	public void iegal() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";iegal");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "cmp ax,bx");
-		Ecriture.ecrireStringln(fichierSortie, "je $+6");
-		Ecriture.ecrireStringln(fichierSortie, "push 0");
-		Ecriture.ecrireStringln(fichierSortie, "jmp $+4");
-		Ecriture.ecrireStringln(fichierSortie, "push -1");
+		presentation(1, "");
+		presentation(1, ";iegal");
+		presentation(1, "pop bx");
+		presentation(1, "pop ax");
+		presentation(1, "cmp ax,bx");
+		presentation(1, "je $+6");
+		presentation(1, "push 0");
+		presentation(1, "jmp $+4");
+		presentation(1, "push -1");
 	}
 
 	/**
 	 * Methode idiff
 	 */
 	public void idiff() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";idiff");
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "cmp ax,bx");
-		Ecriture.ecrireStringln(fichierSortie, "je $+6");
-		Ecriture.ecrireStringln(fichierSortie, "push -1");
-		Ecriture.ecrireStringln(fichierSortie, "jmp $+4");
-		Ecriture.ecrireStringln(fichierSortie, "push 0");
+		presentation(1, "");
+		presentation(1, ";idiff");
+		presentation(1, "pop bx");
+		presentation(1, "pop ax");
+		presentation(1, "cmp ax,bx");
+		presentation(1, "je $+6");
+		presentation(1, "push -1");
+		presentation(1, "jmp $+4");
+		presentation(1, "push 0");
 	}
 
 	/**
 	 * Methode iload
 	 */
 	public void iload(final int offset) {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";iload" + offset);
-		Ecriture.ecrireStringln(fichierSortie, "push word ptr[bp" + offset
+		presentation(1, "");
+		presentation(1, ";iload" + offset);
+		presentation(1, "push word ptr[bp" + offset
 				+ "]");
 	}
 
@@ -253,10 +260,10 @@ public class YVMasm extends YVM {
 	 * Methode istore
 	 */
 	public void istore(final int offset) {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";istore" + offset);
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "mov word ptr[bp" + offset
+		presentation(1, "");
+		presentation(1, ";istore" + offset);
+		presentation(1, "pop ax");
+		presentation(1, "mov word ptr[bp" + offset
 				+ "],ax");
 	}
 
@@ -264,21 +271,21 @@ public class YVMasm extends YVM {
 	 * Methode iconst
 	 */
 	public void iconst(final int valeur) {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";iconst " + valeur);
-		Ecriture.ecrireStringln(fichierSortie, "push " + valeur);
+		presentation(1, "");
+		presentation(1, ";iconst " + valeur);
+		presentation(1, "push " + valeur);
 	}
 
 	/**
 	 * Methode ifeq
 	 */
 	public void ifeq(final String etiquette) {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";ifeq" + etiquette);
-		Ecriture.ecrireStringln(fichierSortie, "pop bx");
-		Ecriture.ecrireStringln(fichierSortie, "cmp 0, bx");
-		Ecriture.ecrireStringln(fichierSortie, "je $+6");
-		Ecriture.ecrireStringln(fichierSortie, "jmp " + etiquette);
+		presentation(1, "");
+		presentation(1, ";ifeq" + etiquette);
+		presentation(1, "pop bx");
+		presentation(1, "cmp 0, bx");
+		presentation(1, "je $+6");
+		presentation(1, "jmp " + etiquette);
 
 	}
 
@@ -288,12 +295,12 @@ public class YVMasm extends YVM {
 	 * @param etiquette
 	 */
 	public void iffaux(final String etiquette) {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";iffaux" + etiquette);
-		Ecriture.ecrireStringln(fichierSortie, "pop ax");
-		Ecriture.ecrireStringln(fichierSortie, "cmp ax, -1");
-		Ecriture.ecrireStringln(fichierSortie, "jne $+6");
-		Ecriture.ecrireStringln(fichierSortie, "jmp " + etiquette);
+		presentation(1, "");
+		presentation(1, ";iffaux" + etiquette);
+		presentation(1, "pop ax");
+		presentation(1, "cmp ax, -1");
+		presentation(1, "jne $+6");
+		presentation(1, "jmp " + etiquette);
 
 	}
 
@@ -303,16 +310,29 @@ public class YVMasm extends YVM {
 	 * @param etiquette
 	 */
 	public void gotoYVM(final String etiquette) {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";gotoYVM" + etiquette);
-		Ecriture.ecrireStringln(fichierSortie, "jump " + etiquette);
+		presentation(0, "");
+		presentation(0, ";gotoYVM" + etiquette);
+		presentation(0, "jump " + etiquette);
 	}
 
+	/**
+	 * methode pour afficher les instructions de fin
+	 */
 	public void queue() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";queue");
-		Ecriture.ecrireStringln(fichierSortie, "nop");
-		Ecriture.ecrireStringln(fichierSortie, "EXITCODE");
-		Ecriture.ecrireStringln(fichierSortie, "end debut");
+		presentation(0, "");
+		presentation(0, ";queue");
+		presentation(0, "nop");
+		presentation(0, "EXITCODE");
+		presentation(0, "end debut");
+	}
+	
+	/**
+	 * Generation des etiquettes
+	 * 
+	 * @param etiquette
+	 */
+	public void etiquette(final String etiquette){
+		presentation(0, etiquette + " :")
+		
 	}
 }

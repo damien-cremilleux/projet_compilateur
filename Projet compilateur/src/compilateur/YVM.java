@@ -30,12 +30,23 @@ public class YVM {
 	public void setFichierSortie(String f) throws FileNotFoundException {
 		fichierSortie = new FileOutputStream(f + ".txt");
     }
+	/**
+	 *  Methode pour ecrire les fonctions et permettre l'identation
+	 *   0 indentation si etiquette
+	 *   1 sinon
+	 */
+	public void presentation(int ind, String s){
+		if (ind == 0)
+			Ecriture.ecrireStringln(fichierSortie,""+s);
+		else
+			Ecriture.ecrireStringln(fichierSortie," "+s);
+	}
 
 	/**
 	 * Methode entete affiche entete au debut du fichier YAKA
 	 */
 	public void entete() {
-		Ecriture.ecrireStringln(fichierSortie, "entete");
+		presentation(1,"entete");
 	}
 
 	/**
@@ -46,105 +57,105 @@ public class YVM {
 	 */
 
 	public void ouvrePrinc(final int nb) {
-		Ecriture.ecrireStringln(fichierSortie, "ouvrePrinc " + nb);
+		presentation(1,"ouvrePrinc " + nb);
 	}
 
 	/**
 	 * Methode iadd
 	 */
 	public void iadd() {
-		Ecriture.ecrireStringln(fichierSortie, "iadd");
+		presentation(1,"iadd");
 	}
 
 	/**
 	 * Methode isub
 	 */
 	public void isub() {
-		Ecriture.ecrireStringln(fichierSortie, "isub");
+		presentation(1,"isub");
 	}
 
 	/**
 	 * Methode imul
 	 */
 	public void imul() {
-		Ecriture.ecrireStringln(fichierSortie, "imul");
+		presentation(1,"imul");
 	}
 
 	/**
 	 * Methode idiv
 	 */
 	public void idiv() {
-		Ecriture.ecrireStringln(fichierSortie, "idiv");
+		presentation(1,"idiv");
 	}
 
 	/**
 	 * Methode inot
 	 */
 	public void inot() {
-		Ecriture.ecrireStringln(fichierSortie, "iadd");
+		presentation(1,"iadd");
 	}
 
 	/**
 	 * Methode ineg
 	 */
 	public void ineg() {
-		Ecriture.ecrireStringln(fichierSortie, "ineg");
+		presentation(1,"ineg");
 	}
 
 	/**
 	 * Methode ior
 	 */
 	public void ior() {
-		Ecriture.ecrireStringln(fichierSortie, "ior");
+		presentation(1,"ior");
 	}
 
 	/**
 	 * Methode iand
 	 */
 	public void iand() {
-		Ecriture.ecrireStringln(fichierSortie, "iand");
+		presentation(1,"iand");
 	}
 
 	/**
 	 * Methode iinf
 	 */
 	public void iinf() {
-		Ecriture.ecrireStringln(fichierSortie, "iadd");
+		presentation(1,"iadd");
 	}
 
 	/**
 	 * Methode isup
 	 */
 	public void isup() {
-		Ecriture.ecrireStringln(fichierSortie, "isup");
+		presentation(1,"isup");
 	}
 
 	/**
 	 * Methode iinfegal
 	 */
 	public void iinfegal() {
-		Ecriture.ecrireStringln(fichierSortie, "iinfegal");
+		presentation(1,"iinfegal");
 	}
 
 	/**
 	 * Method isupegal
 	 */
 	public void isupegal() {
-		Ecriture.ecrireStringln(fichierSortie, "isupegal");
+		presentation(1,"isupegal");
 	}
 
 	/**
 	 * Methode iegal
 	 */
 	public void iegal() {
-		Ecriture.ecrireStringln(fichierSortie, "iegal");
+		presentation(1,"iegal");
 	}
 
 	/**
 	 * Methode idiff
 	 */
 	public void idiff() {
-		Ecriture.ecrireStringln(fichierSortie, "idiff");
+		presentation(1,"idiff");
 	}
 
 	/**
@@ -155,7 +166,7 @@ public class YVM {
 	 *            de la variable
 	 */
 	public void iload(final int offset) {
-		Ecriture.ecrireStringln(fichierSortie, "iload " + offset);
+		presentation(1,"iload " + offset);
 	}
 
 	/**
@@ -166,7 +177,7 @@ public class YVM {
 	 *            de la variable
 	 */
 	public void istore(final int offset) {
-		Ecriture.ecrireStringln(fichierSortie, "istore " + offset);
+		presentation(1,"istore " + offset);
 	}
 
 	/**
@@ -177,7 +188,7 @@ public class YVM {
 	 *            de la constante
 	 */
 	public void iconst(final int valeur) {
-		Ecriture.ecrireStringln(fichierSortie, "iconst " + valeur);
+		presentation(1,"iconst " + valeur);
 	}
 
 	/**
@@ -188,7 +199,7 @@ public class YVM {
 	 *            de saut
 	 */
 	public void ifeq(final String etiquette) {
-		Ecriture.ecrireStringln(fichierSortie, "ifeq " + etiquette);
+		presentation(1,"ifeq " + etiquette);
 	}
 
 	/**
@@ -197,7 +208,7 @@ public class YVM {
 	 * @param etiquette
 	 */
 	public void iffaux(final String etiquette) {
-	Ecriture.ecrireStringln(fichierSortie, "iffaux " + etiquette);
+	presentation(1,"iffaux " + etiquette);
 	}
 
 	/**
@@ -208,14 +219,14 @@ public class YVM {
 	 *            de saut
 	 */
 	public void gotoYVM(final String etiquette) {
-		Ecriture.ecrireStringln(fichierSortie, "goto " + etiquette);
+		presentation(0,"goto " + etiquette);
 	}
 
 	/**
 	 * Methode queue affiche queue à la fin du fichier YAKA
 	 */
 	public void queue() {
-		Ecriture.ecrireStringln(fichierSortie, "queue");
+		presentation(1,"queue");
     }
 
     /**
@@ -224,8 +235,8 @@ public class YVM {
      * @param var la variable à lire
      */
     public void ecrire(final String var) {
-	Ecriture.ecrireStringln(fichierSortie, "ecrireChaine " + '"' + var
-		+ '"');
+    	presentation(1,"ecrireChaine " + '"' + var
+    			+ '"');
     }
     
     /**
@@ -233,7 +244,12 @@ public class YVM {
      * @param offset l'offset de la variable à lire
      */
     public void lire(final int offset) {
-	Ecriture.ecrireString(fichierSortie,"lireEnt "+offset );
+    	presentation(1,"lireEnt "+offset );
 	}
+    
+    public void etiquette(final etiquette){
+    	presenation(0,etiquette + " :")
+    }
+    
 
 }
