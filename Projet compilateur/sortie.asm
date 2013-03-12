@@ -18,6 +18,9 @@ lea dx,mess0
 push dx
 call ecrch
 
+; aLaLigne
+call ligsuiv
+
 ;ecrireChaine "y="
 .DATA
 mess1 DB "y=$"
@@ -25,6 +28,9 @@ mess1 DB "y=$"
 lea dx,mess1
 push dx
 call ecrch
+
+; aLaLigne
+call ligsuiv
 
 ;ecrireChaine "x+y="
 .DATA
@@ -48,6 +54,9 @@ push ax
 
 ;ecrireEnt
 call ecrent
+
+; aLaLigne
+call ligsuiv
 
 ;iload-2
 push word ptr[bp-2]

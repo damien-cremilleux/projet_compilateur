@@ -239,7 +239,8 @@ void ecriture() : {}
   	  expression.ecrireExpr();	}	
   	  | <chaine>  	{
   	  expression.ecrireChaine(YakaTokenManager.chaineLue); 	}
-    	) ")" )  	 | <ALALIGNE>
+    	) ")" )  	 | <ALALIGNE>  	 {  	   expression.aLaLigne();
+  	 }
 }
 
 

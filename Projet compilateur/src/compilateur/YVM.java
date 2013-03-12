@@ -245,7 +245,15 @@ public class YVM {
      *            l'offset de la variable à lire
      */
     public void lire(final int offset) {
-	Ecriture.ecrireString(fichierSortie, "lireEnt " + offset);
+	Ecriture.ecrireStringln(fichierSortie, "lireEnt " + offset);
+    }
+    
+    /**
+     * 
+     */
+    public void aLaLigne() {
+	Ecriture.ecrireStringln(fichierSortie, "aLaLigne");
+	
     }
 
 }

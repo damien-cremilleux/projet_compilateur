@@ -240,4 +240,7 @@ public class Expression {
 	Yaka.yVM.ecrireChaine(chaine);
     }
 
+    	public void aLaLigne() {
+    	Yaka.yVM.aLaLigne();
+    	}
 }

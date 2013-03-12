@@ -339,4 +339,11 @@ public class YVMasm extends YVM {
 	Ecriture.ecrireStringln(fichierSortie, "call ecrent");
 
     }
+    
+    public void aLaLigne() {
+	Ecriture.ecrireString(fichierSortie, "\n; ");
+	super.aLaLigne();
+	Ecriture.ecrireStringln(fichierSortie, "call ligsuiv");
+    }
+
 }

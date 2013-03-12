@@ -283,6 +283,7 @@ public class Yaka implements YakaConstants {
       break;
     case ALALIGNE:
       jj_consume_token(ALALIGNE);
+           expression.aLaLigne();
       break;
     default:
       jj_la1[11] = jj_gen;
