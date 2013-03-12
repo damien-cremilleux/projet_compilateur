@@ -151,10 +151,7 @@ TOKEN  :
 /**************************************/
 void analyse() : {}
 {
-   <PROGRAMME> <ident>   /*{      try      {       // yVM.setFichierSortie(YakaTokenManager.identLu);
-      } catch (java.io.FileNotFoundException e) {
-	e.printStackTrace();
-    }   }*/   
+   <PROGRAMME> <ident>
    bloc()
    <FPROGRAMME> { yVM.queue();}
 }
@@ -213,9 +210,10 @@ void suiteInstr() : {}
 
 void instruction(): {}
 {
-  	affectation()
-  | lecture()
-  | ecriture()
+  	 affectation()
+  |  lecture()
+  |  ecriture()
+  |  iteration() 
 }
 
 
@@ -234,6 +232,19 @@ void ecriture() : {}
 {
   	( <ECRIRE> "(" (expression() | <chaine> ) ")" )  	{  	  expression.ecrire(YakaTokenManager.chaineLue);  	}  	 | <ALALIGNE>
 }
+
+/*
+ * Iteration
+ */
+void iteration() : {}
+{	<TANTQUE> expression() <FAIRE> {iteration.entreeIteration();}
+	
+	(instruction() (";" 
+	(instruction())? )*)?
+	
+	<FAIT> {iteration.sortieIteration();}
+}
+
 
 
 /*
