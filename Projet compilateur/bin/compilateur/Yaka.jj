@@ -24,6 +24,7 @@ public class Yaka {
 	public static Erreur erreur = new Erreur();
 	public static YVM yVM= new YVMasm();
 	public static ControleType controleT = new ControleType();
+	public static Iteration iteration = new Iteration();
 	
 
 	public static void main(String args[]) { 
@@ -151,10 +152,7 @@ TOKEN  :
 /**************************************/
 void analyse() : {}
 {
-   <PROGRAMME> <ident>   /*{      try      {       // yVM.setFichierSortie(YakaTokenManager.identLu);
-      } catch (java.io.FileNotFoundException e) {
-	e.printStackTrace();
-    }   }*/   
+   <PROGRAMME> <ident>
    bloc()
    <FPROGRAMME> { yVM.queue();}
 }
@@ -213,9 +211,10 @@ void suiteInstr() : {}
 
 void instruction(): {}
 {
-  	affectation()
-  | lecture()
-  | ecriture()
+  	 affectation()
+  |  lecture()
+  |  ecriture()
+  |  iteration() 
 }
 
 
@@ -242,6 +241,20 @@ void ecriture() : {}
     	) ")" )  	 | <ALALIGNE>  	 {  	   expression.aLaLigne();
   	 }
 }
+
+/*
+ * Iteration
+ */
+void iteration() : {}
+{	<TANTQUE> {iteration.entreeIteration();}
+	expression() <FAIRE> {iteration.conditionIteration();}
+	
+	(instruction() (";" 
+	(instruction())? )*)?
+	
+	<FAIT> {iteration.sortieIteration();}
+}
+
 
 
 /*

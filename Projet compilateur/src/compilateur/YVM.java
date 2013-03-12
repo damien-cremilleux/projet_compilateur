@@ -240,7 +240,7 @@ public class YVM {
     public void ecrireChaine(final String var) {
     	presentation(1,"ecrireChaine " + '"' + var
     			+ '"');
-
+    }
     /**
      * Ecriture d'une expresssion
      */
@@ -261,7 +261,8 @@ public class YVM {
     
     public void etiquette(final String etiquette){
     	presentation(0,etiquette + " :");
-     */
+    }
+    
     public void aLaLigne() {
 	Ecriture.ecrireStringln(fichierSortie, "aLaLigne");
 	
