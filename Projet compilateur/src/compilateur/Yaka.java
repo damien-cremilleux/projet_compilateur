@@ -7,8 +7,9 @@ public class Yaka implements YakaConstants {
         public static Declaration declaration = new Declaration();
         public static Expression expression = new Expression();
         public static Erreur erreur = new Erreur();
-        public static YVM yVM= new YVMasm();
+        public static YVM yVM= new YVM();
         public static ControleType controleT = new ControleType();
+        public static Interation iteration = new Iteration();
 
 
         public static void main(String args[]) {
@@ -299,9 +300,10 @@ public class Yaka implements YakaConstants {
  */
   static final public void iteration() throws ParseException {
     jj_consume_token(TANTQUE);
+                   iteration.entreeIteration();
     expression();
     jj_consume_token(FAIRE);
-                                        iteration.entreeIteration();
+                              iteration.conditionIteration();
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case TANTQUE:
     case ECRIRE:
