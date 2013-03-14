@@ -182,5 +182,4 @@ public class Ecriture {
 	ecrireDouble(System.out, d, longueur);
     }
 
-}// class Ecriture
-
+}
