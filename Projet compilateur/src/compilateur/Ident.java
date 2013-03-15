@@ -62,5 +62,12 @@ public abstract class Ident {
 	 * Methode toString
 	 */
 	public abstract String toString();
+	
+	/**
+	 * Accesseur a la valeur ou a l'offset
+	 */
+	public abstract int getVal();
+
+	public abstract void  chargerInstr();
 
 }
