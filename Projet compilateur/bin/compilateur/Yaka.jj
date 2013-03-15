@@ -1,5 +1,5 @@
 /*	Auteur: Pedrono Marie-Jo
- *  création : 13 février 2002
+ *  creation : 13 fevrier 2002
  *  nature : projet etudiant
  */
 
@@ -94,7 +94,7 @@ SKIP :
 }
 
 
-/* Mots réservés*/
+/* Mots reserves*/
 
 TOKEN :
 {
@@ -154,14 +154,18 @@ void analyse() : {}
 {
    <PROGRAMME> <ident>
    bloc()
-   <FPROGRAMME> { yVM.queue();}
+   <FPROGRAMME>   		{
+     		yVM.queue();
+   		}
 }
 
 void bloc() : {}{
  (declConst())*
  (declVar())*	
- {declaration.ouvrePrinc();}	
-  suiteInstr() 
+ 	{
+ 	  	declaration.ouvrePrinc();
+ 	 }	
+ suiteInstr()
 }
 
 void declConst() : {}
@@ -172,33 +176,60 @@ void declConst() : {}
 void defConst() : {}
 {
 	
-  <ident> {declaration.setNomIdent(YakaTokenManager.identLu); } 	  	
+  <ident>
+  	{
+  	  declaration.setNomIdent(YakaTokenManager.identLu);
+  	} 	  	
    "=" valConst() 
     
 }
 
 void valConst() : {}{
-  <entier> 	{declaration.affectationConst(YakaTokenManager.entierLu, Constante.T_ENTIER); }	
- | <ident>	{declaration.affectationConstCopie(YakaTokenManager.identLu); }	
- | <VRAI> 	{declaration.affectationConst(Constante.V_VRAI, Constante.T_BOOLEEN); }	
- | <FAUX> 	{declaration.affectationConst(Constante.V_FAUX, Constante.T_BOOLEEN); }	
+  <entier>
+  	{
+  	  declaration.affectationConst(YakaTokenManager.entierLu, Constante.T_ENTIER);
+  	}	
+ | <ident>
+ 	{
+ 	  declaration.affectationConstCopie(YakaTokenManager.identLu);
+ 	}	
+ | <VRAI>
+ 	{
+ 	  declaration.affectationConst(Constante.V_VRAI, Constante.T_BOOLEEN);
+ 	 }	
+ | <FAUX>
+ 	{
+ 	  declaration.affectationConst(Constante.V_FAUX, Constante.T_BOOLEEN);
+ 	}	
 }
 
 
 void declVar() : {}
 {
   <VAR> type()	
-  <ident>  {declaration.affectationVal(YakaTokenManager.identLu);  }		
+  <ident>
+  	{
+  	  declaration.affectationVal(YakaTokenManager.identLu);
+  	}		
   ("," 
-      <ident>  {declaration.affectationVal(YakaTokenManager.identLu);  }	
+      <ident>
+      	{
+      	  declaration.affectationVal(YakaTokenManager.identLu);
+      	}	
   )* ";"
 	
 }
 
 void type() :{}
 {
-   <ENTIER> 	{declaration.setTypeVar(Constante.T_ENTIER); }		
- | <BOOLEEN>	{declaration.setTypeVar(Constante.T_BOOLEEN); }	
+   <ENTIER>
+   	{
+   	  declaration.setTypeVar(Constante.T_ENTIER);
+   	}		
+ | <BOOLEEN>
+ 	{
+ 	  declaration.setTypeVar(Constante.T_BOOLEEN);
+ 	 }	
 }
 
 /*
@@ -220,7 +251,14 @@ void instruction(): {}
 
 void affectation() : {}
 {
-  	<ident> {expression.setNomAffec(YakaTokenManager.identLu);} "=" expression() {expression.affectation();}
+  	<ident>
+  		{
+  		  expression.setNomAffec(YakaTokenManager.identLu);
+  		}
+  	"=" expression()
+  		{
+  		  expression.affectation();
+  		}
 }
 
 
@@ -246,13 +284,22 @@ void ecriture() : {}
  * Iteration
  */
 void iteration() : {}
-{	<TANTQUE> {iteration.entreeIteration();}
-	expression() <FAIRE> {iteration.conditionIteration();}
+{	<TANTQUE>
+		{
+		  iteration.entreeIteration();
+		 }
+	expression() <FAIRE>
+					{
+					  iteration.conditionIteration();
+					}
 	
 	(instruction() (";" 
 	(instruction())? )*)?
 	
-	<FAIT> {iteration.sortieIteration();}
+	<FAIT>
+		{
+		  iteration.sortieIteration();
+		}
 }
 
 
@@ -265,7 +312,9 @@ void expression() : {}
   simpleExpr() 
   (opRel() 
   simpleExpr()
-  {expression.operation();} 
+  	{
+  	  expression.operation();
+  	} 
   )?
 }
 
@@ -275,19 +324,28 @@ void simpleExpr() : {}
 {
    terme() 
    (opAdd() 
-   terme()	{expression.operation();}
+   terme()
+   		{
+   		  expression.operation();
+   		}
    )*
 } 
 void terme() : {}
 {
   facteur() 
   (opMul() 
-  facteur()	{expression.operation();}
+  facteur()
+  		{
+  		  expression.operation();
+  		}
   )*
 }
 void facteur() : {}
 {   primaire() 
-  |  opNeg() primaire() {expression.operation();}
+  |  opNeg() primaire()
+  		{
+  		  expression.operation();
+  		}
 }
 
 void primaire (): {}
@@ -298,38 +356,92 @@ void primaire (): {}
 }
 
 void valeur () : {}
-{ <entier> {expression.ajouteType(Constante.T_ENTIER);expression.ajouteVal(YakaTokenManager.entierLu);}	
- | <ident> {expression.ajoute(YakaTokenManager.identLu);}		
- | <VRAI>  {expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(true);}	
- | <FAUX>  {expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(false);}		
+{ <entier>
+	{
+	  expression.ajouteType(Constante.T_ENTIER);expression.ajouteVal(YakaTokenManager.entierLu);
+	}	
+ | <ident>
+ 	{
+ 	  expression.ajoute(YakaTokenManager.identLu);
+ 	}		
+ | <VRAI>
+ 	{
+ 	  expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(true);
+ 	}	
+ | <FAUX>
+ 	{
+ 	  expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(false);
+ 	}		
  
 }
 
 void opRel() : {}
 {
-   "=" 	{expression.ajouteOp(Constante.OP_EQ);} 		
- | "<>" {expression.ajouteOp(Constante.OP_DIF);}	
- | "<" 	{expression.ajouteOp(Constante.OP_INF);}
- | "<=" {expression.ajouteOp(Constante.OP_INFEQ);}
- | ">" 	{expression.ajouteOp(Constante.OP_SUP);}
- | ">=" {expression.ajouteOp(Constante.OP_SUPEQ);}
+   "="
+   	{
+   	  expression.ajouteOp(Constante.OP_EQ);
+   	} 		
+ | "<>"
+ 	{
+ 	  expression.ajouteOp(Constante.OP_DIF);
+ 	}	
+ | "<"
+	 {
+	   expression.ajouteOp(Constante.OP_INF);
+	 }
+ | "<="
+	 {
+	   expression.ajouteOp(Constante.OP_INFEQ);
+	 }
+ | ">"
+ 	{
+ 	  expression.ajouteOp(Constante.OP_SUP);
+ 	}
+ | ">="
+	 {
+	   expression.ajouteOp(Constante.OP_SUPEQ);
+	 }
 } 
 
 void opAdd() : {}
 {
-    "+"		{expression.ajouteOp(Constante.OP_PLUS);}
-  |  "-"  	{expression.ajouteOp(Constante.OP_MOINS);}
-  | <OU> 	{expression.ajouteOp(Constante.OP_OU);}
+    "+"
+    {
+      expression.ajouteOp(Constante.OP_PLUS);
+    }
+  |  "-"
+ 	 {
+ 	   expression.ajouteOp(Constante.OP_MOINS);
+ 	 }
+  | <OU>
+  	{
+  	  expression.ajouteOp(Constante.OP_OU);
+  	}
 }
 
 void opMul() : {}
 {
-  "*"		{expression.ajouteOp(Constante.OP_FOIS);}
-  | "/"		{expression.ajouteOp(Constante.OP_DIV);}
-  | <ET>	{expression.ajouteOp(Constante.OP_ET);}
+  "*"
+	  {
+   		 expression.ajouteOp(Constante.OP_FOIS);
+	  }
+  | "/"
+ 	 {
+  		  expression.ajouteOp(Constante.OP_DIV);
+	  }
+  | <ET>
+  	{
+  	  expression.ajouteOp(Constante.OP_ET);
+  	}
 } 
 
 void opNeg() : {}
-{ "-" 		{expression.ajouteOp(Constante.OP_NEG);}	
- | <NON>	{expression.ajouteOp(Constante.OP_NON);}
+{ "-"
+	{
+ 	 expression.ajouteOp(Constante.OP_NEG);
+ 	}	
+ | <NON>
+	 {
+	   expression.ajouteOp(Constante.OP_NON);
+	 }
 }
