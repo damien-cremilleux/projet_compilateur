@@ -12,6 +12,7 @@ package compilateur;
  * 
  */
 public class Constante {
+	
     /* CONSTANTES ASM */
     /**
      * Definition du type Vrai pour YVM et ASM

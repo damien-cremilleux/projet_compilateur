@@ -26,24 +26,17 @@ public class YVMasm extends YVM {
 	fichierSortie = new FileOutputStream(f + ".asm");
     }
 
-    public void presentation(int ind, String s) {
-	if (ind == 0)
-	    Ecriture.ecrireStringln(fichierSortie, "" + s);
-	else
-	    Ecriture.ecrireStringln(fichierSortie, " " + s);
-    }
-
     /**
      * Realise l'entete d'un fichier
      */
     public void entete() {
-	presentation(0, "");
-	presentation(0, ";entete");
-	presentation(0, ".model SMALL");
-	presentation(0, ".586");
-	presentation(0, ".CODE");
-	presentation(0, "debut:");
-	presentation(0, "STARTUPCODE");
+	presentation("");
+	presentation(";entete");
+	presentation(".model SMALL");
+	presentation(".586");
+	presentation(".CODE");
+	presentation("debut:");
+	presentation("STARTUPCODE");
     }
 
     /**
@@ -53,70 +46,70 @@ public class YVMasm extends YVM {
      *            le nombre de variables
      */
     public void ouvrePrinc(final int nb) {
-	presentation(0, "");
-	presentation(0, ";ouvrePrinc " + nb);
-	presentation(0, "mov bp,sp");
-	presentation(0, "sub sp," + nb);
+	presentation("");
+	presentation(";ouvrePrinc " + nb);
+	presentation("mov bp,sp");
+	presentation("sub sp," + nb);
     }
 
     /**
      * Methode iadd
      */
     public void iadd() {
-	presentation(1, "");
-	presentation(1, ";iadd");
-	presentation(1, "pop bx");
-	presentation(1, "pop ax");
-	presentation(1, "add ax,bx");
-	presentation(1, "push ax");
+	presentation("");
+	presentation(";iadd");
+	presentation("pop bx");
+	presentation("pop ax");
+	presentation("add ax,bx");
+	presentation("push ax");
     }
 
     /**
      * Methode isub
      */
     public void isub() {
-	presentation(1, "");
-	presentation(1, ";isub");
-	presentation(1, "pop bx");
-	presentation(1, "pop ax");
-	presentation(1, "sub ax,bx");
-	presentation(1, "push ax");
+	presentation("");
+	presentation(";isub");
+	presentation("pop bx");
+	presentation("pop ax");
+	presentation("sub ax,bx");
+	presentation("push ax");
     }
 
     /**
      * Methode imul
      */
     public void imul() {
-	presentation(1, "");
-	presentation(1, ";imul");
-	presentation(1, "pop bx");
-	presentation(1, "pop ax");
-	presentation(1, "imul bx");
-	presentation(1, "push ax");
+	presentation("");
+	presentation(";imul");
+	presentation("pop bx");
+	presentation("pop ax");
+	presentation("imul bx");
+	presentation("push ax");
     }
 
     /**
      * Methode idiv
      */
     public void idiv() {
-	presentation(1, "");
-	presentation(1, ";idiv");
-	presentation(1, "pop bx");
-	presentation(1, "pop ax");
-	presentation(1, "cwd");
-	presentation(1, "idiv bx");
-	presentation(1, "push ax");
+	presentation("");
+	presentation(";idiv");
+	presentation("pop bx");
+	presentation("pop ax");
+	presentation("cwd");
+	presentation("idiv bx");
+	presentation("push ax");
     }
 
     /**
      * Methode inot
      */
     public void inot() {
-	presentation(1, "");
-	presentation(1, ";inot");
-	presentation(1, "pop ax");
-	presentation(1, "not ax");
-	presentation(1, "push ax");
+	presentation("");
+	presentation(";inot");
+	presentation("pop ax");
+	presentation("not ax");
+	presentation("push ax");
 
     }
 
@@ -124,11 +117,11 @@ public class YVMasm extends YVM {
      * Methode ineg
      */
     public void ineg() {
-	presentation(1, "");
-	presentation(1, ";ineg");
-	presentation(1, "pop ax");
-	presentation(1, "neg ax");
-	presentation(1, "push ax");
+	presentation("");
+	presentation(";ineg");
+	presentation("pop ax");
+	presentation("neg ax");
+	presentation("push ax");
 
     }
 
@@ -136,154 +129,154 @@ public class YVMasm extends YVM {
      * Methode ior
      */
     public void ior() {
-	presentation(1, "");
-	presentation(1, ";ior");
-	presentation(1, "pop bx");
-	presentation(1, "pop ax");
-	presentation(1, "or ax,bx");
-	presentation(1, "push ax");
+	presentation("");
+	presentation(";ior");
+	presentation("pop bx");
+	presentation("pop ax");
+	presentation("or ax,bx");
+	presentation("push ax");
     }
 
     /**
      * Methode iand
      */
     public void iand() {
-	presentation(1, "");
-	presentation(1, ";iand");
-	presentation(1, "pop bx");
-	presentation(1, "pop ax");
-	presentation(1, "and ax,bx");
-	presentation(1, "push ax");
+	presentation("");
+	presentation(";iand");
+	presentation("pop bx");
+	presentation("pop ax");
+	presentation("and ax,bx");
+	presentation("push ax");
     }
 
     /**
      * Methode iinf
      */
     public void iinf() {
-	presentation(1, "");
-	presentation(1, ";iinf");
-	presentation(1, "pop bx");
-	presentation(1, "pop ax");
-	presentation(1, "cmp ax,bx");
-	presentation(1, "jge $+6");
-	presentation(1, "push -1");
-	presentation(1, "jmp $+4");
-	presentation(1, "push 0");
+	presentation("");
+	presentation(";iinf");
+	presentation("pop bx");
+	presentation("pop ax");
+	presentation("cmp ax,bx");
+	presentation("jge $+6");
+	presentation("push -1");
+	presentation("jmp $+4");
+	presentation("push 0");
     }
 
     /**
      * Methode isup
      */
     public void isup() {
-	presentation(1, "");
-	presentation(1, ";isup");
-	presentation(1, "pop bx");
-	presentation(1, "pop ax");
-	presentation(1, "cmp ax,bx");
-	presentation(1, "jle $+6");
-	presentation(1, "push -1");
-	presentation(1, "jmp $+4");
-	presentation(1, "push 0");
+	presentation("");
+	presentation(";isup");
+	presentation("pop bx");
+	presentation("pop ax");
+	presentation("cmp ax,bx");
+	presentation("jle $+6");
+	presentation("push -1");
+	presentation("jmp $+4");
+	presentation("push 0");
     }
 
     /**
      * Methode iinfegal
      */
     public void iinfegal() {
-	presentation(1, "");
-	presentation(1, ";iinfegal");
-	presentation(1, "pop bx");
-	presentation(1, "pop ax");
-	presentation(1, "cmp ax,bx");
-	presentation(1, "jg $+6");
-	presentation(1, "push -1");
-	presentation(1, "jmp $+4");
-	presentation(1, "push 0");
+	presentation("");
+	presentation(";iinfegal");
+	presentation("pop bx");
+	presentation("pop ax");
+	presentation("cmp ax,bx");
+	presentation("jg $+6");
+	presentation("push -1");
+	presentation("jmp $+4");
+	presentation("push 0");
     }
 
     /**
      * Methode isupegal
      */
     public void isupegal() {
-	presentation(1, "");
-	presentation(1, ";isupegal");
-	presentation(1, "pop bx");
-	presentation(1, "pop ax");
-	presentation(1, "cmp ax,bx");
-	presentation(1, "jl $+6");
-	presentation(1, "push -1");
-	presentation(1, "jmp $+4");
-	presentation(1, "push 0");
+	presentation("");
+	presentation(";isupegal");
+	presentation("pop bx");
+	presentation("pop ax");
+	presentation("cmp ax,bx");
+	presentation("jl $+6");
+	presentation("push -1");
+	presentation("jmp $+4");
+	presentation("push 0");
     }
 
     /**
      * Methode iegal
      */
     public void iegal() {
-	presentation(1, "");
-	presentation(1, ";iegal");
-	presentation(1, "pop bx");
-	presentation(1, "pop ax");
-	presentation(1, "cmp ax,bx");
-	presentation(1, "je $+6");
-	presentation(1, "push 0");
-	presentation(1, "jmp $+4");
-	presentation(1, "push -1");
+	presentation("");
+	presentation(";iegal");
+	presentation("pop bx");
+	presentation("pop ax");
+	presentation("cmp ax,bx");
+	presentation("je $+6");
+	presentation("push 0");
+	presentation("jmp $+4");
+	presentation("push -1");
     }
 
     /**
      * Methode idiff
      */
     public void idiff() {
-	presentation(1, "");
-	presentation(1, ";idiff");
-	presentation(1, "pop bx");
-	presentation(1, "pop ax");
-	presentation(1, "cmp ax,bx");
-	presentation(1, "je $+6");
-	presentation(1, "push -1");
-	presentation(1, "jmp $+4");
-	presentation(1, "push 0");
+	presentation("");
+	presentation(";idiff");
+	presentation("pop bx");
+	presentation("pop ax");
+	presentation("cmp ax,bx");
+	presentation("je $+6");
+	presentation("push -1");
+	presentation("jmp $+4");
+	presentation("push 0");
     }
 
     /**
      * Methode iload
      */
     public void iload(final int offset) {
-	presentation(1, "");
-	presentation(1, ";iload" + offset);
-	presentation(1, "push word ptr[bp" + offset + "]");
+	presentation("");
+	presentation(";iload" + offset);
+	presentation("push word ptr[bp" + offset + "]");
     }
 
     /**
      * Methode istore
      */
     public void istore(final int offset) {
-	presentation(1, "");
-	presentation(1, ";istore" + offset);
-	presentation(1, "pop ax");
-	presentation(1, "mov word ptr[bp" + offset + "],ax");
+	presentation("");
+	presentation(";istore" + offset);
+	presentation("pop ax");
+	presentation("mov word ptr[bp" + offset + "],ax");
     }
 
     /**
      * Methode iconst
      */
     public void iconst(final int valeur) {
-	presentation(1, "");
-	presentation(1, ";iconst " + valeur);
-	presentation(1, "push " + valeur);
+	presentation("");
+	presentation(";iconst " + valeur);
+	presentation("push " + valeur);
     }
 
     /**
      * Methode ifeq
      */
     public void ifeq(final String etiquette) {
-	presentation(1, "");
-	presentation(1, ";ifeq" + etiquette);
-	presentation(1, "pop bx");
-	presentation(1, "cmp 0, bx");
-	presentation(1, "je $+6");
-	presentation(1, "jmp " + etiquette);
+	presentation("");
+	presentation(";ifeq" + etiquette);
+	presentation("pop bx");
+	presentation("cmp 0, bx");
+	presentation("je $+6");
+	presentation("jmp " + etiquette);
 
     }
 
@@ -293,11 +286,11 @@ public class YVMasm extends YVM {
      * @param etiquette
      */
     public void iffaux(final String etiquette) {
-	presentation(1, "");
-	presentation(1, ";iffaux " + etiquette);
-	presentation(1, "pop ax");
-	presentation(1, "cmp ax, 0");
-	presentation(1, "je " + etiquette);
+	presentation("");
+	presentation(";iffaux " + etiquette);
+	presentation("pop ax");
+	presentation("cmp ax, 0");
+	presentation("je " + etiquette);
 
     }
 
@@ -307,20 +300,20 @@ public class YVMasm extends YVM {
      * @param etiquette
      */
     public void gotoYVM(final String etiquette) {
-	presentation(1, "");
-	presentation(1, ";gotoYVM" + etiquette);
-	presentation(1, "jmp " + etiquette);
+	presentation("");
+	presentation(";gotoYVM" + etiquette);
+	presentation("jmp " + etiquette);
     }
 
     /**
      * methode pour afficher les instructions de fin
      */
     public void queue() {
-	presentation(0, "");
-	presentation(0, ";queue");
-	presentation(0, "nop");
-	presentation(0, "EXITCODE");
-	presentation(0, "end debut");
+	presentation("");
+	presentation(";queue");
+	presentation("nop");
+	presentation("EXITCODE");
+	presentation("end debut");
     }
 
     /**
@@ -329,7 +322,7 @@ public class YVMasm extends YVM {
      * @param etiquette
      */
     public void etiquette(final String etiquette) {
-	presentation(0, etiquette + ":");
+	presentation(etiquette + ":");
 
     }
 
