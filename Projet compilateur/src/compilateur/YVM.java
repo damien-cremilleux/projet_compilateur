@@ -21,7 +21,7 @@ public class YVM {
 	 */
 	public static OutputStream fichierSortie;
 
-	public static int indent;
+	public static int indent = 1;
 
 	/**
 	 * Methode pour definir le fichier de sortie
@@ -42,18 +42,17 @@ public class YVM {
 	 *            la chaine de caractere a ecrire
 	 */
 	public void presentation(String s) {
-	String esp = "";
-	for(int i = 0; i<indent; i++) {
-		esp +=" ";
+		String esp = "";
+		for (int i = 0; i < indent; i++) {
+			esp += "    ";
+		}
+		Ecriture.ecrireStringln(fichierSortie, esp + s);
 	}
-	Ecriture.ecrireStringln(fichierSortie, esp + s);
-    }
 
 	/**
 	 * Methode entete affiche entete au debut du fichier YAKA
 	 */
 	public void entete() {
-		indent = 0;
 		presentation("entete");
 	}
 
@@ -201,7 +200,7 @@ public class YVM {
 	}
 
 	/**
-	 * Methode ifeq affiche ifeq et l'étiquette de saut dans le fichier de
+	 * Methode ifeq affiche ifeq et l'etiquette de saut dans le fichier de
 	 * sortie
 	 * 
 	 * @param etiquette
@@ -221,7 +220,7 @@ public class YVM {
 	}
 
 	/**
-	 * Methode gotoYVM affiche goto et l'étiquette de saut dans le fichier de
+	 * Methode gotoYVM affiche goto et l'etiquette de saut dans le fichier de
 	 * sortie
 	 * 
 	 * @param etiquette
@@ -232,7 +231,7 @@ public class YVM {
 	}
 
 	/**
-	 * Methode queue affiche queue à la fin du fichier YAKA
+	 * Methode queue affiche queue a�la fin du fichier YAKA
 	 */
 	public void queue() {
 		presentation("queue");
@@ -252,15 +251,14 @@ public class YVM {
 	 * Ecriture d'une expresssion
 	 */
 	public void ecrireExpr() {
-		Ecriture.ecrireStringln(fichierSortie, "ecrireEnt");
-
+		presentation("ecrireEnt");
 	}
 
 	/**
 	 * Methode pour lire
 	 * 
 	 * @param offset
-	 *            l'offset de la variable à lire
+	 *            l'offset de la variable a lire
 	 */
 	public void lire(final int offset) {
 		presentation("lireEnt " + offset);
@@ -273,15 +271,17 @@ public class YVM {
 	 *            l'etiquette a ajouter
 	 */
 	public void etiquette(final String etiquette) {
+		int tmp = indent;
+		indent = 0;
 		presentation(etiquette + " :");
+		indent = tmp;
 	}
 
 	/**
 	 * Methode aLaLigne : realiser un saut de ligne
 	 */
 	public void aLaLigne() {
-		Ecriture.ecrireStringln(fichierSortie, "aLaLigne");
-
+		presentation("aLaLigne");
 	}
 
 }

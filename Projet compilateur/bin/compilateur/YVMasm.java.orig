@@ -26,26 +26,30 @@ public class YVMasm extends YVM {
 	fichierSortie = new FileOutputStream(f + ".asm");
     }
 
-
     /**
      * Realise l'entete d'un fichier
      */
     public void entete() {
+<<<<<<< HEAD
 	presentation("");
 	presentation(";entete");
-	indent = 1;
-	presentation("extrn lirent:proc,ecrent:proc");
-	presentation("extrn ecrbool:proc");
-	presentation("extrn ecrch:proc,ligsuiv:proc");
-	indent = 0;
-	presentation("debut:");
-	presentation("STARTUPCODE");
 	presentation(".model SMALL");
 	presentation(".586");
 	presentation(".CODE");
 	presentation("debut:");
 	presentation("STARTUPCODE");
-	indent =1;
+=======
+	presentation(0, "");
+	presentation(0, ";entete");
+	presentation(1, "extrn lirent:proc,ecrent:proc");
+	presentation(1, "extrn ecrbool:proc");
+	presentation(1, "extrn ecrch:proc,ligsuiv:proc");
+	presentation(0, ".model SMALL");
+	presentation(0, ".586");
+	presentation(0, ".CODE");
+	presentation(0, "debut:");
+	presentation(0, "STARTUPCODE");
+>>>>>>> 8e97341e8e0ea03d784c3827f18d6ea61d1aba49
     }
 
     /**
