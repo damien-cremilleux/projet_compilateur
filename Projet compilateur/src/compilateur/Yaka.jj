@@ -25,6 +25,7 @@ public class Yaka {
 	public static YVM yVM= new YVMasm();
 	public static ControleType controleT = new ControleType();
 	public static Iteration iteration = new Iteration();
+	public static Conditionnelle cond = new Conditionnelle();
 	
 
 	public static void main(String args[]) { 
@@ -214,7 +215,8 @@ void instruction(): {}
   	 affectation()
   |  lecture()
   |  ecriture()
-  |  iteration() 
+  |  iteration()
+  |  conditionnelle() 
 }
 
 
@@ -246,13 +248,44 @@ void ecriture() : {}
  * Iteration
  */
 void iteration() : {}
-{	<TANTQUE> {iteration.entreeIteration();}
-	expression() <FAIRE> {iteration.conditionIteration();}
+{	<TANTQUE>
+	{
+	  iteration.entreeIteration();
+	  }
+	expression() <FAIRE>
+	{
+	  iteration.conditionIteration();
+	  }
 	
 	(instruction() (";" 
 	(instruction())? )*)?
 	
-	<FAIT> {iteration.sortieIteration();}
+	<FAIT>
+	{
+	  iteration.sortieIteration();
+	}
+}
+
+
+
+/*
+ * Conditionnelle
+ */
+void conditionnelle() : {}
+{
+	<SI>  {cond.entreeCond();}
+	expression()
+
+	<ALORS> {iteration.conditionCond();}
+	(instruction() (";" 
+	(instruction())? )*)?
+
+	{	  cond.sinonCond();	}	
+	( <SINON> 
+	  (instruction() (";" 
+	  (instruction())? )*)? )?
+	
+	<FSI>	{	  cond.sortieCond();	}	
 }
 
 
