@@ -22,6 +22,7 @@ public class Ecriture {
 
     /**
      * @param nomFich
+     *            le nom du fichier
      * @return
      */
     @SuppressWarnings("javadoc")
