@@ -39,6 +39,9 @@ public class YVMasm extends YVM {
     public void entete() {
 	presentation(0, "");
 	presentation(0, ";entete");
+	presentation(1, "extrn lirent:proc,ecrent:proc");
+	presentation(1, "extrn ecrbool:proc");
+	presentation(1, "extrn ecrch:proc,ligsuiv:proc");
 	presentation(0, ".model SMALL");
 	presentation(0, ".586");
 	presentation(0, ".CODE");
