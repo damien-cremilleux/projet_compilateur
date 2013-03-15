@@ -22,7 +22,7 @@ public class Yaka {
 	public static Declaration declaration = new Declaration();
 	public static Expression expression = new Expression();
 	public static Erreur erreur = new Erreur();
-	public static YVM yVM= new YVMasm();
+	public static YVM yVM= new YVM();
 	public static ControleType controleT = new ControleType();
 	public static Iteration iteration = new Iteration();
 	public static Conditionnelle cond = new Conditionnelle();
@@ -257,8 +257,7 @@ void iteration() : {}
 	  iteration.conditionIteration();
 	  }
 	
-	(instruction() (";" 
-	(instruction())? )*)?
+	suiteInstr()
 	
 	<FAIT>
 	{
@@ -276,14 +275,12 @@ void conditionnelle() : {}
 	<SI>  {cond.entreeCond();}
 	expression()
 
-	<ALORS> {iteration.conditionCond();}
-	(instruction() (";" 
-	(instruction())? )*)?
+	<ALORS> {cond.conditionCond();}
+	suiteInstr()
 
 	{	  cond.sinonCond();	}	
 	( <SINON> 
-	  (instruction() (";" 
-	  (instruction())? )*)? )?
+	 	suiteInstr() )?
 	
 	<FSI>	{	  cond.sortieCond();	}	
 }
