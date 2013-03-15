@@ -177,7 +177,7 @@ public class Expression {
     }
 
     /**
-     * methode pour affecter une valeur à une variable
+     * methode pour affecter une valeur a une variable
      * 
      * @param clef
      *            : l'identificateur de la variable
