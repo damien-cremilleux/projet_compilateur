@@ -172,7 +172,7 @@ public class Expression {
 	}
 
 	/**
-     * methode pour affecter une valeur a une variable
+	 * methode pour affecter une valeur à une variable
 	 * 
 	 * @param clef
 	 *            : l'identificateur de la variable
@@ -193,6 +193,30 @@ public class Expression {
 			Erreur.ajouterErreur("Identificateur " + nomAffec + " non defini");
 		}
 	}
+<<<<<<< HEAD
+    }
+
+    /**
+     * methode pour affecter une valeur a une variable
+     * 
+     * @param clef
+     *            : l'identificateur de la variable
+     */
+    public void affectation() {
+
+	if (Yaka.tabIdent.existeIdent(nomAffec)) { // TODO à raccourcir
+	    Ident id = Yaka.tabIdent.chercheIdent(nomAffec);
+	    int type = id.getType();
+	    Yaka.controleT.ajouteType(type);
+	    Yaka.controleT.controlerType(Constante.OP_AFFEC);
+	    if (id instanceof IdVar) {
+		Yaka.yVM.istore(((IdVar) id).getOffset());
+	    } else {
+		Erreur.ajouterErreur("Affectation à une constante impossible");
+	    }
+	} else {
+	    Erreur.ajouterErreur("Identificateur " + nomAffec + " non defini");
+=======
 
 	/**
 	 * Methode pour l'ecriture d'une chaine
@@ -202,6 +226,7 @@ public class Expression {
 	 */
 	public void ecrireChaine(final String chaine) {
 		Yaka.yVM.ecrireChaine(chaine);
+>>>>>>> origin/master
 	}
 
 	/**
