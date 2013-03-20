@@ -63,8 +63,8 @@ public class Declaration {
 	 *            , le nom de la constante
 	 */
 	public void affectationConstCopie(final String clefACopier) {
-		if (Yaka.tabIdent.existeIdent(clefACopier)) {
-			IdConst id = (IdConst) Yaka.tabIdent.chercheIdent(clefACopier);
+		if (Yaka.tabIdent.existeIdentLocaux(clefACopier)) {
+			IdConst id = (IdConst) Yaka.tabIdent.chercheIdentLocaux(clefACopier);
 			this.affectationConst(id.getValeur(), id.getType());
 		} else {
 			Erreur.ajouterErreur("Constante " + clefACopier + " pas definie");
@@ -88,7 +88,7 @@ public class Declaration {
 	 *            le nom de la variable
 	 */
 	public void affectationVal(final String clef) {
-		if (Yaka.tabIdent.existeIdent(clef)) {
+		if (Yaka.tabIdent.existeIdentLocaux(clef)) {
 			Erreur.ajouterErreur("Variable " + clef + " deja definie");
 		} else {
 			/* Cree l'ident */
@@ -104,7 +104,7 @@ public class Declaration {
 	 * @return vrai si l'identificateur existait deja, faux sinon
 	 */
 	public boolean existe() {
-		return Yaka.tabIdent.existeIdent(nomIdent);
+		return Yaka.tabIdent.existeIdentLocaux(nomIdent);
 	}
 
 	/**
