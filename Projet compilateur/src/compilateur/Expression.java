@@ -32,8 +32,8 @@ public class Expression {
 	 */
 	public void setNomAffec(String name) {
 		nomAffec = name;
-		if (Yaka.tabIdent.existeIdent(nomAffec)) {
-			Ident id = Yaka.tabIdent.chercheIdent(nomAffec);
+		if (Yaka.tabIdent.existeIdentLocaux(nomAffec)) {
+			Ident id = Yaka.tabIdent.chercheIdentLocaux(nomAffec);
 			int type = id.getType();
 			Yaka.controleT.ajouteType(type);
 		} else {
@@ -59,8 +59,8 @@ public class Expression {
 	 *            nom de l'ident
 	 */
 	public void ajoute(String clef) {
-		if (Yaka.tabIdent.existeIdent(clef)) {
-			Ident id = Yaka.tabIdent.chercheIdent(clef);
+		if (Yaka.tabIdent.existeIdentLocaux(clef)) {
+			Ident id = Yaka.tabIdent.chercheIdentLocaux(clef);
 			int type = id.getType();
 			Yaka.controleT.ajouteType(type);
 			id.chargerInstr();
@@ -179,8 +179,8 @@ public class Expression {
 	 */
 	public void affectation() {
 
-		if (Yaka.tabIdent.existeIdent(nomAffec)) { // TODO à raccourcir
-			Ident id = Yaka.tabIdent.chercheIdent(nomAffec);
+		if (Yaka.tabIdent.existeIdentLocaux(nomAffec)) { // TODO à raccourcir
+			Ident id = Yaka.tabIdent.chercheIdentLocaux(nomAffec);
 			int type = id.getType();
 			Yaka.controleT.ajouteType(type);
 			Yaka.controleT.controlerType(Constante.OP_AFFEC);
@@ -218,8 +218,8 @@ public class Expression {
 	 *            la variabla a lire
 	 */
 	public void lire(final String chaine) {
-		if (Yaka.tabIdent.existeIdent(chaine)) {
-			Ident id = Yaka.tabIdent.chercheIdent(chaine);
+		if (Yaka.tabIdent.existeIdentLocaux(chaine)) {
+			Ident id = Yaka.tabIdent.chercheIdentLocaux(chaine);
 			if (id instanceof IdVar) {
 				Yaka.yVM.lire(((IdVar) id).getOffset());
 			} else {
