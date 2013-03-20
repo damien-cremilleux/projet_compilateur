@@ -22,10 +22,11 @@ public class Yaka {
 	public static Declaration declaration = new Declaration();
 	public static Expression expression = new Expression();
 	public static Erreur erreur = new Erreur();
-	public static YVM yVM= new YVM();
+	public static YVM yVM= new YVMasm();
 	public static ControleType controleT = new ControleType();
 	public static Iteration iteration = new Iteration();
 	public static Conditionnelle cond = new Conditionnelle();
+	public static Fonction fonc = new Fonction();
 	
 
 	public static void main(String args[]) { 
@@ -154,11 +155,35 @@ TOKEN  :
 void analyse() : {}
 {
    <PROGRAMME> <ident>
+   (declFonction())*
+   <PRINCIPAL>
    bloc()
+   <FPRINCIPAL>
    <FPROGRAMME>   		{
      		yVM.queue();
    		}
 }
+
+void declFonction() : {}{
+  type() < FONCTION > ident()  						{
+  						  fonc.init(YakaTokenManager.identLu);
+  						}     paramForms()
+  bloc()
+  < FFONCTION >}
+
+void paramForms() : {}
+{
+   "("
+   (paramForm() ("," 
+	paramForm() )*)?
+	")"
+}
+
+void paramForm() : {}
+{
+   type() ident()
+}
+
 
 void bloc() : {}{
  (declConst())*
@@ -247,7 +272,8 @@ void instruction(): {}
   |  lecture()
   |  ecriture()
   |  iteration()
-  |  conditionnelle() 
+  |  conditionnelle()
+  |  retourne()
 }
 
 
@@ -324,6 +350,14 @@ void conditionnelle() : {}
 }
 
 
+/*
+ * Retourne
+ */
+void retourne() : {}
+{
+  <RETOURNE> expression();
+}
+
 
 /*
  * Expression .
@@ -381,7 +415,7 @@ void valeur () : {}
 	{
 	  expression.ajouteType(Constante.T_ENTIER);expression.ajouteVal(YakaTokenManager.entierLu);
 	}	
- | <ident>
+ | <ident> (argumentsFonction())?
  	{
  	  expression.ajoute(YakaTokenManager.identLu);
  	}		
@@ -393,8 +427,17 @@ void valeur () : {}
  	{
  	  expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(false);
  	}		
- 
+
 }
+
+void argumentsFonction() : {}
+{
+   "("
+    (      expression() ("," expression())*
+    )?
+   ")"
+}
+
 
 void opRel() : {}
 {
