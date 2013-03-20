@@ -16,270 +16,272 @@ import java.io.OutputStream;
  * 
  */
 public class YVM {
-    /**
-     * fichier de sortie, contenant les instructions YVM
-     */
-    public static OutputStream fichierSortie;
+	/**
+	 * fichier de sortie, contenant les instructions YVM
+	 */
+	public static OutputStream fichierSortie;
 
-    /**
-     * Methode pour definir le fichier de sortie
-     * 
-     * @param f
-     *            le fichier de sortie
-     * @throws FileNotFoundException
-     */
-    public void setFichierSortie(String f) throws FileNotFoundException {
-	fichierSortie = new FileOutputStream(f + ".txt");
-    }
+	public static int indent = 1;
 
-    /**
-     * Methode pour ecrire les fonctions et permettre l'identation 0 indentation
-     * si etiquette 1 sinon
-     * 
-     * @param ind
-     *            le nombre d'indentation
-     * @param s
-     *            la chaine de caractere a ecrire
-     */
-    public void presentation(int ind, String s) {
-	if (ind == 0)
-	    Ecriture.ecrireStringln(fichierSortie, "" + s);
-	else
-	    Ecriture.ecrireStringln(fichierSortie, " " + s);
-    }
+	/**
+	 * Methode pour definir le fichier de sortie
+	 * 
+	 * @param f
+	 *            le fichier de sortie
+	 * @throws FileNotFoundException
+	 */
+	public void setFichierSortie(String f) throws FileNotFoundException {
+		fichierSortie = new FileOutputStream(f + ".txt");
+	}
 
-    /**
-     * Methode entete affiche entete au debut du fichier YAKA
-     */
-    public void entete() {
-	presentation(1, "entete");
-    }
+	/**
+	 * Methode pour ecrire les fonctions et permettre l'identation 0 indentation
+	 * si etiquette 1 sinon
+	 * 
+	 * @param s
+	 *            la chaine de caractere a ecrire
+	 */
+	public void presentation(String s) {
+		String esp = "";
+		for (int i = 0; i < indent; i++) {
+			esp += "    ";
+		}
+		Ecriture.ecrireStringln(fichierSortie, esp + s);
+	}
 
-    /**
-     * Methode ouvrePrinc affiche ouvrPrinc et l'espace reserve pour l'ensemble
-     * des variables dans la pile
-     * 
-     * @param nb
-     *            le nombre de variables dans la pile
-     */
+	/**
+	 * Methode entete affiche entete au debut du fichier YAKA
+	 */
+	public void entete() {
+		presentation("entete");
+	}
 
-    public void ouvrePrinc(final int nb) {
-	presentation(1, "ouvrePrinc " + nb);
-    }
+	/**
+	 * Methode ouvrePrinc affiche ouvrPrinc et l'espace reserve pour l'ensemble
+	 * des variables dans la pile
+	 * 
+	 * @param nb
+	 *            le nombre de variables dans la pile
+	 */
 
-    /**
-     * Methode iadd
-     */
-    public void iadd() {
-	presentation(1, "iadd");
-    }
+	public void ouvrePrinc(final int nb) {
+		presentation("ouvrePrinc " + nb);
+	}
 
-    /**
-     * Methode isub
-     */
-    public void isub() {
-	presentation(1, "isub");
-    }
+	/**
+	 * Methode iadd
+	 */
+	public void iadd() {
+		presentation("iadd");
+	}
 
-    /**
-     * Methode imul
-     */
-    public void imul() {
-	presentation(1, "imul");
-    }
+	/**
+	 * Methode isub
+	 */
+	public void isub() {
+		presentation("isub");
+	}
 
-    /**
-     * Methode idiv
-     */
-    public void idiv() {
-	presentation(1, "idiv");
-    }
+	/**
+	 * Methode imul
+	 */
+	public void imul() {
+		presentation("imul");
+	}
 
-    /**
-     * Methode inot
-     */
-    public void inot() {
-	presentation(1, "iadd");
-    }
+	/**
+	 * Methode idiv
+	 */
+	public void idiv() {
+		presentation("idiv");
+	}
 
-    /**
-     * Methode ineg
-     */
-    public void ineg() {
-	presentation(1, "ineg");
-    }
+	/**
+	 * Methode inot
+	 */
+	public void inot() {
+		presentation("iadd");
+	}
 
-    /**
-     * Methode ior
-     */
-    public void ior() {
-	presentation(1, "ior");
-    }
+	/**
+	 * Methode ineg
+	 */
+	public void ineg() {
+		presentation("ineg");
+	}
 
-    /**
-     * Methode iand
-     */
-    public void iand() {
-	presentation(1, "iand");
-    }
+	/**
+	 * Methode ior
+	 */
+	public void ior() {
+		presentation("ior");
+	}
 
-    /**
-     * Methode iinf
-     */
-    public void iinf() {
-	presentation(1, "iadd");
-    }
+	/**
+	 * Methode iand
+	 */
+	public void iand() {
+		presentation("iand");
+	}
 
-    /**
-     * Methode isup
-     */
-    public void isup() {
-	presentation(1, "isup");
-    }
+	/**
+	 * Methode iinf
+	 */
+	public void iinf() {
+		presentation("iadd");
+	}
 
-    /**
-     * Methode iinfegal
-     */
-    public void iinfegal() {
-	presentation(1, "iinfegal");
-    }
+	/**
+	 * Methode isup
+	 */
+	public void isup() {
+		presentation("isup");
+	}
 
-    /**
-     * Method isupegal
-     */
-    public void isupegal() {
-	presentation(1, "isupegal");
-    }
+	/**
+	 * Methode iinfegal
+	 */
+	public void iinfegal() {
+		presentation("iinfegal");
+	}
 
-    /**
-     * Methode iegal
-     */
-    public void iegal() {
-	presentation(1, "iegal");
-    }
+	/**
+	 * Method isupegal
+	 */
+	public void isupegal() {
+		presentation("isupegal");
+	}
 
-    /**
-     * Methode idiff
-     */
-    public void idiff() {
-	presentation(1, "idiff");
-    }
+	/**
+	 * Methode iegal
+	 */
+	public void iegal() {
+		presentation("iegal");
+	}
 
-    /**
-     * Methode iload affiche iload et l'offset de la variable dans le fichier de
-     * sortie
-     * 
-     * @param offset
-     *            de la variable
-     */
-    public void iload(final int offset) {
-	presentation(1, "iload " + offset);
-    }
+	/**
+	 * Methode idiff
+	 */
+	public void idiff() {
+		presentation("idiff");
+	}
 
-    /**
-     * Methode istore affiche istore et l'offset de la variable dans le fichier
-     * de sortie
-     * 
-     * @param offset
-     *            de la variable
-     */
-    public void istore(final int offset) {
-	presentation(1, "istore " + offset);
-    }
+	/**
+	 * Methode iload affiche iload et l'offset de la variable dans le fichier de
+	 * sortie
+	 * 
+	 * @param offset
+	 *            de la variable
+	 */
+	public void iload(final int offset) {
+		presentation("iload " + offset);
+	}
 
-    /**
-     * Methode iconst affiche iconst et la valeur de la constante dans le
-     * fichier de sortie
-     * 
-     * @param valeur
-     *            de la constante
-     */
-    public void iconst(final int valeur) {
-	presentation(1, "iconst " + valeur);
-    }
+	/**
+	 * Methode istore affiche istore et l'offset de la variable dans le fichier
+	 * de sortie
+	 * 
+	 * @param offset
+	 *            de la variable
+	 */
+	public void istore(final int offset) {
+		presentation("istore " + offset);
+	}
 
-    /**
-     * Methode ifeq affiche ifeq et l'étiquette de saut dans le fichier de
-     * sortie
-     * 
-     * @param etiquette
-     *            de saut
-     */
-    public void ifeq(final String etiquette) {
-	presentation(1, "ifeq " + etiquette);
-    }
+	/**
+	 * Methode iconst affiche iconst et la valeur de la constante dans le
+	 * fichier de sortie
+	 * 
+	 * @param valeur
+	 *            de la constante
+	 */
+	public void iconst(final int valeur) {
+		presentation("iconst " + valeur);
+	}
 
-    /**
-     * Methode iffaux affiche iffaux et l'etiquette de saut
-     * 
-     * @param etiquette
-     */
-    public void iffaux(final String etiquette) {
-	presentation(1, "iffaux " + etiquette);
-    }
+	/**
+	 * Methode ifeq affiche ifeq et l'etiquette de saut dans le fichier de
+	 * sortie
+	 * 
+	 * @param etiquette
+	 *            de saut
+	 */
+	public void ifeq(final String etiquette) {
+		presentation("ifeq " + etiquette);
+	}
 
-    /**
-     * Methode gotoYVM affiche goto et l'étiquette de saut dans le fichier de
-     * sortie
-     * 
-     * @param etiquette
-     *            de saut
-     */
-    public void gotoYVM(final String etiquette) {
-	presentation(1, "goto " + etiquette);
-    }
+	/**
+	 * Methode iffaux affiche iffaux et l'etiquette de saut
+	 * 
+	 * @param etiquette
+	 */
+	public void iffaux(final String etiquette) {
+		presentation("iffaux " + etiquette);
+	}
 
-    /**
-     * Methode queue affiche queue à la fin du fichier YAKA
-     */
-    public void queue() {
-	presentation(1, "queue");
-    }
+	/**
+	 * Methode gotoYVM affiche goto et l'etiquette de saut dans le fichier de
+	 * sortie
+	 * 
+	 * @param etiquette
+	 *            de saut
+	 */
+	public void gotoYVM(final String etiquette) {
+		presentation("goto " + etiquette);
+	}
 
-    /**
-     * Methode pour ecrire dans le fichier de sortie
-     * 
-     * @param var
-     *            la variable à lire
-     */
-    public void ecrireChaine(final String var) {
-	presentation(1, "ecrireChaine " + '"' + var + '"');
-    }
+	/**
+	 * Methode queue affiche queue a�la fin du fichier YAKA
+	 */
+	public void queue() {
+		presentation("queue");
+	}
 
-    /**
-     * Ecriture d'une expresssion
-     */
-    public void ecrireExpr() {
-	Ecriture.ecrireStringln(fichierSortie, "ecrireEnt");
+	/**
+	 * Methode pour ecrire dans le fichier de sortie
+	 * 
+	 * @param var
+	 *            la variable à lire
+	 */
+	public void ecrireChaine(final String var) {
+		presentation("ecrireChaine " + '"' + var + '"');
+	}
 
-    }
+	/**
+	 * Ecriture d'une expresssion
+	 */
+	public void ecrireExpr() {
+		presentation("ecrireEnt");
+	}
 
-    /**
-     * Methode pour lire
-     * 
-     * @param offset
-     *            l'offset de la variable à lire
-     */
-    public void lire(final int offset) {
-	presentation(1, "lireEnt " + offset);
-    }
+	/**
+	 * Methode pour lire
+	 * 
+	 * @param offset
+	 *            l'offset de la variable a lire
+	 */
+	public void lire(final int offset) {
+		presentation("lireEnt " + offset);
+	}
 
-    /**
-     * Ajouter une etiquette
-     * 
-     * @param etiquette
-     *            l'etiquette a ajouter
-     */
-    public void etiquette(final String etiquette) {
-	presentation(0, etiquette + " :");
-    }
+	/**
+	 * Ajouter une etiquette
+	 * 
+	 * @param etiquette
+	 *            l'etiquette a ajouter
+	 */
+	public void etiquette(final String etiquette) {
+		int tmp = indent;
+		indent = 0;
+		presentation(etiquette + " :");
+		indent = tmp;
+	}
 
-    /**
-     * Methode aLaLigne : realiser un saut de ligne
-     */
-    public void aLaLigne() {
-	Ecriture.ecrireStringln(fichierSortie, "aLaLigne");
-
-    }
+	/**
+	 * Methode aLaLigne : realiser un saut de ligne
+	 */
+	public void aLaLigne() {
+		presentation("aLaLigne");
+	}
 
 }

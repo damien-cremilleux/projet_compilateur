@@ -18,7 +18,11 @@ public class ControleType {
      * Pile contenant les types (entier, booleen, erreur, etc)
      */
     public static Stack<Integer> pileT = new Stack<Integer>();
-
+    
+    public static int[][] opBinaire = {
+    	//T_ENTIER T_
+    };
+    
     /**
      * Ajoute un type sur la pile
      * 

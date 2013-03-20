@@ -22,7 +22,7 @@ public class Yaka {
 	public static Declaration declaration = new Declaration();
 	public static Expression expression = new Expression();
 	public static Erreur erreur = new Erreur();
-	public static YVM yVM= new YVMasm();
+	public static YVM yVM= new YVM();
 	public static ControleType controleT = new ControleType();
 	public static Iteration iteration = new Iteration();
 	public static Conditionnelle cond = new Conditionnelle();
@@ -154,33 +154,11 @@ TOKEN  :
 void analyse() : {}
 {
    <PROGRAMME> <ident>
-   (declFonction())*
-   <PRINCIPAL>
    bloc()
-   <FPRINCIPAL>
    <FPROGRAMME>   		{
      		yVM.queue();
    		}
 }
-
-void declFonction() : {}{
-  type() < FONCTION > ident() paramForms()
-  bloc()
-  < FFONCTION >}
-
-void paramForms() : {}
-{
-   "("
-   (paramForm() ("," 
-	paramForm() )*)?
-	")"
-}
-
-void paramForm() : {}
-{
-   type() ident()
-}
-
 
 void bloc() : {}{
  (declConst())*
@@ -269,8 +247,7 @@ void instruction(): {}
   |  lecture()
   |  ecriture()
   |  iteration()
-  |  conditionnelle()
-  |  retourne()
+  |  conditionnelle() 
 }
 
 
@@ -310,6 +287,7 @@ void ecriture() : {}
  */
 void iteration() : {}
 {	<TANTQUE>
+<<<<<<< HEAD
 	{
 	  iteration.entreeIteration();
 	  }
@@ -317,10 +295,20 @@ void iteration() : {}
 	{
 	  iteration.conditionIteration();
 	  }
+=======
+		{
+		  iteration.entreeIteration();
+		 }
+	expression() <FAIRE>
+					{
+					  iteration.conditionIteration();
+					}
+>>>>>>> origin/master
 	
 	suiteInstr()
 	
 	<FAIT>
+<<<<<<< HEAD
 	{
 	  iteration.sortieIteration();
 	}
@@ -344,16 +332,13 @@ void conditionnelle() : {}
 	 	suiteInstr() )?
 	
 	<FSI>	{	  cond.sortieCond();	}	
+=======
+		{
+		  iteration.sortieIteration();
+		}
+>>>>>>> origin/master
 }
 
-
-/*
- * Retourne
- */
-void retourne() : {}
-{
-  <RETOURNE> expression();
-}
 
 
 /*
@@ -412,7 +397,7 @@ void valeur () : {}
 	{
 	  expression.ajouteType(Constante.T_ENTIER);expression.ajouteVal(YakaTokenManager.entierLu);
 	}	
- | <ident> (argumentsFonction())?
+ | <ident>
  	{
  	  expression.ajoute(YakaTokenManager.identLu);
  	}		
@@ -424,17 +409,8 @@ void valeur () : {}
  	{
  	  expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(false);
  	}		
-
+ 
 }
-
-void argumentsFonction() : {}
-{
-   "("
-    (      expression() ("," expression())*
-    )?
-   ")"
-}
-
 
 void opRel() : {}
 {
