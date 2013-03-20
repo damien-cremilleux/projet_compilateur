@@ -165,7 +165,9 @@ void analyse() : {}
 }
 
 void declFonction() : {}{
-  type() < FONCTION > ident() paramForms()
+  type() < FONCTION > ident()  						{
+  						  fonc.init(YakaTokenManager.identLu);
+  						}     paramForms()
   bloc()
   < FFONCTION >}
 
@@ -181,8 +183,6 @@ void paramForm() : {}
 {
    type() ident()
 }
-
-
 
 
 void bloc() : {}{
@@ -429,15 +429,6 @@ void valeur () : {}
  	}		
 
 }
-
-void argumentsFonction() : {}
-{
-   "("
-    (      expression() ("," expression())*
-    )?
-   ")"
-}
-
 
 void argumentsFonction() : {}
 {
