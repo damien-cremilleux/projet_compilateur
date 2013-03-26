@@ -413,4 +413,24 @@ public class YVMasm extends YVM {
 		presentation("pop ax");
 		presentation("mov [bp+"+offset+"],ax");
 	}
+	
+	/**
+	 * Instruction à appeller avant l'appel à une fonction pour réserver la place pour le retour
+	 * @param offset
+	 */
+	public void reserveRetour(){
+		presentation("");
+		presentation(";reserveRetour");
+		presentation("sub sp,2");
+	}
+	
+	/**
+	 * Instruction pour appeller une fonction avec son nom
+	 * @param offset
+	 */
+	public void call(final String nom){
+		presentation("");
+		presentation(";call "+nom);
+		presentation("call "+nom);
+	}
 }

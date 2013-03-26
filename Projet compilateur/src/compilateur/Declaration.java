@@ -52,7 +52,7 @@ public class Declaration {
 		} else {
 			/* Cree l'ident */
 			IdConst id = new IdConst(type, nomIdent, val);
-			Yaka.tabIdent.rangeIdent(nomIdent, id);
+			Yaka.tabIdent.rangeIdentLocaux(nomIdent, id);
 		}
 	}
 
@@ -94,7 +94,7 @@ public class Declaration {
 			/* Cree l'ident */
 			offsetCourant -= 2;
 			IdVar id = new IdVar(typeVar, clef, offsetCourant);
-			Yaka.tabIdent.rangeIdent(clef, id);
+			Yaka.tabIdent.rangeIdentLocaux(clef, id);
 		}
 	}
 

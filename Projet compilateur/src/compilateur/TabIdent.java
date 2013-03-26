@@ -100,14 +100,26 @@ public class TabIdent {
 
 	
 	/**
-	 * Ajout d'un Ident dans tabIdent
+	 * Ajout d'un Ident dans les locaux
 	 * 
 	 * @param clef
 	 *            , la clef de l'Ident a ajouter
 	 * @param id
 	 *            , l'Ident a ajouter
 	 */
-	public void rangeIdent(String clef, Ident id) {
+	public void rangeIdentLocaux(String clef, Ident id) {
+		locaux.put(clef, id);
+	}
+	
+	/**
+	 * Ajout d'un Ident dans les globaux
+	 * 
+	 * @param clef
+	 *            , la clef de l'Ident a ajouter
+	 * @param id
+	 *            , l'Ident a ajouter
+	 */
+	public void rangeIdentGlobaux(String clef, Ident id) {
 		globaux.put(clef, id);
 	}
 
