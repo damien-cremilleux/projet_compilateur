@@ -20,7 +20,7 @@ public class IdFonct extends Ident {
 	 * @param type le type de retour
 	 * @param nom le nom de la fonction
 	 */
-	public IdFonct(int type, String nom, int ... params) {
+	public IdFonct(int type, String nom, int[] params) {
 		super(type, nom);  /*l'attribut type représente le type du retour*/
 		this.tabParam = params;
 	}
