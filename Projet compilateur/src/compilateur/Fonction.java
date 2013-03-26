@@ -14,17 +14,25 @@ import java.util.Stack;
  */
 public class Fonction {
 	public Stack<String> pileF = new Stack<String>();
-	private Stack<String> pilePara = new Stack<String>();
+	/**
+	 * Pile des parametres
+	 */
+	private Stack<IdParam> pilePara = new Stack<IdParam>();
 	
 	/**
-	 * Dernier nom de fonction vu
+	 * Dernier nom vu
 	 */
-	private int nom;
+	private String nom;
 	
 	/**
-	 * Type de la fonction (booleen, entier, etc)
+	 * Dernier type vu (booleen, entier, etc)
 	 */
-	public int type;			
+	public int type;	
+	
+	/**
+	 * IdFonct Courant
+	 */
+	public IdFonct fonctionCourante;
 	
 	/**
 	 * Pointeur des locaux
@@ -37,27 +45,51 @@ public class Fonction {
 	public int ancptl = 0;
 	int adretour = 0;
 
-	public void recupererNom(String ident){
-			
-		
-		IdFonct id = new IdFonct(ident, ); 
-		adretour  = 0;
-		ancptl = ptl;
-		pileF.push("res");
+	/**
+	 * Mise a jour du dernier nom lu
+	 * @param ident ident lu
+	 */
+	public void majNom(String ident){
+		nom = ident;
 	}
-
+	
+	/**
+	 * Mise a jour du dernier type lu
+	 * @param typeF le type lu
+	 */
+	public void majType(int typeF){
+		type=typeF;
+	}
+	
+	/**
+	 * Cree un nouvel idFonc
+	 */
+	public void initFonc(){
+		fonctionCourante = new IdFonct(type, nom); 
+	}
+	
 	/**
 	 * Methode pour ajouter des parametres dans la pile
+	 * On met l offset a 0 pour le gerer une fois qu'on aura tous les parametres
 	 * @param para
-	 */
-	public void ajoutePara(String para){
-		pileF.push(para);
-		pile;
+	 */	
+	public void ajouterParam(){
+		IdParam idP = new IdParam(type, nom, 0);
+		pilePara.push(idP);
 	}
-
-	public void recupererType(int typeF){
-		type=typeF;
-		
+	
+	/**
+	 * Mise a jour de l'offset des parametres a la fin de la lecture de ceux ci
+	 */
+	public void majParam(){
+		int nbParam = pilePara.size();
+		int offset = 4 ;
+		for(int i = nbParam - 1  ; i>=0 ; i++){
+			IdParam idTmp = pilePara.get(i);
+			idTmp.setOffset(offset);
+			pilePara.set(i, idTmp);
+			offset +=2;
+		}
 	}
 
 

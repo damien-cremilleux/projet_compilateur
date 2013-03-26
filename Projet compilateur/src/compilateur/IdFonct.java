@@ -50,7 +50,7 @@ public class IdFonct extends Ident {
 	}
 
 	/**
-	 * chargerInstr : héritée de Ident, cette fonction est methode inutile
+	 * chargerInstr : heritee de Ident, cette fonction est methode inutile
 	 */
 	public void chargerInstr() {
 		
