@@ -19,9 +19,7 @@ public class ControleType {
      */
     public static Stack<Integer> pileT = new Stack<Integer>();
     
-    public static int[][] opBinaire = {
-    	//T_ENTIER T_
-    };
+    public static Stack<Integer> pileP = new Stack<Integer>();
     
     /**
      * Ajoute un type sur la pile
@@ -31,6 +29,16 @@ public class ControleType {
      */
     public void ajouteType(int type) {
 	pileT.push(type);
+    }
+    
+    /**
+     * Ajoute un type de paramètre sur la pile
+     * 
+     * @param type
+     *            le type a ajouter
+     */
+    public void ajouteTypeParam(int type) {
+	pileP.push(type);
     }
 
     /**
@@ -186,6 +194,47 @@ public class ControleType {
 	}
     }
 
+    
+    /**
+     * Controle des paramètres pour une fonction
+     * 
+     * @param fonction
+     *            l'IdFonct de la fonction à contrôler
+     * 
+     * 
+     */
+    public void controleFonction(IdFonct fonction) {
+    	int[] params = fonction.getTabParam();
+    	for(int i =0; i<params.length; i++){
+    		if(pileP.empty()){
+    			Erreur.ajouterErreur("Nombre de paramètres insuffisants : la fonction attend "+params.length+" paramètres");
+    			break;
+    		}
+    		
+    		if(params[i] != pileP.pop()){
+    			Erreur.ajouterErreur("Probleme de type de parametres : le paramètre numéro "+i+" ne correspond pas au type attendu");
+    			break;
+    		}
+    	}
+    	if(!pileP.empty()){
+    		Erreur.ajouterErreur("Trop de paramètres : la fonction attend "+params.length+" paramètres");
+    	}
+    }
+    
+    /**
+     * Controle du retour d'une fonction
+     * 
+     * @param fonction
+     *            l'IdFonct de la fonction à contrôler
+     * 
+     * 
+     */
+    public void controleRetourFonction(IdFonct fonction){
+    	if(fonction.getType() != pileT.pop()){
+    		Erreur.ajouterErreur("Paramètre de retour incorrect pour la fonction "+fonction);
+    	}
+    }
+    
     /**
      * Verifie si une expression est booleenne (et la supprime de la pile)
      * 

@@ -185,7 +185,7 @@ void paramForms() : {}
 void paramForm() : {}
 {
    type()
-   ident()
+   < ident >
    {     fonc.majNom(YakaTokenManager.identLu);
      fonc.ajouterParam();
    }
