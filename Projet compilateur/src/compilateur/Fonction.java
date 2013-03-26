@@ -16,15 +16,29 @@ public class Fonction {
 	public Stack<String> pileF = new Stack<String>();
 	private Stack<String> pilePara = new Stack<String>();
 	
+	/**
+	 * Dernier nom de fonction vu
+	 */
+	private int nom;
+	
+	/**
+	 * Type de la fonction (booleen, entier, etc)
+	 */
 	public int type;			
+	
+	/**
+	 * Pointeur des locaux
+	 */
 	public int ptl=0;
+	
 	/**
 	 * Ancien pointeur
 	 */
 	public int ancptl = 0;
 	int adretour = 0;
 
-	public void init(String ident){
+	public void recupererNom(String ident){
+			
 		
 		IdFonct id = new IdFonct(ident, ); 
 		adretour  = 0;

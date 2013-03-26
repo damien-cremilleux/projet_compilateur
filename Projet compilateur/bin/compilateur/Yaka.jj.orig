@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*	Auteur: Pedrono Marie-Jo
  *  creation : 13 fevrier 2002
  *  nature : projet etudiant
@@ -517,3 +518,520 @@ void opNeg() : {}
 	   expression.ajouteOp(Constante.OP_NON);
 	 }
 }
+=======
+/*	Auteur: Pedrono Marie-Jo
+ *  creation : 13 fevrier 2002
+ *  nature : projet etudiant
+ */
+
+ /*
+  *      PROJET COMPILATEUR G2
+  * COZ - CREMILLEUX - HOLY - TROUCHE
+  */
+
+options{
+	JDK_VERSION="1.5";	
+}
+
+PARSER_BEGIN(Yaka)
+
+package compilateur;
+
+public class Yaka {
+
+	public static TabIdent tabIdent = new TabIdent();
+	public static Declaration declaration = new Declaration();
+	public static Expression expression = new Expression();
+	public static Erreur erreur = new Erreur();
+	public static YVM yVM= new YVMasm();
+	public static ControleType controleT = new ControleType();
+	public static Iteration iteration = new Iteration();
+	public static Conditionnelle cond = new Conditionnelle();
+	public static Fonction fonc = new Fonction();
+	
+
+	public static void main(String args[]) { 
+		Yaka analyseur;
+		java.io.InputStream input;
+		String output;
+	
+		if (args.length==1) {
+		  System.out.print(args[args.length-1] + ": ");
+		  try {
+			input = new java.io.FileInputStream(args[args.length-1]+".yaka");
+			output = args[args.length-1];
+		  } catch (java.io.FileNotFoundException e) {
+			System.out.println("Fichier introuvable.");
+			return;
+		  }
+		} else if (args.length==0) {
+		  System.out.println("Lecture sur l'entree standard...");
+		  input = System.in;
+		  output = "sortie";
+		} else {
+		  System.out.println("Usage: java Gram [fichier]");
+		  return;
+		}
+		try {
+		  analyseur = new Yaka(input);
+		  yVM.setFichierSortie(output);
+		  analyseur.analyse();
+	  		
+		  System.out.println("analyse syntaxique reussie!");
+		} catch (ParseException e) {
+		  String msg = e.getMessage();
+		  msg = msg.substring(0,msg.indexOf("\n"));
+		  System.out.println("Erreur de syntaxe : "+msg);
+		} catch (java.io.FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    } 
+}
+
+PARSER_END(Yaka)
+/***************************************/
+/********** TOKEN DEFINITIONS **********/
+/***************************************/
+
+TOKEN_MGR_DECLS :
+{public static String identLu,chaineLue;
+ public static int entierLu;}
+
+/*** Skip whitespace and comments ***/
+SKIP :
+{
+  " "
+| "\t"
+| "\n"
+| "\r"
+| "(*"   : IN_COMMENT
+}
+<IN_COMMENT> MORE:
+{
+  < ~[] >
+}
+<IN_COMMENT> SKIP:
+{
+   < "*)" >  {SwitchTo(DEFAULT);} 
+}
+
+
+/* Mots reserves*/
+
+TOKEN :
+{
+  < BOOLEEN: "BOOLEEN" >
+| < VAR: "VAR" >
+| < FAIRE: "FAIRE" >
+| < SINON: "SINON" >
+| < POUR: "POUR" >
+| < SI: "SI" >
+| < FSI: "FSI">
+| < ENTIER: "ENTIER" >
+| < RETOURNE: "RETOURNE" >
+| < VRAI: "VRAI" >
+| < TANTQUE: "TANTQUE" >
+| <CONST : "CONST">
+| <FAUX : "FAUX">
+| <FAIT : "FAIT">
+| <OU : "OU">
+| <ET : "ET">
+| <NON : "NON">
+| <FONCTION : "FONCTION">
+| <FFONCTION  : "FFONCTION">
+| <PROGRAMME : "PROGRAMME" >
+| <FPROGRAMME: "FPROGRAMME" >
+| <PRINCIPAL : "PRINCIPAL">
+| <FPRINCIPAL : "FPRINCIPAL">
+| <ALORS : "ALORS">
+| <ECRIRE : "ECRIRE">
+| <LIRE : "LIRE">
+| <ALALIGNE : "ALALIGNE">
+
+}
+
+
+
+/*** unites de base nombres, idents,  strings ***/
+TOKEN  :
+{
+  < #chiffre : ["0"-"9"] >
+| < entier : (<chiffre>)+ > 
+	{ entierLu = Integer.parseInt(image.toString());
+        }
+| < #lettre: ["A"-"Z","a"-"z"] >
+| < ident : <lettre> (<lettre> | <chiffre>)* >
+	{identLu =image.toString();	
+	}
+| < chaine : "\"" (~["\""])* "\"" | "'" (~["'"])* "'" >
+	{ chaineLue = image.toString();
+	 }
+}
+
+
+/**************************************/
+/********debut de la grammaire ********/
+/**************************************/
+void analyse() : {}
+{
+   <PROGRAMME> <ident>
+   (declFonction())*
+   <PRINCIPAL>
+   bloc()
+   <FPRINCIPAL>
+   <FPROGRAMME>   		{
+     		yVM.queue();
+   		}
+}
+
+void declFonction() : {}{  type() < FONCTION > ident()
+		{
+    		fonc.init(YakaTokenManager.identLu);
+    	}
+    paramForms() 
+  	bloc()
+  < FFONCTION >}
+
+void paramForms() : {}
+{
+   "("
+   (paramForm() ("," 
+	paramForm() )*)?
+	")"
+}
+
+void paramForm() : {}
+{
+   type() < ident >
+}
+
+
+void bloc() : {}{
+ (declConst())*
+ (declVar())*	
+ 	{
+ 	  	declaration.ouvrePrinc();
+ 	 }	
+ suiteInstr()
+}
+
+void declConst() : {}
+{
+  <CONST>  defConst() ( "," defConst())* ";"
+}
+
+void defConst() : {}
+{
+	
+  <ident>
+  	{
+  	  declaration.setNomIdent(YakaTokenManager.identLu);
+  	} 	  	
+   "=" valConst() 
+    
+}
+
+void valConst() : {}{
+  <entier>
+  	{
+  	  declaration.affectationConst(YakaTokenManager.entierLu, Constante.T_ENTIER);
+  	}	
+ | <ident>
+ 	{
+ 	  declaration.affectationConstCopie(YakaTokenManager.identLu);
+ 	}	
+ | <VRAI>
+ 	{
+ 	  declaration.affectationConst(Constante.V_VRAI, Constante.T_BOOLEEN);
+ 	 }	
+ | <FAUX>
+ 	{
+ 	  declaration.affectationConst(Constante.V_FAUX, Constante.T_BOOLEEN);
+ 	}	
+}
+
+
+void declVar() : {}
+{
+  <VAR> type()	
+  <ident>
+  	{
+  	  declaration.affectationVal(YakaTokenManager.identLu);
+  	}		
+  ("," 
+      <ident>
+      	{
+      	  declaration.affectationVal(YakaTokenManager.identLu);
+      	}	
+  )* ";"
+	
+}
+
+void type() :{}
+{
+   <ENTIER>
+   	{
+   	  declaration.setTypeVar(Constante.T_ENTIER);
+   	  Fonction.recupererType(Constante.T_ENTIER);
+   	}		
+ | <BOOLEEN>
+ 	{
+ 	  declaration.setTypeVar(Constante.T_BOOLEEN);
+ 	  Fonction.recupererType(Constante.T_BOOLEEN);
+ 	 }	
+}
+
+/*
+ * Syntaxe des instructions.
+ */
+void suiteInstr() : {}
+{ 	(instruction() (";" 
+	(instruction())? )*)? }
+
+
+void instruction(): {}
+{
+  	 affectation()
+  |  lecture()
+  |  ecriture()
+  |  iteration()
+  |  conditionnelle()
+  |  retourne()
+}
+
+
+void affectation() : {}
+{
+  	<ident>
+  		{
+  		  expression.setNomAffec(YakaTokenManager.identLu);
+  		}
+  	"=" expression()
+  		{
+  		  expression.affectation();
+  		}
+}
+
+
+void lecture() : {}
+{
+  	<LIRE> "(" <ident> ")"
+  	{  	 expression.lire(YakaTokenManager.identLu);
+  	}
+}
+
+void ecriture() : {}
+{
+  	( <ECRIRE> "(" (expression()
+  	{
+  	  expression.ecrireExpr();	}	
+  	  | <chaine>  	{
+  	  expression.ecrireChaine(YakaTokenManager.chaineLue); 	}
+    	) ")" )  	 | <ALALIGNE>  	 {  	   expression.aLaLigne();
+  	 }
+}
+
+/*
+ * Iteration
+ */
+void iteration() : {}
+{	<TANTQUE>
+	{
+	  iteration.entreeIteration();
+	  }
+	expression() <FAIRE>
+	{
+	  iteration.conditionIteration();
+	  }
+	
+	suiteInstr()
+	
+	<FAIT>
+	{
+	  iteration.sortieIteration();
+	}
+}
+
+
+
+/*
+ * Conditionnelle
+ */
+void conditionnelle() : {}
+{
+	<SI>  {cond.entreeCond();}
+	expression()
+
+	<ALORS> {cond.conditionCond();}
+	suiteInstr()
+
+	{	  cond.sinonCond();	}	
+	( <SINON> 
+	 	suiteInstr() )?
+	
+	<FSI>	{	  cond.sortieCond();	}	
+}
+
+
+/*
+ * Retourne
+ */
+void retourne() : {}
+{
+  <RETOURNE>
+  expression()
+}
+
+
+/*
+ * Expression .
+ */
+void expression() : {}
+{
+  simpleExpr() 
+  (opRel() 
+  simpleExpr()
+  	{
+  	  expression.operation();
+  	} 
+  )?
+}
+
+
+
+void simpleExpr() : {}
+{
+   terme() 
+   (opAdd() 
+   terme()
+   		{
+   		  expression.operation();
+   		}
+   )*
+} 
+void terme() : {}
+{
+  facteur() 
+  (opMul() 
+  facteur()
+  		{
+  		  expression.operation();
+  		}
+  )*
+}
+void facteur() : {}
+{   primaire() 
+  |  opNeg() primaire()
+  		{
+  		  expression.operation();
+  		}
+}
+
+void primaire (): {}
+{
+   valeur()
+ | "(" expression() ")" 
+ 
+}
+
+void valeur () : {}
+{ <entier>
+	{
+	  expression.ajouteType(Constante.T_ENTIER);expression.ajouteVal(YakaTokenManager.entierLu);
+	}	
+ | <ident> (argumentsFonction())?
+ 	{
+ 	  expression.ajoute(YakaTokenManager.identLu);
+ 	}		
+ | <VRAI>
+ 	{
+ 	  expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(true);
+ 	}	
+ | <FAUX>
+ 	{
+ 	  expression.ajouteType(Constante.T_BOOLEEN);expression.ajouteVal(false);
+ 	}		
+
+}
+
+void argumentsFonction() : {}
+{
+   "("
+    (      expression() ("," expression())*
+    )?
+   ")"
+}
+
+
+void opRel() : {}
+{
+   "="
+   	{
+   	  expression.ajouteOp(Constante.OP_EQ);
+   	} 		
+ | "<>"
+ 	{
+ 	  expression.ajouteOp(Constante.OP_DIF);
+ 	}	
+ | "<"
+	 {
+	   expression.ajouteOp(Constante.OP_INF);
+	 }
+ | "<="
+	 {
+	   expression.ajouteOp(Constante.OP_INFEQ);
+	 }
+ | ">"
+ 	{
+ 	  expression.ajouteOp(Constante.OP_SUP);
+ 	}
+ | ">="
+	 {
+	   expression.ajouteOp(Constante.OP_SUPEQ);
+	 }
+} 
+
+void opAdd() : {}
+{
+    "+"
+    {
+      expression.ajouteOp(Constante.OP_PLUS);
+    }
+  |  "-"
+ 	 {
+ 	   expression.ajouteOp(Constante.OP_MOINS);
+ 	 }
+  | <OU>
+  	{
+  	  expression.ajouteOp(Constante.OP_OU);
+  	}
+}
+
+void opMul() : {}
+{
+  "*"
+	  {
+   		 expression.ajouteOp(Constante.OP_FOIS);
+	  }
+  | "/"
+ 	 {
+  		  expression.ajouteOp(Constante.OP_DIV);
+	  }
+  | <ET>
+  	{
+  	  expression.ajouteOp(Constante.OP_ET);
+  	}
+} 
+
+void opNeg() : {}
+{ "-"
+	{
+ 	 expression.ajouteOp(Constante.OP_NEG);
+ 	}	
+ | <NON>
+	 {
+	   expression.ajouteOp(Constante.OP_NON);
+	 }
+}
+>>>>>>> 1b22896d4b5f39dbc6ac120fb9d75431b0fb2f87

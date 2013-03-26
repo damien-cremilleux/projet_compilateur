@@ -166,7 +166,7 @@ void analyse() : {}
 
 void declFonction() : {}{  type() < FONCTION > ident()
 		{
-    		fonc.init(YakaTokenManager.identLu);
+    		fonc.recupererNom(YakaTokenManager.identLu);
     	}
     paramForms() 
   	bloc()
@@ -182,7 +182,11 @@ void paramForms() : {}
 
 void paramForm() : {}
 {
-   type() < ident >
+   type()   {     fonc.recupererTypeParam();
+   }
+   ident()
+   {     fonc.recupererNomParam();
+   }
 }
 
 
@@ -252,12 +256,12 @@ void type() :{}
    <ENTIER>
    	{
    	  declaration.setTypeVar(Constante.T_ENTIER);
-   	  Fonction.recupererType(Constante.T_ENTIER);
+   	  fonc.recupererType(Constante.T_ENTIER);
    	}		
  | <BOOLEEN>
  	{
  	  declaration.setTypeVar(Constante.T_BOOLEEN);
- 	  Fonction.recupererType(Constante.T_BOOLEEN);
+ 	  fonc.recupererType(Constante.T_BOOLEEN);
  	 }	
 }
 
