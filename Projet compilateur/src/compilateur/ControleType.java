@@ -198,8 +198,8 @@ public class ControleType {
     /**
      * Controle des paramètres pour une fonction
      * 
-     * @param op
-     *            l'operateur
+     * @param fonction
+     *            l'IdFonct de la fonction à contrôler
      * 
      * 
      */
@@ -221,6 +221,19 @@ public class ControleType {
     	}
     }
     
+    /**
+     * Controle du retour d'une fonction
+     * 
+     * @param fonction
+     *            l'IdFonct de la fonction à contrôler
+     * 
+     * 
+     */
+    public void controleRetourFonction(IdFonct fonction){
+    	if(fonction.getType() != pileT.pop()){
+    		Erreur.ajouterErreur("Paramètre de retour incorrect pour la fonction "+fonction);
+    	}
+    }
     
     /**
      * Verifie si une expression est booleenne (et la supprime de la pile)
