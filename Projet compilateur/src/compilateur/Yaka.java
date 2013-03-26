@@ -12,6 +12,7 @@ public class Yaka implements YakaConstants {
         public static Iteration iteration = new Iteration();
         public static Conditionnelle cond = new Conditionnelle();
         public static Fonction fonc = new Fonction();
+        public static boolean dansFonct = false ;
 
 
         public static void main(String args[]) {
@@ -79,13 +80,17 @@ public class Yaka implements YakaConstants {
   }
 
   static final public void declFonction() throws ParseException {
+    dansFonct = true;
     type();
     jj_consume_token(FONCTION);
     jj_consume_token(ident);
-                fonc.recupererNom(YakaTokenManager.identLu);
+                fonc.majNom(YakaTokenManager.identLu);
+                fonc.initFonc();
     paramForms();
+      fonc.majParam();
     bloc();
     jj_consume_token(FFONCTION);
+    dansFonct = false;
   }
 
   static final public void paramForms() throws ParseException {
@@ -117,9 +122,9 @@ public class Yaka implements YakaConstants {
 
   static final public void paramForm() throws ParseException {
     type();
-     fonc.recupererTypeParam();
     jj_consume_token(ident);
-     fonc.recupererNomParam();
+     fonc.majNom(YakaTokenManager.identLu);
+     fonc.ajouterParam();
   }
 
   static final public void bloc() throws ParseException {
@@ -147,7 +152,10 @@ public class Yaka implements YakaConstants {
       }
       declVar();
     }
+          if(!dansFonct)
                 declaration.ouvrePrinc();
+          else
+                fonc.ouvreFonction();
     suiteInstr();
   }
 
@@ -229,12 +237,12 @@ public class Yaka implements YakaConstants {
     case ENTIER:
       jj_consume_token(ENTIER);
           declaration.setTypeVar(Constante.T_ENTIER);
-          fonc.recupererType(Constante.T_ENTIER);
+          fonc.majType(Constante.T_ENTIER);
       break;
     case BOOLEEN:
       jj_consume_token(BOOLEEN);
           declaration.setTypeVar(Constante.T_BOOLEEN);
-          fonc.recupererType(Constante.T_BOOLEEN);
+          fonc.majType(Constante.T_BOOLEEN);
       break;
     default:
       jj_la1[8] = jj_gen;

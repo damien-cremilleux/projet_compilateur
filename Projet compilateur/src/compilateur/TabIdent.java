@@ -135,6 +135,11 @@ public class TabIdent {
 		return affich;
 	}
 	
+	
+	public int getSizeLocaux(){
+		return locaux.size();
+	}
+	
 	/**
 	 * On vide la table des locaux à la fin d'une fonction
 	 */

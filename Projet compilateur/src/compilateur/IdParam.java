@@ -50,13 +50,24 @@ public class IdParam extends Ident {
 	public int getOffset() {
 		return offset;
 	}
+	
+	
 
+	
 	/**
 	 * @param offset the offset to set
 	 */
 	public void setOffset(int offset) {
 		this.offset = offset;
 	}
+	
+	/**
+	 * @return le nom
+	 */
+	public String getNom() {
+		return nom;
+	}
+	
 
 
 

@@ -31,21 +31,6 @@ public class Fonction {
 	private int type;
 
 	/**
-	 * Pointeur des locaux
-	 */
-	private int ptl = 0;
-
-	/**
-	 * Ancien pointeur
-	 */
-	private int ancptl = 0;
-
-	/**
-	 * adresse de retour
-	 */
-	private int adretour = 0;
-
-	/**
 	 * tableau des types des parametres
 	 */
 	private int tabType[];
@@ -59,6 +44,10 @@ public class Fonction {
 	 * Type retour de la fonction
 	 */
 	private int typeFonc;
+	
+	private int nbParam;
+	
+	private int nbVar;
 
 	/**
 	 * Mise a jour du dernier nom lu
@@ -103,17 +92,19 @@ public class Fonction {
 	 * Mise a jour de l'offset des parametres a la fin de la lecture de ceux ci
 	 */
 	public void majParam() {
-		int nbParam = pilePara.size();
+		nbParam = pilePara.size();
 		int offset = 4;
 		for (int i = nbParam - 1; i >= 0; i++) {
 			IdParam idTmp = pilePara.get(i);
 			idTmp.setOffset(offset);
 			pilePara.set(i, idTmp);
 			offset += 2;
+			Yaka.tabIdent.rangeIdentLocaux(idTmp.getNom(), idTmp);
 		}
 		
 		creerTabType();
 		IdFonct id = new IdFonct(typeFonc, nomFonc, tabType);
+		Yaka.tabIdent.rangeIdentGlobaux(nomFonc, id);
 	}
 
 	/**
@@ -125,6 +116,19 @@ public class Fonction {
 			tabType[i] = pilePara.get(i).getType();
 		}
 
+	}
+	
+	public void ouvreFonction(){
+		nbVar =  Yaka.tabIdent.getSizeLocaux() - nbParam;
+		Yaka.yVM.ouvreBloc(nbVar*2);
+		
+	}
+	
+	public void finFonction(){
+		Yaka.yVM.fermeBloc(nbParam*2);
+		Yaka.tabIdent.viderLocaux();
+		Yaka.declaration.reinitialiserOffset();
+		pilePara.clear();
 	}
 	
 }

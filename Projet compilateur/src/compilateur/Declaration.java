@@ -117,5 +117,9 @@ public class Declaration {
 		// donne le dernier offset utilise,
 		// le nombre a envoyer a ouvrePrinc correspond exactement a son oppose
 	}
+	
+	public void reinitialiserOffset(){
+		offsetCourant = 0;
+	}
 
 }
