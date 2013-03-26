@@ -164,11 +164,13 @@ void analyse() : {}
    		}
 }
 
-void declFonction() : {}{  type() < FONCTION > <ident >
-		{
-    		fonc.recupererNom(YakaTokenManager.identLu);
-    	}
-    paramForms() 
+void declFonction() : {}{  type() < FONCTION > ident()	{		fonc.majNom(YakaTokenManager.identLu);
+		fonc.initFonc();
+    }
+    paramForms()
+    {      fonc.majParam();
+    }
+    
   	bloc()
   < FFONCTION >}
 
@@ -182,10 +184,10 @@ void paramForms() : {}
 
 void paramForm() : {}
 {
-   type()   {     fonc.recupererTypeParam();
-   }
+   type()
    < ident >
-   {     fonc.recupererNomParam();
+   {     fonc.majNom(YakaTokenManager.identLu);
+     fonc.ajouterParam();
    }
 }
 
@@ -256,12 +258,12 @@ void type() :{}
    <ENTIER>
    	{
    	  declaration.setTypeVar(Constante.T_ENTIER);
-   	  fonc.recupererType(Constante.T_ENTIER);
+   	  fonc.majType(Constante.T_ENTIER);
    	}		
  | <BOOLEEN>
  	{
  	  declaration.setTypeVar(Constante.T_BOOLEEN);
- 	  fonc.recupererType(Constante.T_BOOLEEN);
+ 	  fonc.majType(Constante.T_BOOLEEN);
  	 }	
 }
 
