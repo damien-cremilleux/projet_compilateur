@@ -18,12 +18,15 @@ public class Fonction {
 	
 	public int type;			
 	public int ptl=0;
+	/**
+	 * Ancien pointeur
+	 */
 	public int ancptl = 0;
 	int adretour = 0;
 
 	public void init(String ident){
 		
-		id = new IdFonct(ident, ); 
+		IdFonct id = new IdFonct(ident, ); 
 		adretour  = 0;
 		ancptl = ptl;
 		pileF.push("res");

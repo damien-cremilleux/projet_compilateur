@@ -164,11 +164,12 @@ void analyse() : {}
    		}
 }
 
-void declFonction() : {}{  type() < FONCTION > < ident >               {
-              fonc.init(YakaTokenManager.identLu);
-            }      paramForms() 
-  						
-  bloc()
+void declFonction() : {}{  type() < FONCTION > ident()
+		{
+    		fonc.init(YakaTokenManager.identLu);
+    	}
+    paramForms() 
+  	bloc()
   < FFONCTION >}
 
 void paramForms() : {}
@@ -357,7 +358,8 @@ void conditionnelle() : {}
  */
 void retourne() : {}
 {
-  <RETOURNE> expression()
+  <RETOURNE>
+  expression()
 }
 
 
