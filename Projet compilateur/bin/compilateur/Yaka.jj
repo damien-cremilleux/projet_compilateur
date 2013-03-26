@@ -164,15 +164,13 @@ void analyse() : {}
    		}
 }
 
-void declFonction() : {}
-{  type() < FONCTION > < ident >              
+void declFonction() : {}{  type() < FONCTION > ident()
 		{
     		fonc.init(YakaTokenManager.identLu);
     	}
-  paramForms() 
-  bloc()
-  < FFONCTION >
-}
+    paramForms() 
+  	bloc()
+  < FFONCTION >}
 
 void paramForms() : {}
 {
