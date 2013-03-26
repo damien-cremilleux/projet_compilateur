@@ -1,6 +1,6 @@
 /**
  * Projet compilateur - 2012/2013
- * date : 22/02/2013
+ * date : 26/03/2013
  * 
  */
 package compilateur;
@@ -68,6 +68,29 @@ public class YVM {
 		presentation("ouvrePrinc " + nb);
 	}
 
+	
+	/**
+	 * Methode ouvreBloc affiche ouvbloc et la taille à reserver pour les variables locales
+	 * 
+	 * @param nb
+	 *            le nombre de variables locales de la fonction
+	 */
+
+	public void ouvreBloc(final int nb) {
+		presentation("ouvbloc " + nb);
+	}
+	
+	/**
+	 * Methode ouvreBloc affiche fermebloc et la taille des parametres
+	 * 
+	 * @param nb
+	 *            le nombre de parametres de la fonction
+	 */
+
+	public void fermeBloc(final int nb) {
+		presentation("fermebloc " + nb);
+	}
+	
 	/**
 	 * Methode iadd
 	 */
@@ -282,6 +305,14 @@ public class YVM {
 	 */
 	public void aLaLigne() {
 		presentation("aLaLigne");
+	}
+	
+	/**
+	 * Affiche ireturn et l'offset où stocker le resultat
+	 * @param offset
+	 */
+	public void ireturn(final int offset){
+		presentation("ireturn "+offset);
 	}
 
 }

@@ -60,6 +60,33 @@ public class YVMasm extends YVM {
 	presentation("mov bp,sp");
 	presentation("sub sp," + nb);
     }
+    
+    /**
+	 * Methode ouvreBloc affiche ouvreBloc et la taille à reserver pour les variables locales
+	 * 
+	 * @param nb
+	 *            le nombre de variables locales de la fonction
+	 */
+
+	public void ouvreBloc(final int nb) {
+		presentation("");
+		presentation(";ouvbloc " + nb);
+		presentation("enter "+ nb +",0");
+	}
+	
+	/**
+	 * Methode ouvreBloc affiche fermebloc et la taille des parametres
+	 * 
+	 * @param nb
+	 *            le nombre de parametres de la fonction
+	 */
+
+	public void fermeBloc(final int nb) {
+		presentation("");
+		presentation(";fermebloc " + nb);
+		presentation("leave");
+		presentation("ret "+nb);
+	}
 
     /**
      * Methode iadd
@@ -375,4 +402,15 @@ public class YVMasm extends YVM {
 	Ecriture.ecrireStringln(fichierSortie, "call lirent");
 
     }
+    
+    /**
+	 * Affiche ireturn et l'offset où stocker le resultat
+	 * @param offset
+	 */
+	public void ireturn(final int offset){
+		presentation("");
+		presentation(";ireturn "+offset);
+		presentation("pop ax");
+		presentation("mov [bp+"+offset+"],ax");
+	}
 }
