@@ -164,7 +164,7 @@ void analyse() : {}
    		}
 }
 
-void declFonction() : {}{  type() < FONCTION > ident()
+void declFonction() : {}{  type() < FONCTION > <ident >
 		{
     		fonc.recupererNom(YakaTokenManager.identLu);
     	}
@@ -184,7 +184,7 @@ void paramForm() : {}
 {
    type()   {     fonc.recupererTypeParam();
    }
-   ident()
+   < ident >
    {     fonc.recupererNomParam();
    }
 }

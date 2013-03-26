@@ -122,5 +122,12 @@ public class TabIdent {
 		}
 		return affich;
 	}
+	
+	/**
+	 * On vide la table des locaux à la fin d'une fonction
+	 */
+	public void viderLocaux(){
+		this.locaux.clear();
+	}
 
 }

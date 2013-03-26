@@ -82,7 +82,7 @@ public class Yaka implements YakaConstants {
     type();
     jj_consume_token(FONCTION);
     jj_consume_token(ident);
-              fonc.init(YakaTokenManager.identLu);
+                fonc.recupererNom(YakaTokenManager.identLu);
     paramForms();
     bloc();
     jj_consume_token(FFONCTION);
@@ -117,7 +117,9 @@ public class Yaka implements YakaConstants {
 
   static final public void paramForm() throws ParseException {
     type();
+     fonc.recupererTypeParam();
     jj_consume_token(ident);
+     fonc.recupererNomParam();
   }
 
   static final public void bloc() throws ParseException {
@@ -227,12 +229,12 @@ public class Yaka implements YakaConstants {
     case ENTIER:
       jj_consume_token(ENTIER);
           declaration.setTypeVar(Constante.T_ENTIER);
-          Fonction.recupererType(Constante.T_ENTIER);
+          fonc.recupererType(Constante.T_ENTIER);
       break;
     case BOOLEEN:
       jj_consume_token(BOOLEEN);
           declaration.setTypeVar(Constante.T_BOOLEEN);
-          Fonction.recupererType(Constante.T_BOOLEEN);
+          fonc.recupererType(Constante.T_BOOLEEN);
       break;
     default:
       jj_la1[8] = jj_gen;
