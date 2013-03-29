@@ -13,6 +13,7 @@ public class Yaka implements YakaConstants {
         public static Conditionnelle cond = new Conditionnelle();
         public static Fonction fonc = new Fonction();
         public static boolean dansFonct = false ;
+        static boolean appelFonct = false;
 
 
         public static void main(String args[]) {
@@ -88,8 +89,10 @@ public class Yaka implements YakaConstants {
                 fonc.initFonc();
     paramForms();
       fonc.majParam();
+      fonc.ouvreFonction();
     bloc();
     jj_consume_token(FFONCTION);
+    fonc.finFonction();
     dansFonct = false;
   }
 
@@ -423,6 +426,7 @@ public class Yaka implements YakaConstants {
   static final public void retourne() throws ParseException {
     jj_consume_token(RETOURNE);
     expression();
+        fonc.testRetour();
   }
 
 /*
@@ -539,13 +543,25 @@ public class Yaka implements YakaConstants {
       jj_consume_token(ident);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case 40:
+    if(fonc.existe(YakaTokenManager.identLu))
+    {
+        fonc.reserver();
+    }
         argumentsFonction();
+          appelFonct = true;
         break;
       default:
         jj_la1[21] = jj_gen;
         ;
       }
-          expression.ajoute(YakaTokenManager.identLu);
+          if(appelFonct)
+          {
+            fonc.appelFonc();
+          }else
+          {
+            expression.ajoute(YakaTokenManager.identLu);
+          }
+          appelFonct = false;
       break;
     case VRAI:
       jj_consume_token(VRAI);

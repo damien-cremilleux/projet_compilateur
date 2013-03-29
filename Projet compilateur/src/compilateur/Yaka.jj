@@ -28,6 +28,7 @@ public class Yaka {
 	public static Conditionnelle cond = new Conditionnelle();
 	public static Fonction fonc = new Fonction();
 	public static boolean dansFonct = false ;
+	static boolean appelFonct = false;
 	
 
 	public static void main(String args[]) { 
@@ -173,11 +174,12 @@ void declFonction() : {}{
     }
     paramForms()
     {      fonc.majParam();
-    }
-    
+      fonc.ouvreFonction();
+   }
   	bloc()
   < FFONCTION >
-  {    dansFonct = false;  }  }
+  {
+    fonc.finFonction();    dansFonct = false;  }  }
 
 void paramForms() : {}
 {
@@ -374,6 +376,8 @@ void retourne() : {}
 {
   <RETOURNE>
   expression()
+  {	fonc.testRetour();
+  }
 }
 
 
@@ -433,9 +437,18 @@ void valeur () : {}
 	{
 	  expression.ajouteType(Constante.T_ENTIER);expression.ajouteVal(YakaTokenManager.entierLu);
 	}	
- | <ident> (argumentsFonction())?
+ | <ident> (
+   {
+    if(fonc.existe(YakaTokenManager.identLu))    {     	fonc.reserver();
+    }   }
+   argumentsFonction() 	{
+ 	  appelFonct = true; 	})?
  	{
- 	  expression.ajoute(YakaTokenManager.identLu);
+ 	  if(appelFonct) 	  {
+ 	    fonc.appelFonc();
+ 	  }else 	  { 	    expression.ajoute(YakaTokenManager.identLu);
+ 	  }
+ 	  appelFonct = false;
  	}		
  | <VRAI>
  	{

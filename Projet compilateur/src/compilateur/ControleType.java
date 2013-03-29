@@ -5,6 +5,7 @@
  */
 package compilateur;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -204,20 +205,20 @@ public class ControleType {
      * 
      */
     public void controleFonction(IdFonct fonction) {
-    	int[] params = fonction.getTabParam();
-    	for(int i =0; i<params.length; i++){
+    	ArrayList<Integer> params = fonction.getTabParam();
+    	for(int i =0; i<params.size(); i++){
     		if(pileP.empty()){
-    			Erreur.ajouterErreur("Nombre de paramètres insuffisants : la fonction attend "+params.length+" paramètres");
+    			Erreur.ajouterErreur("Nombre de paramètres insuffisants : la fonction attend "+params.size()+" paramètres");
     			break;
     		}
     		
-    		if(params[i] != pileP.pop()){
+    		if(params.get(i) != pileP.pop()){
     			Erreur.ajouterErreur("Probleme de type de parametres : le paramètre numéro "+i+" ne correspond pas au type attendu");
     			break;
     		}
     	}
     	if(!pileP.empty()){
-    		Erreur.ajouterErreur("Trop de paramètres : la fonction attend "+params.length+" paramètres");
+    		Erreur.ajouterErreur("Trop de paramètres : la fonction attend "+params.size()+" paramètres");
     	}
     }
     

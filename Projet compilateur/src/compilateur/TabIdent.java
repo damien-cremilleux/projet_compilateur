@@ -85,7 +85,7 @@ public class TabIdent {
 	 * @return vrai si l'Ident existe, faux sinon
 	 */
 	public boolean existeIdentLocaux(final String clef) {
-		return globaux.containsKey(clef);
+		return locaux.containsKey(clef);
 	}
 	/**
 	 * Test de l'existence d'un Ident

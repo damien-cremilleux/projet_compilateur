@@ -21,7 +21,7 @@ public class IdParam extends Ident {
 	}
 
 	public String toString() {
-		return this.nom + " = PARAMETRE : " + stringTypeFromConst(this.type) + " offset : " + this.offset;
+		return "PARAMETRE : " + stringTypeFromConst(this.type) + " offset : " + this.offset;
 	}	
 	private String stringTypeFromConst(int cnst){ 
 		switch (cnst) {

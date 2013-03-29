@@ -5,6 +5,7 @@
  */
 package compilateur;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -33,7 +34,7 @@ public class Fonction {
 	/**
 	 * tableau des types des parametres
 	 */
-	private int tabType[];
+	private ArrayList<Integer> tabType = new ArrayList<Integer>();
 
 	/**
 	 * Nom de la fonction
@@ -48,6 +49,8 @@ public class Fonction {
 	private int nbParam;
 	
 	private int nbVar;
+	
+	private String fonctionActuelleAppel;
 
 	/**
 	 * Mise a jour du dernier nom lu
@@ -94,7 +97,7 @@ public class Fonction {
 	public void majParam() {
 		nbParam = pilePara.size();
 		int offset = 4;
-		for (int i = nbParam - 1; i >= 0; i++) {
+		for (int i = nbParam - 1; i >= 0; i--) {
 			IdParam idTmp = pilePara.get(i);
 			idTmp.setOffset(offset);
 			pilePara.set(i, idTmp);
@@ -113,9 +116,8 @@ public class Fonction {
 	public void creerTabType() {
 		int nbParam = pilePara.size();
 		for (int i = 0; i < nbParam; i++) {
-			tabType[i] = pilePara.get(i).getType();
+			tabType.add(pilePara.get(i).getType());
 		}
-
 	}
 	
 	public void ouvreFonction(){
@@ -129,6 +131,35 @@ public class Fonction {
 		Yaka.tabIdent.viderLocaux();
 		Yaka.declaration.reinitialiserOffset();
 		pilePara.clear();
+		tabType.clear();
+	}
+	
+	public void reserver(){
+		Yaka.yVM.reserveRetour();				
+	}
+	
+	public boolean existe(String ident){
+		if (!Yaka.tabIdent.existeIdentGlobaux(ident)) {
+			Erreur.ajouterErreur("Fonction " + ident + " pas definie");
+			fonctionActuelleAppel = ident;
+			return false;
+		}
+		return true;
+	}
+	
+	public void appelFonc(){
+		IdFonct id = (IdFonct) Yaka.tabIdent.chercheIdentGlobaux(fonctionActuelleAppel);
+		Yaka.controleT.controleFonction(id);
+		Yaka.yVM.call(fonctionActuelleAppel);
+	}
+	
+	public void testRetour(){
+		if (Yaka.tabIdent.existeIdentGlobaux(nomFonc)) {
+			IdFonct id = (IdFonct) Yaka.tabIdent.chercheIdentGlobaux(nomFonc);
+			Yaka.controleT.controleRetourFonction(id);
+		}else{
+			Erreur.ajouterErreur("Fonction " + nomFonc + " pas definie");
+		}
 	}
 	
 }

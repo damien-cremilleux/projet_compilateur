@@ -6,6 +6,8 @@
 
 package compilateur;
 
+import java.util.ArrayList;
+
 /**
  * Classe IdFonct, representation des identificateurs de fonctions
  * 
@@ -13,14 +15,14 @@ package compilateur;
  * 
  */
 public class IdFonct extends Ident {
-	private int[] tabParam;
+	private ArrayList<Integer> tabParam;
 	
 	/**
 	 * IdFonct : contructeur d'IdFonct
 	 * @param type le type de retour
 	 * @param nom le nom de la fonction
 	 */
-	public IdFonct(int type, String nom, int[] params) {
+	public IdFonct(int type, String nom, ArrayList<Integer> params) {
 		super(type, nom);  /*l'attribut type représente le type du retour*/
 		this.tabParam = params;
 	}
@@ -28,7 +30,7 @@ public class IdFonct extends Ident {
 	
 	public String toString() {
 		String t = this.nom + " = FONCTION resultat : " + stringTypeFromConst(this.type) + " les parametres :";
-		for(int i =0; i < this.tabParam.length ; i++){ t+= " "+stringTypeFromConst(this.tabParam[i]);}
+		for(int i =0; i < this.tabParam.size() ; i++){ t+= " "+stringTypeFromConst(this.tabParam.get(i));}
 		return t;
 	}	
 	private String stringTypeFromConst(int cnst){ 
@@ -59,7 +61,7 @@ public class IdFonct extends Ident {
 	/**
 	 * getTabParam : renvoie le tableau des types des paramètres
 	 */
-	public int[] getTabParam() {
+	public ArrayList<Integer> getTabParam() {
 		return tabParam;
 	}
 
