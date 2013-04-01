@@ -27,8 +27,8 @@ public class Conditionnelle {
 	}
 
 	/**
-	 * conditionCond : Verifie que l'expression est bien booleenne et ecrit
-	 * la condition de saut
+	 * conditionCond : Verifie que l'expression est bien booleenne et ecrit la
+	 * condition de saut
 	 */
 	public void conditionCond() {
 		if (Yaka.controleT.isBoolean()) {
@@ -39,15 +39,15 @@ public class Conditionnelle {
 		}
 
 	}
-	
+
 	/**
 	 * sinonCond : ecrit le saut et l'etiquette SINON
 	 */
 	public void sinonCond() {
-		
+
 		Yaka.yVM.gotoYVM("FSI" + nbBoucles);
 		Yaka.yVM.etiquette("SINON" + nbBoucles);
-		
+
 	}
 
 	/**

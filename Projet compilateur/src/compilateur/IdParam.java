@@ -13,8 +13,22 @@ package compilateur;
  */
 
 public class IdParam extends Ident {
+
+	/**
+	 * Offset de l'IdParam
+	 */
 	private int offset;
 
+	/**
+	 * Constructeur d'un IdParam
+	 * 
+	 * @param type
+	 *            le type
+	 * @param nom
+	 *            le nom
+	 * @param offset
+	 *            l'offset
+	 */
 	public IdParam(int type, String nom, int offset) {
 		super(type, nom);
 		this.offset = offset;
@@ -54,7 +68,7 @@ public class IdParam extends Ident {
 	 */
 	@Override
 	public void chargerInstr() {
-		//empty bloc
+		// empty bloc
 	}
 
 	/**

@@ -15,7 +15,12 @@ import java.util.Stack;
  * 
  */
 public class Fonction {
+
+	/**
+	 * Pile des fonctions
+	 */
 	public Stack<String> pileF = new Stack<String>();
+
 	/**
 	 * Pile des parametres
 	 */
@@ -45,11 +50,20 @@ public class Fonction {
 	 * Type retour de la fonction
 	 */
 	private int typeFonc;
-	
+
+	/**
+	 * Nombre de parametres
+	 */
 	private int nbParam;
-	
+
+	/**
+	 * Nombre de variables
+	 */
 	private int nbVar;
-	
+
+	/**
+	 * Fonction actuellement appelee
+	 */
 	private String fonctionActuelleAppel;
 
 	/**
@@ -103,7 +117,7 @@ public class Fonction {
 			offset += 2;
 			Yaka.tabIdent.rangeIdentLocaux(idTmp.getNom(), idTmp);
 		}
-		
+
 		creerTabType();
 		IdFonct id = new IdFonct(typeFonc, nomFonc, tabType);
 		Yaka.tabIdent.rangeIdentGlobaux(nomFonc, id);
@@ -118,26 +132,44 @@ public class Fonction {
 			tabType.add(pilePara.get(i).getType());
 		}
 	}
-	
-	public void ouvreFonction(){
-		nbVar =  Yaka.tabIdent.getSizeLocaux() - nbParam;
-		Yaka.yVM.ouvreBloc(nbVar*2);
-		
+
+	/**
+	 * Initialise le nombre de variable et genere les instructions pour le debut
+	 * d'une fonction
+	 */
+	public void ouvreFonction() {
+		nbVar = Yaka.tabIdent.getSizeLocaux() - nbParam;
+		Yaka.yVM.ouvreBloc(nbVar * 2);
+
 	}
-	
-	public void finFonction(){
-		Yaka.yVM.fermeBloc(nbParam*2);
+
+	/**
+	 * Genere les instruction pour la fin d'une fonction
+	 */
+	public void finFonction() {
+		Yaka.yVM.fermeBloc(nbParam * 2);
 		Yaka.tabIdent.viderLocaux();
 		Yaka.declaration.reinitialiserOffset();
 		pilePara.clear();
 		tabType.clear();
 	}
-	
-	public void reserver(){
-		Yaka.yVM.reserveRetour();				
+
+	/**
+	 * Reservation d'une place pour le retour de la fonction
+	 */
+	public void reserver() {
+		Yaka.yVM.reserveRetour();
 	}
-	
-	public boolean existe(String ident){
+
+	/**
+	 * Verification de l'existence d'une fonction
+	 * 
+	 * @param ident
+	 *            nom de la fonction a verifiee
+	 * @return vrai si la fonction existe, faux sinon (et genere un message
+	 *         d'erreur)
+	 */
+	public boolean existe(String ident) {
 		if (!Yaka.tabIdent.existeIdentGlobaux(ident)) {
 			Erreur.ajouterErreur("Fonction " + ident + " pas definie");
 			fonctionActuelleAppel = ident;
@@ -145,20 +177,27 @@ public class Fonction {
 		}
 		return true;
 	}
-	
-	public void appelFonc(){
-		IdFonct id = (IdFonct) Yaka.tabIdent.chercheIdentGlobaux(fonctionActuelleAppel);
-		Yaka.controleT.controleFonction(id); //TODO crash a l'execution
+
+	/**
+	 * Genere l'appel de la fonction (en effectuant le controle de type)
+	 */
+	public void appelFonc() {
+		IdFonct id = (IdFonct) Yaka.tabIdent
+				.chercheIdentGlobaux(fonctionActuelleAppel);
+		Yaka.controleT.controleFonction(id); // TODO crash a l'execution
 		Yaka.yVM.call(fonctionActuelleAppel);
 	}
-	
-	public void testRetour(){
+
+	/**
+	 * Controle le type de retour de la fonction
+	 */
+	public void testRetour() {
 		if (Yaka.tabIdent.existeIdentGlobaux(nomFonc)) {
 			IdFonct id = (IdFonct) Yaka.tabIdent.chercheIdentGlobaux(nomFonc);
 			Yaka.controleT.controleRetourFonction(id);
-		}else{
+		} else {
 			Erreur.ajouterErreur("Fonction " + nomFonc + " pas definie");
 		}
 	}
-	
+
 }

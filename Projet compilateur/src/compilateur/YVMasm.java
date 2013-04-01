@@ -20,7 +20,7 @@ public class YVMasm extends YVM {
 	 * 
 	 * @param f
 	 *            le fichier de sortie
-	 * @throws FileNotFoundException
+	 * @throws FileNotFoundExceptionexception si le fichier de sortie n'est pas defini
 	 */
 	@Override
 	public void setFichierSortie(String f) throws FileNotFoundException {
@@ -342,7 +342,7 @@ public class YVMasm extends YVM {
 	/**
 	 * Methode iffaux affiche iffaux et l'etiquette de saut
 	 * 
-	 * @param etiquette
+	 * @param etiquette l'etiquette de saut
 	 */
 	@Override
 	public void iffaux(final String etiquette) {
@@ -357,7 +357,7 @@ public class YVMasm extends YVM {
 	/**
 	 * Generation des sauts
 	 * 
-	 * @param etiquette
+	 * @param etiquette l'etiquette de saut
 	 */
 	@Override
 	public void gotoYVM(final String etiquette) {
@@ -381,7 +381,7 @@ public class YVMasm extends YVM {
 	/**
 	 * Generation des etiquettes
 	 * 
-	 * @param etiquette
+	 * @param etiquette l'etiquette
 	 */
 	@Override
 	public void etiquette(final String etiquette) {
@@ -437,7 +437,7 @@ public class YVMasm extends YVM {
 	/**
 	 * Affiche ireturn et l'offset ou stocker le resultat
 	 * 
-	 * @param offset
+	 * @param offset l'offset pour stocker le resultat
 	 */
 	@Override
 	public void ireturn(final int offset) {

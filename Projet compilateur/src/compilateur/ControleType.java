@@ -20,6 +20,9 @@ public class ControleType {
 	 */
 	public static Stack<Integer> pileT = new Stack<Integer>();
 
+	/**
+	 * Pile contenant le type des parametres
+	 */
 	public static Stack<Integer> pileP = new Stack<Integer>();
 
 	/**

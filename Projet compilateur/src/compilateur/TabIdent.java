@@ -134,6 +134,11 @@ public class TabIdent {
 		return affich;
 	}
 
+	/**
+	 * Accesseur a la taille du tableaux des locaux
+	 * 
+	 * @return la taille du tableau des locaux
+	 */
 	public int getSizeLocaux() {
 		return locaux.size();
 	}

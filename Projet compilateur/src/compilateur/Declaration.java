@@ -118,6 +118,9 @@ public class Declaration {
 		// le nombre a envoyer a ouvrePrinc correspond exactement a son oppose
 	}
 	
+	/**
+	 * Remise a zero de l'offset
+	 */
 	public void reinitialiserOffset(){
 		offsetCourant = 0;
 	}

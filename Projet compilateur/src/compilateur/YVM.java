@@ -21,6 +21,9 @@ public class YVM {
 	 */
 	public static OutputStream fichierSortie;
 
+	/**
+	 * Gestion de l'indentation (par defaut on commence avec 1)
+	 */
 	public static int indent = 1;
 
 	/**
@@ -29,6 +32,7 @@ public class YVM {
 	 * @param f
 	 *            le fichier de sortie
 	 * @throws FileNotFoundException
+	 *             exception si le fichier n'est pas trouve
 	 */
 	public void setFichierSortie(String f) throws FileNotFoundException {
 		fichierSortie = new FileOutputStream(f + ".txt");
@@ -68,9 +72,9 @@ public class YVM {
 		presentation("ouvrePrinc " + nb);
 	}
 
-	
 	/**
-	 * Methode ouvreBloc affiche ouvbloc et la taille a reserver pour les variables locales
+	 * Methode ouvreBloc affiche ouvbloc et la taille a reserver pour les
+	 * variables locales
 	 * 
 	 * @param nb
 	 *            le nombre de variables locales de la fonction
@@ -79,7 +83,7 @@ public class YVM {
 	public void ouvreBloc(final int nb) {
 		presentation("ouvbloc " + nb);
 	}
-	
+
 	/**
 	 * Methode ouvreBloc affiche fermebloc et la taille des parametres
 	 * 
@@ -90,7 +94,7 @@ public class YVM {
 	public void fermeBloc(final int nb) {
 		presentation("fermebloc " + nb);
 	}
-	
+
 	/**
 	 * Methode iadd
 	 */
@@ -237,6 +241,7 @@ public class YVM {
 	 * Methode iffaux affiche iffaux et l'etiquette de saut
 	 * 
 	 * @param etiquette
+	 *            etiquette de saut
 	 */
 	public void iffaux(final String etiquette) {
 		presentation("iffaux " + etiquette);
@@ -306,28 +311,33 @@ public class YVM {
 	public void aLaLigne() {
 		presentation("aLaLigne");
 	}
-	
+
 	/**
 	 * Affiche ireturn et l'offset ou stocker le resultat
+	 * 
 	 * @param offset
+	 *            l'offset pour stocker le resultat
 	 */
-	public void ireturn(final int offset){
-		presentation("ireturn "+offset);
+	public void ireturn(final int offset) {
+		presentation("ireturn " + offset);
 	}
-	
+
 	/**
-	 * Instruction a appeller avant l'appel a une fonction pour reserver la place pour le retour
+	 * Instruction a appeller avant l'appel a une fonction pour reserver la
+	 * place pour le retour
 	 */
-	public void reserveRetour(){
+	public void reserveRetour() {
 		presentation("reserveRetour");
 	}
-	
+
 	/**
 	 * Instruction pour appeller une fonction avec son nom
-	 * @param nom de la fonction
+	 * 
+	 * @param nom
+	 *            de la fonction
 	 */
-	public void call(final String nom){
-		presentation("call "+nom);
+	public void call(final String nom) {
+		presentation("call " + nom);
 	}
 
 }
