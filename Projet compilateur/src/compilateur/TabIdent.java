@@ -18,12 +18,12 @@ public class TabIdent {
 
 	/**
 	 * La table contenant les identificateurs globaux
-	 */    
+	 */
 	private Map<String, Ident> globaux = new HashMap<String, Ident>();
 
 	/**
 	 * La table contenant les identificateurs locaux
-	 */    
+	 */
 	private Map<String, Ident> locaux = new HashMap<String, Ident>();
 
 	/**
@@ -34,7 +34,7 @@ public class TabIdent {
 	public Map<String, Ident> getGlobaux() {
 		return this.globaux;
 	}
-	
+
 	/**
 	 * Accesseur de la table des identificateurs globaux
 	 * 
@@ -53,7 +53,6 @@ public class TabIdent {
 		globaux = new HashMap<String, Ident>();
 		locaux = new HashMap<String, Ident>();
 	}
-	
 
 	/**
 	 * Recherche d'un Ident dans Locaux a l'aide d'une clef
@@ -65,6 +64,7 @@ public class TabIdent {
 	public Ident chercheIdentLocaux(final String clef) {
 		return locaux.get(clef);
 	}
+
 	/**
 	 * Recherche d'un Ident dans Locaux a l'aide d'une clef
 	 * 
@@ -75,7 +75,6 @@ public class TabIdent {
 	public Ident chercheIdentGlobaux(final String clef) {
 		return globaux.get(clef);
 	}
-	
 
 	/**
 	 * Test de l'existence d'un Ident
@@ -87,6 +86,7 @@ public class TabIdent {
 	public boolean existeIdentLocaux(final String clef) {
 		return locaux.containsKey(clef);
 	}
+
 	/**
 	 * Test de l'existence d'un Ident
 	 * 
@@ -98,7 +98,6 @@ public class TabIdent {
 		return globaux.containsKey(clef);
 	}
 
-	
 	/**
 	 * Ajout d'un Ident dans les locaux
 	 * 
@@ -110,7 +109,7 @@ public class TabIdent {
 	public void rangeIdentLocaux(String clef, Ident id) {
 		locaux.put(clef, id);
 	}
-	
+
 	/**
 	 * Ajout d'un Ident dans les globaux
 	 * 
@@ -126,6 +125,7 @@ public class TabIdent {
 	/**
 	 * Methode toString
 	 */
+	@Override
 	public String toString() {
 		String affich = "";
 		for (Map.Entry<String, Ident> entry : globaux.entrySet()) {
@@ -134,16 +134,15 @@ public class TabIdent {
 		}
 		return affich;
 	}
-	
-	
-	public int getSizeLocaux(){
+
+	public int getSizeLocaux() {
 		return locaux.size();
 	}
-	
+
 	/**
-	 * On vide la table des locaux à la fin d'une fonction
+	 * On vide la table des locaux a la fin d'une fonction
 	 */
-	public void viderLocaux(){
+	public void viderLocaux() {
 		this.locaux.clear();
 	}
 

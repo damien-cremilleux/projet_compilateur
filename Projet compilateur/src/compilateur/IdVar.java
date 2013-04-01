@@ -45,6 +45,7 @@ public class IdVar extends Ident {
 	/**
 	 * Methode toString
 	 */
+	@Override
 	public String toString() {
 		String t = new String();
 		switch (this.type) {

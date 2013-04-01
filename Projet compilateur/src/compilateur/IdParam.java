@@ -6,7 +6,7 @@
 package compilateur;
 
 /**
- * Classe IdParam, representation des identificateurs de paramètres
+ * Classe IdParam, representation des identificateurs de parametres
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  * 
@@ -20,10 +20,16 @@ public class IdParam extends Ident {
 		this.offset = offset;
 	}
 
+	/**
+	 * Methode toString
+	 */
+	@Override
 	public String toString() {
-		return "PARAMETRE : " + stringTypeFromConst(this.type) + " offset : " + this.offset;
-	}	
-	private String stringTypeFromConst(int cnst){ 
+		return "PARAMETRE : " + stringTypeFromConst(this.type) + " offset : "
+				+ this.offset;
+	}
+
+	private String stringTypeFromConst(int cnst) {
 		switch (cnst) {
 		case Constante.T_BOOLEEN:
 			return "BOOLEEN";
@@ -35,14 +41,21 @@ public class IdParam extends Ident {
 	}
 
 	/**
-	 * getVal : héritée de Ident, cette fonction doit renvoyer un int, or dans IdFonct, la "valeur" est un tableau donc methode inutile, renvoie 0
+	 * getVal : heritee de Ident, cette fonction doit renvoyer un int, or dans
+	 * IdFonct, la "valeur" est un tableau donc methode inutile, renvoie 0
 	 */
-	public int getVal() {return 0;}
+	@Override
+	public int getVal() {
+		return 0;
+	}
 
 	/**
-	 * chargerInstr : héritée de Ident, cette fonction est methode inutile
+	 * chargerInstr : heritee de Ident, cette fonction est methode inutile
 	 */
-	public void chargerInstr() {}
+	@Override
+	public void chargerInstr() {
+		//empty bloc
+	}
 
 	/**
 	 * @return the offset
@@ -50,26 +63,20 @@ public class IdParam extends Ident {
 	public int getOffset() {
 		return offset;
 	}
-	
-	
 
-	
 	/**
-	 * @param offset the offset to set
+	 * @param offset
+	 *            the offset to set
 	 */
 	public void setOffset(int offset) {
 		this.offset = offset;
 	}
-	
+
 	/**
 	 * @return le nom
 	 */
 	public String getNom() {
 		return nom;
 	}
-	
-
-
-
 
 }

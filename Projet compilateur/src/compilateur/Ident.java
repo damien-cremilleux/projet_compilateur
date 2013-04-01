@@ -25,7 +25,7 @@ public abstract class Ident {
 	protected int type;
 
 	/**
-	 * Chaque Ident peut appartenir a  un tabIdent
+	 * Chaque Ident peut appartenir a un tabIdent
 	 */
 	public TabIdent tabIdent;
 
@@ -61,6 +61,7 @@ public abstract class Ident {
 	/**
 	 * Methode toString
 	 */
+	@Override
 	public abstract String toString();
 	
 	/**
