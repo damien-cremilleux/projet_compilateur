@@ -174,8 +174,6 @@ public class Expression {
 	/**
      * methode pour affecter une valeur a une variable
 	 * 
-	 * @param clef
-	 *            : l'identificateur de la variable
 	 */
 	public void affectation() {
 

@@ -84,7 +84,6 @@ public class Fonction {
 	 * Methode pour ajouter des parametres dans la pile On met l offset a 0 pour
 	 * le gerer une fois qu'on aura tous les parametres
 	 * 
-	 * @param para
 	 */
 	public void ajouterParam() {
 		IdParam idP = new IdParam(type, nom, 0);
@@ -149,7 +148,7 @@ public class Fonction {
 	
 	public void appelFonc(){
 		IdFonct id = (IdFonct) Yaka.tabIdent.chercheIdentGlobaux(fonctionActuelleAppel);
-		Yaka.controleT.controleFonction(id);
+		Yaka.controleT.controleFonction(id); //TODO crash a l'execution
 		Yaka.yVM.call(fonctionActuelleAppel);
 	}
 	

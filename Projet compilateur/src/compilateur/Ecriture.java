@@ -23,7 +23,7 @@ public class Ecriture {
     /**
      * @param nomFich
      *            le nom du fichier
-     * @return
+     * @return un pointeur sur le fichier de nom nomFich (null si erreur)
      */
     @SuppressWarnings("javadoc")
     public static OutputStream ouvrir(String nomFich) {

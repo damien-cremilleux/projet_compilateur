@@ -203,7 +203,10 @@ public class ControleType {
 	 * 
 	 */
 	public void controleFonction(IdFonct fonction) {
-		ArrayList<Integer> params = fonction.getTabParam();
+		ArrayList<Integer> params = new ArrayList<Integer>();
+		params = fonction.getTabParam();
+		System.out.println("test");
+		System.out.println(params);
 		for (int i = 0; i < params.size(); i++) {
 			if (pileP.empty()) {
 				Erreur.ajouterErreur("Nombre de parametres insuffisants : la fonction attend "

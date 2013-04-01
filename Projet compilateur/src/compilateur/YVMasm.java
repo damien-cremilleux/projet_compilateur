@@ -450,8 +450,6 @@ public class YVMasm extends YVM {
 	/**
 	 * Instruction a appeller avant l'appel a une fonction pour reserver la
 	 * place pour le retour
-	 * 
-	 * @param offset
 	 */
 	@Override
 	public void reserveRetour() {
@@ -463,7 +461,7 @@ public class YVMasm extends YVM {
 	/**
 	 * Instruction pour appeller une fonction avec son nom
 	 * 
-	 * @param offset
+	 * @param nom nom de la fonction
 	 */
 	@Override
 	public void call(final String nom) {

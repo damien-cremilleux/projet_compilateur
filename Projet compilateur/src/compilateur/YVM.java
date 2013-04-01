@@ -70,7 +70,7 @@ public class YVM {
 
 	
 	/**
-	 * Methode ouvreBloc affiche ouvbloc et la taille à reserver pour les variables locales
+	 * Methode ouvreBloc affiche ouvbloc et la taille a reserver pour les variables locales
 	 * 
 	 * @param nb
 	 *            le nombre de variables locales de la fonction
@@ -254,7 +254,7 @@ public class YVM {
 	}
 
 	/**
-	 * Methode queue affiche queue a la fin du fichier YAKA
+	 * Methode queue affiche queue a la fin du fichier YAKA
 	 */
 	public void queue() {
 		presentation("queue");
@@ -308,7 +308,7 @@ public class YVM {
 	}
 	
 	/**
-	 * Affiche ireturn et l'offset où stocker le resultat
+	 * Affiche ireturn et l'offset ou stocker le resultat
 	 * @param offset
 	 */
 	public void ireturn(final int offset){
@@ -316,8 +316,7 @@ public class YVM {
 	}
 	
 	/**
-	 * Instruction à appeller avant l'appel à une fonction pour réserver la place pour le retour
-	 * @param offset
+	 * Instruction a appeller avant l'appel a une fonction pour reserver la place pour le retour
 	 */
 	public void reserveRetour(){
 		presentation("reserveRetour");
@@ -325,7 +324,7 @@ public class YVM {
 	
 	/**
 	 * Instruction pour appeller une fonction avec son nom
-	 * @param offset
+	 * @param nom de la fonction
 	 */
 	public void call(final String nom){
 		presentation("call "+nom);

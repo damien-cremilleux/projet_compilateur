@@ -41,7 +41,7 @@ public class Conditionnelle {
 	}
 	
 	/**
-	 * sinonCond : ecrit le saut et l'étiquette SINON
+	 * sinonCond : ecrit le saut et l'etiquette SINON
 	 */
 	public void sinonCond() {
 		

@@ -47,7 +47,6 @@ public class TabIdent {
 	/**
 	 * Constructeur de TabIdent
 	 * 
-	 * @param taille
 	 */
 	public TabIdent() {
 		globaux = new HashMap<String, Ident>();
