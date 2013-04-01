@@ -39,7 +39,7 @@ public class IdParam extends Ident {
 	 */
 	@Override
 	public String toString() {
-		return "PARAMETRE : " + stringTypeFromConst(this.type) + " offset : "
+		return " = PARAMETRE : " + stringTypeFromConst(this.type) + " offset : "
 				+ this.offset;
 	}
 

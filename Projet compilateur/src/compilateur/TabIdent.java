@@ -126,11 +126,15 @@ public class TabIdent {
 	 */
 	@Override
 	public String toString() {
-		String affich = "";
+		String affich = "globaux\n{ ";
 		for (Map.Entry<String, Ident> entry : globaux.entrySet()) {
-			affich = "Clef : " + entry.getKey() + "; Ident :"
-					+ entry.getValue() + "\n";
+			affich += entry.getKey() + entry.getValue() + "\n";
 		}
+		affich += "}\nlocaux\n{ ";
+		for (Map.Entry<String, Ident> entry : locaux.entrySet()) {
+			affich += entry.getKey() + entry.getValue() + "\n";
+		}
+		affich += "}";
 		return affich;
 	}
 

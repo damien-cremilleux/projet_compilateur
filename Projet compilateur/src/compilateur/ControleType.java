@@ -15,6 +15,7 @@ import java.util.Stack;
  * 
  */
 public class ControleType {
+
 	/**
 	 * Pile contenant les types (entier, booleen, erreur, etc)
 	 */
@@ -202,8 +203,6 @@ public class ControleType {
 	 * 
 	 * @param fonction
 	 *            l'IdFonct de la fonction a controler
-	 * 
-	 * 
 	 */
 	public void controleFonction(IdFonct fonction) {
 		ArrayList<Integer> params = new ArrayList<Integer>();

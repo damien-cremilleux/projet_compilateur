@@ -17,11 +17,6 @@ import java.util.Stack;
 public class Fonction {
 
 	/**
-	 * Pile des fonctions
-	 */
-	public Stack<String> pileF = new Stack<String>();
-
-	/**
 	 * Pile des parametres
 	 */
 	private Stack<IdParam> pilePara = new Stack<IdParam>();

@@ -59,8 +59,7 @@ public class IdConst extends Ident {
 		default:
 			break;
 		}
-		return "CONSTANTE : " + this.nom + ", " + t + " VALEUR : "
-				+ this.valeur;
+		return " = CONSTANTE : " + t + " valeur : " + this.valeur;
 
 	}
 

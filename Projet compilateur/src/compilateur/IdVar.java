@@ -59,7 +59,7 @@ public class IdVar extends Ident {
 		default:
 			break;
 		}
-		return "VARIABLE : " + this.nom + ", " + t + " offset : " + this.offset;
+		return " = VARIABLE : " + t + " offset : " + this.offset;
 
 	}
 

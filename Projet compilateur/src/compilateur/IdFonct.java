@@ -15,6 +15,10 @@ import java.util.ArrayList;
  * 
  */
 public class IdFonct extends Ident {
+
+	/**
+	 * Tableau contenant les parametres
+	 */
 	private ArrayList<Integer> tabParam;
 
 	/**
@@ -29,19 +33,31 @@ public class IdFonct extends Ident {
 	 */
 	public IdFonct(int type, String nom, ArrayList<Integer> params) {
 		super(type, nom); /* l'attribut type represente le type du retour */
-		this.tabParam = params;
+		this.tabParam = new ArrayList<Integer>();
+		this.tabParam.addAll(params);
 	}
 
+	/**
+	 * Methode toString
+	 */
 	@Override
 	public String toString() {
-		String t = this.nom + " = FONCTION resultat : "
-				+ stringTypeFromConst(this.type) + " les parametres :";
+		String t = " = FONCTION resultat : " + stringTypeFromConst(this.type)
+				+ " les parametres :";
 		for (int i = 0; i < this.tabParam.size(); i++) {
 			t += " " + stringTypeFromConst(this.tabParam.get(i));
 		}
 		return t;
 	}
 
+	/**
+	 * Obtention de la chaine de caractere decrivant le type
+	 * 
+	 * @param cnst
+	 *            le type de l'IdFonct
+	 * @return la chaine de caractere decrivant le type de l'IdFonct
+	 * 
+	 */
 	private String stringTypeFromConst(int cnst) {
 		switch (cnst) {
 		case Constante.T_BOOLEEN:

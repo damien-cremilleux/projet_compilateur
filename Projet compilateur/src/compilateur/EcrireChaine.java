@@ -6,35 +6,35 @@
 package compilateur;
 
 /**
- * Classe EcrireChaine, gestion de l'écriture
+ * Classe EcrireChaine, gestion de l'ecriture
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  * 
  */
 public class EcrireChaine {
 
-    /**
-     * Numero du message courant
-     */
-    private static int nbEcr = 0;
+	/**
+	 * Numero du message courant
+	 */
+	private static int nbEcr = 0;
 
-    /**
-     * Accesseur a getNbEcr
-     * 
-     * @return nbEcr, le numero du message courant
-     */
-    public static int getNbEcr() {
-	return nbEcr;
-    }
+	/**
+	 * Accesseur a getNbEcr
+	 * 
+	 * @return nbEcr, le numero du message courant
+	 */
+	public static int getNbEcr() {
+		return nbEcr;
+	}
 
-    /**
-     * Incremente le numero à chaque nouveau message
-     * 
-     * @return le numero du messaqe
-     * 
-     */
-    public static int nouveauMess() {
-	return nbEcr++;
-    }
+	/**
+	 * Incremente le numero a chaque nouveau message
+	 * 
+	 * @return le numero du messaqe
+	 * 
+	 */
+	public static int nouveauMess() {
+		return nbEcr++;
+	}
 
 }
