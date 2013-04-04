@@ -9,7 +9,6 @@ package compilateur;
  * Classe EcrireChaine, gestion de l'ecriture
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
- * 
  */
 public class EcrireChaine {
 
@@ -19,7 +18,7 @@ public class EcrireChaine {
 	private static int nbEcr = 0;
 
 	/**
-	 * Accesseur a getNbEcr
+	 * Accesseur de getNbEcr
 	 * 
 	 * @return nbEcr, le numero du message courant
 	 */
@@ -30,8 +29,7 @@ public class EcrireChaine {
 	/**
 	 * Incremente le numero a chaque nouveau message
 	 * 
-	 * @return le numero du messaqe
-	 * 
+	 * @return le numero du messaqe 
 	 */
 	public static int nouveauMess() {
 		return nbEcr++;

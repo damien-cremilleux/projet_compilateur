@@ -12,15 +12,16 @@ import java.io.FileOutputStream;
  * Classe YVM, generation des instructions assembleurs
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
- * 
  */
 public class YVMasm extends YVM {
+	
 	/**
 	 * Methode pour definir le fichier de sortie
 	 * 
 	 * @param f
 	 *            le fichier de sortie
-	 * @throws FileNotFoundExceptionexception si le fichier de sortie n'est pas defini
+	 * @throws FileNotFoundExceptionexception
+	 *             si le fichier de sortie n'est pas defini
 	 */
 	@Override
 	public void setFichierSortie(String f) throws FileNotFoundException {
@@ -32,20 +33,15 @@ public class YVMasm extends YVM {
 	 */
 	@Override
 	public void entete() {
-		presentation("");
-		presentation(";entete");
+		presentation("; entete");
 		indent = 1;
 		presentation("extrn lirent:proc,ecrent:proc");
 		presentation("extrn ecrbool:proc");
 		presentation("extrn ecrch:proc,ligsuiv:proc");
 		indent = 0;
-		presentation("debut:");
-		presentation("STARTUPCODE");
 		presentation(".model SMALL");
 		presentation(".586");
 		presentation(".CODE");
-		presentation("debut:");
-		presentation("STARTUPCODE");
 		indent = 1;
 	}
 
@@ -56,11 +52,8 @@ public class YVMasm extends YVM {
 	 *            le nombre de variables
 	 */
 	@Override
-	public void ouvrePrinc(final int nb) {
-		presentation("");
-		presentation(";ouvrePrinc " + nb);
-		presentation("mov bp,sp");
-		presentation("sub sp," + nb);
+	public void ouvreMain() {
+		presentation("STARTUPCODE");
 	}
 
 	/**
@@ -300,8 +293,12 @@ public class YVMasm extends YVM {
 	@Override
 	public void iload(final int offset) {
 		presentation("");
-		presentation(";iload" + offset);
-		presentation("push word ptr[bp" + offset + "]");
+		presentation("; iload " + offset);
+		if (offset > 0) {
+			presentation("push word ptr[bp+" + offset + "]");
+		} else {
+			presentation("push word ptr[bp" + offset + "]");
+		}
 	}
 
 	/**
@@ -312,7 +309,7 @@ public class YVMasm extends YVM {
 		presentation("");
 		presentation(";istore" + offset);
 		presentation("pop ax");
-		presentation("mov word ptr[bp" + offset + "],ax");
+		presentation("mov word ptr [bp" + offset + "],ax");
 	}
 
 	/**
@@ -321,8 +318,8 @@ public class YVMasm extends YVM {
 	@Override
 	public void iconst(final int valeur) {
 		presentation("");
-		presentation(";iconst " + valeur);
-		presentation("push " + valeur);
+		presentation("; iconst " + valeur);
+		presentation("push word ptr " + valeur);
 	}
 
 	/**
@@ -342,7 +339,8 @@ public class YVMasm extends YVM {
 	/**
 	 * Methode iffaux affiche iffaux et l'etiquette de saut
 	 * 
-	 * @param etiquette l'etiquette de saut
+	 * @param etiquette
+	 *            l'etiquette de saut
 	 */
 	@Override
 	public void iffaux(final String etiquette) {
@@ -357,12 +355,13 @@ public class YVMasm extends YVM {
 	/**
 	 * Generation des sauts
 	 * 
-	 * @param etiquette l'etiquette de saut
+	 * @param etiquette
+	 *            l'etiquette de saut
 	 */
 	@Override
 	public void gotoYVM(final String etiquette) {
 		presentation("");
-		presentation(";gotoYVM" + etiquette);
+		presentation("; goto " + etiquette);
 		presentation("jmp " + etiquette);
 	}
 
@@ -381,14 +380,21 @@ public class YVMasm extends YVM {
 	/**
 	 * Generation des etiquettes
 	 * 
-	 * @param etiquette l'etiquette
+	 * @param etiquette
+	 *            l'etiquette
 	 */
 	@Override
 	public void etiquette(final String etiquette) {
+		indent = 0;
+		presentation("");
 		presentation(etiquette + ":");
+		indent = 1;
 
 	}
 
+	/**
+	 * Ecriture d'une chaine de caractere
+	 */
 	@Override
 	public void ecrireChaine(final String var) {
 		String mess = "mess" + EcrireChaine.nouveauMess();
@@ -396,53 +402,68 @@ public class YVMasm extends YVM {
 				: 0)
 				+ "$" + '"';
 
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";ecrireChaine " + var);
-		Ecriture.ecrireStringln(fichierSortie, ".DATA");
-		Ecriture.ecrireStringln(fichierSortie, mess + " DB " + chaine);
-		Ecriture.ecrireStringln(fichierSortie, ".CODE");
-		Ecriture.ecrireStringln(fichierSortie, "lea dx," + mess);
-		Ecriture.ecrireStringln(fichierSortie, "push dx");
-		Ecriture.ecrireStringln(fichierSortie, "call ecrch");
+		presentation("");
+		presentation(";ecrireChaine " + var);
+		presentation(".DATA");
+		presentation(mess + " DB " + chaine);
+		presentation(".CODE");
+		presentation("lea dx," + mess);
+		presentation("push dx");
+		presentation("call ecrch");
 	}
 
 	/**
-	 * Ecriture d'une expresssion
+	 * Ecriture d'un entier
 	 */
 	@Override
-	public void ecrireExpr() {
-		Ecriture.ecrireStringln(fichierSortie, "");
-		Ecriture.ecrireStringln(fichierSortie, ";ecrireEnt");
-		Ecriture.ecrireStringln(fichierSortie, "call ecrent");
-
+	public void ecrireEnt() {
+		presentation("");
+		presentation("; ecrireEnt");
+		presentation("call ecrent");
 	}
 
+	/**
+	 * Ecriture d'un booleen
+	 */
+	@Override
+	public void ecrireBool() {
+		presentation("");
+		presentation("; ecrireBool");
+		presentation("call ecrBool");
+	}
+
+	/**
+	 * Aller la ligne
+	 */
 	@Override
 	public void aLaLigne() {
-		Ecriture.ecrireString(fichierSortie, "\n; ");
-		super.aLaLigne();
-		Ecriture.ecrireStringln(fichierSortie, "call ligsuiv");
+		presentation("; alaligne");
+		presentation("call ligsuiv");
 	}
 
+	/**
+	 * Lecture grace a un offset
+	 */
 	@Override
 	public void lire(final int offset) {
-		Ecriture.ecrireString(fichierSortie, "\n; ");
+		presentation("\n; ");
 		super.lire(offset);
-		Ecriture.ecrireStringln(fichierSortie, "lea dx,[bp" + offset + "]");
-		Ecriture.ecrireStringln(fichierSortie, "push dx");
-		Ecriture.ecrireStringln(fichierSortie, "call lirent");
+		presentation("lea dx,[bp" + offset + "]");
+		presentation("push dx");
+		presentation("call lirent");
 
 	}
 
 	/**
 	 * Affiche ireturn et l'offset ou stocker le resultat
 	 * 
-	 * @param offset l'offset pour stocker le resultat
+	 * @param offset
+	 *            l'offset pour stocker le resultat
 	 */
 	@Override
 	public void ireturn(final int offset) {
 		presentation("");
-		presentation(";ireturn " + offset);
+		presentation("; ireturn " + offset);
 		presentation("pop ax");
 		presentation("mov [bp+" + offset + "],ax");
 	}
@@ -454,19 +475,20 @@ public class YVMasm extends YVM {
 	@Override
 	public void reserveRetour() {
 		presentation("");
-		presentation(";reserveRetour");
+		presentation("; reserveRetour");
 		presentation("sub sp,2");
 	}
 
 	/**
 	 * Instruction pour appeller une fonction avec son nom
 	 * 
-	 * @param nom nom de la fonction
+	 * @param nom
+	 *            nom de la fonction
 	 */
 	@Override
 	public void call(final String nom) {
 		presentation("");
-		presentation(";call " + nom);
+		presentation("; call " + nom);
 		presentation("call " + nom);
 	}
 }

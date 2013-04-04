@@ -9,7 +9,6 @@ package compilateur;
  * Classe IdConst, representation des identificateurs de constante
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
- * 
  */
 public class IdConst extends Ident {
 
@@ -38,7 +37,7 @@ public class IdConst extends Ident {
 	 * 
 	 * @return la valeur de la constante
 	 */
-	public int getValeur() { // TODO : a supprimer ?
+	public int getValeur() {
 		return this.valeur;
 	}
 
@@ -63,11 +62,17 @@ public class IdConst extends Ident {
 
 	}
 
+	/**
+	 * Accesseur de la valeur
+	 */
 	@Override
 	public int getVal() {
 		return this.valeur;
 	}
 
+	/**
+	 * Generation de l'instruction pour les constantes
+	 */
 	@Override
 	public void chargerInstr() {
 		Yaka.yVM.iconst(this.getValeur());

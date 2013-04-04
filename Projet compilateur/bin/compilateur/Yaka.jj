@@ -27,8 +27,11 @@ public class Yaka {
 	public static Iteration iteration = new Iteration();
 	public static Conditionnelle cond = new Conditionnelle();
 	public static Fonction fonc = new Fonction();
-	public static boolean dansFonct = false ;
+	public static boolean dansFonct = false;
+	
 	static boolean appelFonct = false;
+	public static int cptBoucles = 0;
+	public static int cptCond = 0;
 	
 
 	public static void main(String args[]) { 
@@ -157,29 +160,45 @@ TOKEN  :
 void analyse() : {}
 {
    <PROGRAMME> <ident>
+   {
+     yVM.entete();
+   }
    (declFonction())*
    <PRINCIPAL>
+   {
+     fonc.ouvreMain();
+   }
+   
    bloc()
    <FPRINCIPAL>
-   <FPROGRAMME>   		{
+   <FPROGRAMME>
+   		{
      		yVM.queue();
    		}
 }
 
-void declFonction() : {}{
-  {    dansFonct = true;
+void declFonction() : {}
+{
+  {
+    dansFonct = true;
   }
-  type() < FONCTION > < ident > 	{		fonc.majNom(YakaTokenManager.identLu);
+  type() < FONCTION > < ident > 
+	{
+		fonc.majNom(YakaTokenManager.identLu);
 		fonc.initFonc();
     }
     paramForms()
-    {      fonc.majParam();
-      fonc.ouvreFonction();
+    {
+      fonc.majParam();
    }
   	bloc()
   < FFONCTION >
   {
-    fonc.finFonction();    dansFonct = false;  }  }
+    fonc.finFonction();
+    dansFonct = false;
+  }
+  
+}
 
 void paramForms() : {}
 {
@@ -193,7 +212,8 @@ void paramForm() : {}
 {
    type()
    < ident >
-   {     fonc.majNom(YakaTokenManager.identLu);
+   {
+     fonc.majNom(YakaTokenManager.identLu);
      fonc.ajouterParam();
    }
 }
@@ -312,7 +332,8 @@ void affectation() : {}
 void lecture() : {}
 {
   	<LIRE> "(" <ident> ")"
-  	{  	 expression.lire(YakaTokenManager.identLu);
+  	{
+  	 expression.lire(YakaTokenManager.identLu);
   	}
 }
 
@@ -320,10 +341,17 @@ void ecriture() : {}
 {
   	( <ECRIRE> "(" (expression()
   	{
-  	  expression.ecrireExpr();	}	
-  	  | <chaine>  	{
-  	  expression.ecrireChaine(YakaTokenManager.chaineLue); 	}
-    	) ")" )  	 | <ALALIGNE>  	 {  	   expression.aLaLigne();
+  	  expression.ecrireExpr();
+	}	
+  	  | <chaine>
+  	{
+  	  expression.ecrireChaine(YakaTokenManager.chaineLue);
+ 	}
+ 
+   	) ")" )
+  	 | <ALALIGNE>
+  	 {
+  	   expression.aLaLigne();
   	 }
 }
 
@@ -331,7 +359,8 @@ void ecriture() : {}
  * Iteration
  */
 void iteration() : {}
-{	<TANTQUE>
+{
+	<TANTQUE>
 	{
 	  iteration.entreeIteration();
 	  }
@@ -361,11 +390,18 @@ void conditionnelle() : {}
 	<ALORS> {cond.conditionCond();}
 	suiteInstr()
 
-	{	  cond.sinonCond();	}	
+	{
+	  cond.sinonCond();
+	}
+	
 	( <SINON> 
 	 	suiteInstr() )?
 	
-	<FSI>	{	  cond.sortieCond();	}	
+	<FSI>
+	{
+	  cond.sortieCond();
+	}
+	
 }
 
 
@@ -376,7 +412,8 @@ void retourne() : {}
 {
   <RETOURNE>
   expression()
-  {	fonc.testRetour();
+  {
+	fonc.retour();
   }
 }
 
@@ -439,14 +476,23 @@ void valeur () : {}
 	}	
  | <ident> (
    {
-    if(fonc.existe(YakaTokenManager.identLu))    {     	fonc.reserver();
-    }   }
-   argumentsFonction() 	{
- 	  appelFonct = true; 	})?
+    if(fonc.existe(YakaTokenManager.identLu))
+    {
+     	fonc.reserver();
+		Yaka.controleT.ajoutePile();
+    }
+   }
+   argumentsFonction()
  	{
- 	  if(appelFonct) 	  {
+ 	  appelFonct = true;
+ 	})?
+ 	{
+ 	  if(appelFonct)
+ 	  {
  	    fonc.appelFonc();
- 	  }else 	  { 	    expression.ajoute(YakaTokenManager.identLu);
+ 	  }else
+ 	  {
+ 	    expression.ajoute(YakaTokenManager.identLu);
  	  }
  	  appelFonct = false;
  	}		
@@ -464,7 +510,15 @@ void valeur () : {}
 void argumentsFonction() : {}
 {
    "("
-    (      expression() ("," expression())*
+    (
+      expression()
+      {
+        controleT.transfertTypeParam();
+      }
+       ("," expression()
+       {
+			controleT.transfertTypeParam();
+       })*
     )?
    ")"
 }

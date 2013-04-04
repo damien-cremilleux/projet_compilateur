@@ -9,7 +9,6 @@ package compilateur;
  * Classe abstraite Ident
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
- * 
  */
 public abstract class Ident {
 
@@ -32,8 +31,10 @@ public abstract class Ident {
 	/**
 	 * Constructeur d'un Ident
 	 * 
-	 * @param type le type de l'ident
-	 * @param nom le nom de l'ident
+	 * @param type
+	 *            le type de l'ident
+	 * @param nom
+	 *            le nom de l'ident
 	 */
 	public Ident(int type, String nom) {
 		this.nom = nom;
@@ -52,7 +53,8 @@ public abstract class Ident {
 	/**
 	 * Setteur pour le type
 	 * 
-	 * @param type le type de l'ident
+	 * @param type
+	 *            le type de l'ident
 	 */
 	public void setType(int type) {
 		this.type = type;
@@ -63,9 +65,10 @@ public abstract class Ident {
 	 */
 	@Override
 	public abstract String toString();
-	
+
 	/**
 	 * Accesseur a la valeur ou a l'offset
+	 * 
 	 * @return la valeur ou l'offset
 	 */
 	public abstract int getVal();

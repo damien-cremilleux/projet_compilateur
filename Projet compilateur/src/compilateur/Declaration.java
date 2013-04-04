@@ -13,6 +13,7 @@ package compilateur;
  * 
  */
 public class Declaration {
+	
 	/**
 	 * Le nom de l'Ident courant
 	 */
@@ -64,7 +65,8 @@ public class Declaration {
 	 */
 	public void affectationConstCopie(final String clefACopier) {
 		if (Yaka.tabIdent.existeIdentLocaux(clefACopier)) {
-			IdConst id = (IdConst) Yaka.tabIdent.chercheIdentLocaux(clefACopier);
+			IdConst id = (IdConst) Yaka.tabIdent
+					.chercheIdentLocaux(clefACopier);
 			this.affectationConst(id.getValeur(), id.getType());
 		} else {
 			Erreur.ajouterErreur("Constante " + clefACopier + " pas definie");
@@ -112,16 +114,15 @@ public class Declaration {
 	 * programme
 	 */
 	public void ouvrePrinc() {
-		Yaka.yVM.entete();
-		Yaka.yVM.ouvrePrinc(-offsetCourant); // La variable offsetCourant nous
+		Yaka.yVM.ouvreBloc(-offsetCourant); // La variable offsetCourant nous
 		// donne le dernier offset utilise,
 		// le nombre a envoyer a ouvrePrinc correspond exactement a son oppose
 	}
-	
+
 	/**
 	 * Remise a zero de l'offset
 	 */
-	public void reinitialiserOffset(){
+	public void reinitialiserOffset() {
 		offsetCourant = 0;
 	}
 

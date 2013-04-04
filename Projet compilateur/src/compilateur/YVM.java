@@ -13,9 +13,9 @@ import java.io.OutputStream;
  * Classe YVM, generation des instructions pour la Yaka Virtual Machine
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
- * 
  */
 public class YVM {
+	
 	/**
 	 * fichier de sortie, contenant les instructions YVM
 	 */
@@ -61,15 +61,10 @@ public class YVM {
 	}
 
 	/**
-	 * Methode ouvrePrinc affiche ouvrPrinc et l'espace reserve pour l'ensemble
-	 * des variables dans la pile
-	 * 
-	 * @param nb
-	 *            le nombre de variables dans la pile
+	 * Methode ne servant pas (reserve a l'ASM)
 	 */
-
-	public void ouvrePrinc(final int nb) {
-		presentation("ouvrePrinc " + nb);
+	public void ouvreMain() {
+		// empty bloc
 	}
 
 	/**
@@ -155,7 +150,7 @@ public class YVM {
 	 * Methode iinf
 	 */
 	public void iinf() {
-		presentation("iadd");
+		presentation("iinf");
 	}
 
 	/**
@@ -276,10 +271,17 @@ public class YVM {
 	}
 
 	/**
-	 * Ecriture d'une expresssion
+	 * Ecriture d'un entier
 	 */
-	public void ecrireExpr() {
+	public void ecrireEnt() {
 		presentation("ecrireEnt");
+	}
+
+	/**
+	 * Ecriture d'un booleen
+	 */
+	public void ecrireBool() {
+		presentation("ecrireBool");
 	}
 
 	/**
@@ -301,7 +303,8 @@ public class YVM {
 	public void etiquette(final String etiquette) {
 		int tmp = indent;
 		indent = 0;
-		presentation(etiquette + " :");
+		presentation(" ");
+		presentation(etiquette + ":");
 		indent = tmp;
 	}
 

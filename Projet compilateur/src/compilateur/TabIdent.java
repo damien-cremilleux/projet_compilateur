@@ -12,7 +12,6 @@ import java.util.Map;
  * Classe TabIdent : representation de la table des identificateurs
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
- * 
  */
 public class TabIdent {
 
@@ -46,7 +45,6 @@ public class TabIdent {
 
 	/**
 	 * Constructeur de TabIdent
-	 * 
 	 */
 	public TabIdent() {
 		globaux = new HashMap<String, Ident>();

@@ -12,7 +12,6 @@ import java.util.Stack;
  * Classe Fonction
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
- * 
  */
 public class Fonction {
 
@@ -59,7 +58,7 @@ public class Fonction {
 	/**
 	 * Fonction actuellement appelee
 	 */
-	private String fonctionActuelleAppel;
+	private Stack<String> fonctionAppelP = new Stack<String>();
 
 	/**
 	 * Mise a jour du dernier nom lu
@@ -87,12 +86,12 @@ public class Fonction {
 	public void initFonc() {
 		typeFonc = type;
 		nomFonc = nom;
+		Yaka.yVM.etiquette(nom);
 	}
 
 	/**
 	 * Methode pour ajouter des parametres dans la pile On met l offset a 0 pour
 	 * le gerer une fois qu'on aura tous les parametres
-	 * 
 	 */
 	public void ajouterParam() {
 		IdParam idP = new IdParam(type, nom, 0);
@@ -112,10 +111,13 @@ public class Fonction {
 			offset += 2;
 			Yaka.tabIdent.rangeIdentLocaux(idTmp.getNom(), idTmp);
 		}
-
 		creerTabType();
 		IdFonct id = new IdFonct(typeFonc, nomFonc, tabType);
-		Yaka.tabIdent.rangeIdentGlobaux(nomFonc, id);
+		if (Yaka.tabIdent.existeIdentGlobaux(nomFonc)) {
+			Erreur.ajouterErreur("Fonction " + nomFonc + " deja definie");
+		} else {
+			Yaka.tabIdent.rangeIdentGlobaux(nomFonc, id);
+		}
 	}
 
 	/**
@@ -167,9 +169,9 @@ public class Fonction {
 	public boolean existe(String ident) {
 		if (!Yaka.tabIdent.existeIdentGlobaux(ident)) {
 			Erreur.ajouterErreur("Fonction " + ident + " pas definie");
-			fonctionActuelleAppel = ident;
 			return false;
 		}
+		fonctionAppelP.push(ident);
 		return true;
 	}
 
@@ -177,22 +179,32 @@ public class Fonction {
 	 * Genere l'appel de la fonction (en effectuant le controle de type)
 	 */
 	public void appelFonc() {
-		IdFonct id = (IdFonct) Yaka.tabIdent
-				.chercheIdentGlobaux(fonctionActuelleAppel);
-		Yaka.controleT.controleFonction(id); // TODO crash a l'execution
-		Yaka.yVM.call(fonctionActuelleAppel);
+		String fonctAp = fonctionAppelP.pop();
+		IdFonct id = (IdFonct) Yaka.tabIdent.chercheIdentGlobaux(fonctAp);
+		Yaka.controleT.controleFonction(id);
+		Yaka.yVM.call(fonctAp);
 	}
 
 	/**
 	 * Controle le type de retour de la fonction
 	 */
-	public void testRetour() {
+	public void retour() {
 		if (Yaka.tabIdent.existeIdentGlobaux(nomFonc)) {
 			IdFonct id = (IdFonct) Yaka.tabIdent.chercheIdentGlobaux(nomFonc);
 			Yaka.controleT.controleRetourFonction(id);
+			Yaka.yVM.ireturn((pilePara.size()) * 2 + 4);
 		} else {
 			Erreur.ajouterErreur("Fonction " + nomFonc + " pas definie");
 		}
+	}
+
+	/**
+	 * Initialisation du main
+	 */
+	public void ouvreMain() {
+		Yaka.yVM.etiquette("debut");
+		Yaka.yVM.ouvreMain();
+		Yaka.yVM.etiquette("main");
 	}
 
 }

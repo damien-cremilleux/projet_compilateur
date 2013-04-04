@@ -12,8 +12,11 @@ public class Yaka implements YakaConstants {
         public static Iteration iteration = new Iteration();
         public static Conditionnelle cond = new Conditionnelle();
         public static Fonction fonc = new Fonction();
-        public static boolean dansFonct = false ;
+        public static boolean dansFonct = false;
+
         static boolean appelFonct = false;
+        public static int cptBoucles = 0;
+        public static int cptCond = 0;
 
 
         public static void main(String args[]) {
@@ -60,6 +63,7 @@ public class Yaka implements YakaConstants {
   static final public void analyse() throws ParseException {
     jj_consume_token(PROGRAMME);
     jj_consume_token(ident);
+     yVM.entete();
     label_1:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -74,6 +78,7 @@ public class Yaka implements YakaConstants {
       declFonction();
     }
     jj_consume_token(PRINCIPAL);
+     fonc.ouvreMain();
     bloc();
     jj_consume_token(FPRINCIPAL);
     jj_consume_token(FPROGRAMME);
@@ -89,7 +94,6 @@ public class Yaka implements YakaConstants {
                 fonc.initFonc();
     paramForms();
       fonc.majParam();
-      fonc.ouvreFonction();
     bloc();
     jj_consume_token(FFONCTION);
     fonc.finFonction();
@@ -426,7 +430,7 @@ public class Yaka implements YakaConstants {
   static final public void retourne() throws ParseException {
     jj_consume_token(RETOURNE);
     expression();
-        fonc.testRetour();
+        fonc.retour();
   }
 
 /*
@@ -546,6 +550,7 @@ public class Yaka implements YakaConstants {
     if(fonc.existe(YakaTokenManager.identLu))
     {
         fonc.reserver();
+                Yaka.controleT.ajoutePile();
     }
         argumentsFonction();
           appelFonct = true;
@@ -589,6 +594,7 @@ public class Yaka implements YakaConstants {
     case 40:
     case 51:
       expression();
+        controleT.transfertTypeParam();
       label_10:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -601,6 +607,7 @@ public class Yaka implements YakaConstants {
         }
         jj_consume_token(41);
         expression();
+                        controleT.transfertTypeParam();
       }
       break;
     default:

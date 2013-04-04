@@ -9,7 +9,6 @@ package compilateur;
  * Classe IdParam, representation des identificateurs de parametres
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
- * 
  */
 
 public class IdParam extends Ident {
@@ -39,8 +38,8 @@ public class IdParam extends Ident {
 	 */
 	@Override
 	public String toString() {
-		return " = PARAMETRE : " + stringTypeFromConst(this.type) + " offset : "
-				+ this.offset;
+		return " = PARAMETRE : " + stringTypeFromConst(this.type)
+				+ " offset : " + this.offset;
 	}
 
 	private String stringTypeFromConst(int cnst) {
@@ -64,11 +63,11 @@ public class IdParam extends Ident {
 	}
 
 	/**
-	 * chargerInstr : heritee de Ident, cette fonction est methode inutile
+	 * Charge l'instruction
 	 */
 	@Override
 	public void chargerInstr() {
-		// empty bloc
+		Yaka.yVM.iload(this.getOffset());
 	}
 
 	/**

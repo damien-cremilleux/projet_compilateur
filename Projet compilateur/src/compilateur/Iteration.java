@@ -5,6 +5,8 @@
  */
 package compilateur;
 
+import java.util.Stack;
+
 /**
  * Classe Iteration, contient les fonctions necessaires a la gestion des
  * iterations
@@ -12,27 +14,27 @@ package compilateur;
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  */
 public class Iteration {
+
 	/**
 	 * integer qui represente a quelle boucle on en est, pour les etiquettes
 	 */
-	public static int nbBoucles = 0;
+	public static Stack<Integer> nbBoucles = new Stack<Integer>();
 
 	/**
-	 * entreeIteration : ecrit le mot-clef de debut
-	 * 
+	 * Ecrit le mot-clef de debut
 	 */
 	public void entreeIteration() {
-		nbBoucles++;
-		Yaka.yVM.etiquette("FAIRE" + nbBoucles);
+		Yaka.cptBoucles++;
+		nbBoucles.push(Yaka.cptBoucles);
+		Yaka.yVM.etiquette("FAIRE" + nbBoucles.peek());
 	}
 
 	/**
-	 * conditionIteration : Verifie que l'expression est bien booleenne et ecrit
-	 * la condition de saut
+	 * Verifie que l'expression est bien booleenne et ecrit la condition de saut
 	 */
 	public void conditionIteration() {
 		if (Yaka.controleT.isBoolean()) {
-			Yaka.yVM.iffaux("FAIT" + nbBoucles);
+			Yaka.yVM.iffaux("FAIT" + nbBoucles.peek());
 
 		} else {
 			Erreur.ajouterErreur("La condition de l'iteration n'est pas une expression booleenne");
@@ -41,13 +43,12 @@ public class Iteration {
 	}
 
 	/**
-	 * sortieIteration : ecrit le mot-clef de fin
-	 * 
+	 * Ecrit le mot-clef de fin
 	 */
 	public void sortieIteration() {
-		Yaka.yVM.gotoYVM("FAIRE" + nbBoucles);
-		Yaka.yVM.etiquette("FAIT" + nbBoucles);
-		nbBoucles--;
+		Yaka.yVM.gotoYVM("FAIRE" + nbBoucles.peek());
+		Yaka.yVM.etiquette("FAIT" + nbBoucles.peek());
+		nbBoucles.pop();
 	}
 
 }
