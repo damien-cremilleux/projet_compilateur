@@ -14,14 +14,14 @@ import java.util.Stack;
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  */
 public class Iteration {
-
 	/**
 	 * integer qui represente a quelle boucle on en est, pour les etiquettes
 	 */
 	public static Stack<Integer> nbBoucles = new Stack<Integer>();
 
 	/**
-	 * Ecrit le mot-clef de debut
+	 * entreeIteration : ecrit le mot-clef de debut
+	 * 
 	 */
 	public void entreeIteration() {
 		Yaka.cptBoucles++;
@@ -30,7 +30,8 @@ public class Iteration {
 	}
 
 	/**
-	 * Verifie que l'expression est bien booleenne et ecrit la condition de saut
+	 * conditionIteration : Verifie que l'expression est bien booleenne et ecrit
+	 * la condition de saut
 	 */
 	public void conditionIteration() {
 		if (Yaka.controleT.isBoolean()) {
@@ -43,7 +44,8 @@ public class Iteration {
 	}
 
 	/**
-	 * Ecrit le mot-clef de fin
+	 * sortieIteration : ecrit le mot-clef de fin
+	 * 
 	 */
 	public void sortieIteration() {
 		Yaka.yVM.gotoYVM("FAIRE" + nbBoucles.peek());

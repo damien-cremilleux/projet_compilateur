@@ -13,9 +13,9 @@ import java.io.OutputStream;
  * Classe YVM, generation des instructions pour la Yaka Virtual Machine
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * 
  */
 public class YVM {
-	
 	/**
 	 * fichier de sortie, contenant les instructions YVM
 	 */

@@ -9,6 +9,7 @@ package compilateur;
  * Classe IdVar, representation des identificateurs de variables
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * 
  */
 public class IdVar extends Ident {
 
@@ -62,17 +63,11 @@ public class IdVar extends Ident {
 
 	}
 
-	/**
-	 * Accesseur de la valeur
-	 */
 	@Override
 	public int getVal() {
 		return this.offset;
 	}
 
-	/**
-	 * Genere l'instruction aossciee aux IdVar
-	 */
 	@Override
 	public void chargerInstr() {
 		Yaka.yVM.iload(this.getOffset());

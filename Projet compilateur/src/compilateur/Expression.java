@@ -14,7 +14,6 @@ import java.util.Stack;
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
  */
 public class Expression {
-
 	/**
 	 * Le nom de l'Ident a affecter
 	 */
@@ -43,7 +42,7 @@ public class Expression {
 	}
 
 	/**
-	 * Ajoute le type a la pile de type
+	 * ajouteType : ajoute le type a la pile de type
 	 * 
 	 * @param type
 	 *            le type a ajouter
@@ -53,8 +52,8 @@ public class Expression {
 	}
 
 	/**
-	 * Ajoute le type et la valeur de l'ident dont le nom est clef a la pile de
-	 * type s'il existe
+	 * ajouteType : ajoute le type et la valeur de l'ident dont le nom est clef
+	 * a la pile de type s'il existe
 	 * 
 	 * @param clef
 	 *            nom de l'ident
@@ -71,7 +70,7 @@ public class Expression {
 	}
 
 	/**
-	 * Ajoute l'operateur a la pile d'op
+	 * ajouteOp : ajoute l'operateur a la pile d'op
 	 * 
 	 * @param typeOp
 	 *            le type de l'operateur
@@ -81,7 +80,7 @@ public class Expression {
 	}
 
 	/**
-	 * Ajoute l'operande au fichier yVM
+	 * ajouteVal : ajoute l'operande au fichier yVM
 	 * 
 	 * @param val
 	 *            le booleen a empiler
@@ -96,7 +95,7 @@ public class Expression {
 	}
 
 	/**
-	 * Ajoute l'operande au fichier yVM
+	 * ajouteVal : ajoute l'operande au fichier yVM
 	 * 
 	 * @param val
 	 *            le booleen a empiler
@@ -107,7 +106,7 @@ public class Expression {
 	}
 
 	/**
-	 * A la fin de la ligne, vide les piles et ecrit dans le fichier
+	 * operation : a la fin de la ligne, vide les piles et ecrit dans le fichier
 	 */
 	public void operation() {
 		int operateur = pileOp.pop();
@@ -178,7 +177,7 @@ public class Expression {
 	 */
 	public void affectation() {
 
-		if (Yaka.tabIdent.existeIdentLocaux(nomAffec)) {
+		if (Yaka.tabIdent.existeIdentLocaux(nomAffec)) { // TODO à raccourcir
 			Ident id = Yaka.tabIdent.chercheIdentLocaux(nomAffec);
 			int type = id.getType();
 			Yaka.controleT.ajouteType(type);

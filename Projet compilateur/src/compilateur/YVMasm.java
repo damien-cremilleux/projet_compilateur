@@ -12,9 +12,9 @@ import java.io.FileOutputStream;
  * Classe YVM, generation des instructions assembleurs
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * 
  */
 public class YVMasm extends YVM {
-	
 	/**
 	 * Methode pour definir le fichier de sortie
 	 * 
@@ -392,9 +392,6 @@ public class YVMasm extends YVM {
 
 	}
 
-	/**
-	 * Ecriture d'une chaine de caractere
-	 */
 	@Override
 	public void ecrireChaine(final String var) {
 		String mess = "mess" + EcrireChaine.nouveauMess();
@@ -415,7 +412,6 @@ public class YVMasm extends YVM {
 	/**
 	 * Ecriture d'un entier
 	 */
-	@Override
 	public void ecrireEnt() {
 		presentation("");
 		presentation("; ecrireEnt");
@@ -425,28 +421,21 @@ public class YVMasm extends YVM {
 	/**
 	 * Ecriture d'un booleen
 	 */
-	@Override
 	public void ecrireBool() {
 		presentation("");
 		presentation("; ecrireBool");
 		presentation("call ecrBool");
 	}
 
-	/**
-	 * Aller la ligne
-	 */
 	@Override
 	public void aLaLigne() {
 		presentation("; alaligne");
 		presentation("call ligsuiv");
 	}
 
-	/**
-	 * Lecture grace a un offset
-	 */
 	@Override
 	public void lire(final int offset) {
-		presentation("\n; ");
+		Ecriture.ecrireString(fichierSortie, "\n; ");
 		super.lire(offset);
 		presentation("lea dx,[bp" + offset + "]");
 		presentation("push dx");

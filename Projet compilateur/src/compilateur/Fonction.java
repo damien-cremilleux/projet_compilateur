@@ -12,6 +12,7 @@ import java.util.Stack;
  * Classe Fonction
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * 
  */
 public class Fonction {
 
@@ -92,6 +93,7 @@ public class Fonction {
 	/**
 	 * Methode pour ajouter des parametres dans la pile On met l offset a 0 pour
 	 * le gerer une fois qu'on aura tous les parametres
+	 * 
 	 */
 	public void ajouterParam() {
 		IdParam idP = new IdParam(type, nom, 0);
@@ -111,6 +113,7 @@ public class Fonction {
 			offset += 2;
 			Yaka.tabIdent.rangeIdentLocaux(idTmp.getNom(), idTmp);
 		}
+
 		creerTabType();
 		IdFonct id = new IdFonct(typeFonc, nomFonc, tabType);
 		if (Yaka.tabIdent.existeIdentGlobaux(nomFonc)) {
@@ -181,7 +184,7 @@ public class Fonction {
 	public void appelFonc() {
 		String fonctAp = fonctionAppelP.pop();
 		IdFonct id = (IdFonct) Yaka.tabIdent.chercheIdentGlobaux(fonctAp);
-		Yaka.controleT.controleFonction(id);
+		Yaka.controleT.controleFonction(id); // TODO crash a l'execution
 		Yaka.yVM.call(fonctAp);
 	}
 

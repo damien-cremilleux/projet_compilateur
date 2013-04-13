@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * Classe IdFonct, representation des identificateurs de fonctions
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * 
  */
 public class IdFonct extends Ident {
 

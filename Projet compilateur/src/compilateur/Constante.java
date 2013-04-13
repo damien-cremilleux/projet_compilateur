@@ -9,6 +9,7 @@ package compilateur;
  * Classe Constante
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * 
  */
 public class Constante {
 

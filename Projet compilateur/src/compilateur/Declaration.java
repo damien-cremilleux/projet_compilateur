@@ -13,7 +13,6 @@ package compilateur;
  * 
  */
 public class Declaration {
-	
 	/**
 	 * Le nom de l'Ident courant
 	 */

@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * Classe Constante
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * 
  */
 public class Erreur {
 

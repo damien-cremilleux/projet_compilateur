@@ -12,6 +12,7 @@ import java.util.Stack;
  * Classe ControleType
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * 
  */
 public class ControleType {
 
@@ -40,6 +41,8 @@ public class ControleType {
 	 * 
 	 * @param op
 	 *            l'operateur
+	 * 
+	 * 
 	 */
 	public void controlerType(int op) {
 		switch (op) {
@@ -116,31 +119,35 @@ public class ControleType {
 			}
 			break;
 		case Constante.OP_EQ:
-			if (pileT.pop() == Constante.T_ENTIER
-					&& pileT.pop() == Constante.T_ENTIER) {
-				pileT.push(Constante.T_BOOLEEN);
-			}
-			if (pileT.pop() == Constante.T_BOOLEEN
-					&& pileT.pop() == Constante.T_BOOLEEN) {
-				pileT.push(Constante.T_BOOLEEN);
+			if (pileT.peek() == Constante.T_ENTIER) {
+				if (pileT.pop() == Constante.T_ENTIER
+						&& pileT.pop() == Constante.T_ENTIER) {
+					pileT.push(Constante.T_BOOLEEN);
+				}
 			} else {
-				pileT.push(Constante.T_ERREUR);
-				Erreur.ajouterErreur("Probleme de type : une egalite doit prendre deux entiers ou deux booleens en parametres.");
+				if (pileT.pop() == Constante.T_BOOLEEN
+						&& pileT.pop() == Constante.T_BOOLEEN) {
+					pileT.push(Constante.T_BOOLEEN);
+				} else {
+					pileT.push(Constante.T_ERREUR);
+					Erreur.ajouterErreur("Probleme de type : une egalite doit prendre deux entiers ou deux booleens en parametres.");
+				}
 			}
-
 			break;
 		case Constante.OP_DIF:
-			if (pileT.pop() == Constante.T_ENTIER
-					&& pileT.pop() == Constante.T_ENTIER) {
-				pileT.push(Constante.T_BOOLEEN);
-			}
-
-			if (pileT.pop() == Constante.T_BOOLEEN
-					&& pileT.pop() == Constante.T_BOOLEEN) {
-				pileT.push(Constante.T_BOOLEEN);
+			if (pileT.peek() == Constante.T_ENTIER) {
+				if (pileT.pop() == Constante.T_ENTIER
+						&& pileT.pop() == Constante.T_ENTIER) {
+					pileT.push(Constante.T_BOOLEEN);
+				}
 			} else {
-				pileT.push(Constante.T_ERREUR);
-				Erreur.ajouterErreur("Probleme de type : une difference doit prendre deux entiers ou deux booleens en parametres.");
+				if (pileT.pop() == Constante.T_BOOLEEN
+						&& pileT.pop() == Constante.T_BOOLEEN) {
+					pileT.push(Constante.T_BOOLEEN);
+				} else {
+					pileT.push(Constante.T_ERREUR);
+					Erreur.ajouterErreur("Probleme de type : une difference doit prendre deux entiers ou deux booleens en parametres.");
+				}
 			}
 
 			break;
@@ -182,13 +189,14 @@ public class ControleType {
 			if (pileT.pop() != pileT.pop()) {
 				Erreur.ajouterErreur("Probleme de type : une affectation doit prendre le meme type de chaque cote de l'affectation.");
 			}
+			break;
 		default:
 			break;
 		}
 	}
 
 	/**
-	 * Cree une nouvelle pile de param pour la fonction
+	 * Crée une nouvelle pile de param pour la fonction
 	 */
 	public void ajoutePile() {
 		pileP.push(new Stack<Integer>());
@@ -239,6 +247,8 @@ public class ControleType {
 	 * 
 	 * @param fonction
 	 *            l'IdFonct de la fonction a controler
+	 * 
+	 * 
 	 */
 	public void controleRetourFonction(IdFonct fonction) {
 		if (fonction.getType() != pileT.pop()) {
@@ -251,6 +261,7 @@ public class ControleType {
 	 * Verifie si une expression est booleenne (et la supprime de la pile)
 	 * 
 	 * @return vrai si une expression est booleenne, faux sinon
+	 * 
 	 */
 	public boolean isBoolean() {
 		return (pileT.pop() == Constante.T_BOOLEEN);

@@ -9,6 +9,7 @@ package compilateur;
  * Classe IdParam, representation des identificateurs de parametres
  * 
  * @author Samuel COZ - Damien CREMILLEUX - Lauriane HOLY - Arnaud TROUCHE
+ * 
  */
 
 public class IdParam extends Ident {
@@ -63,7 +64,7 @@ public class IdParam extends Ident {
 	}
 
 	/**
-	 * Charge l'instruction
+	 * chargerInstr : charge instruction
 	 */
 	@Override
 	public void chargerInstr() {
