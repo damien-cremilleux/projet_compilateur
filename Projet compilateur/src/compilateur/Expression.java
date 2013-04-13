@@ -177,7 +177,7 @@ public class Expression {
 	 */
 	public void affectation() {
 
-		if (Yaka.tabIdent.existeIdentLocaux(nomAffec)) { // TODO à raccourcir
+		if (Yaka.tabIdent.existeIdentLocaux(nomAffec)) {
 			Ident id = Yaka.tabIdent.chercheIdentLocaux(nomAffec);
 			int type = id.getType();
 			Yaka.controleT.ajouteType(type);

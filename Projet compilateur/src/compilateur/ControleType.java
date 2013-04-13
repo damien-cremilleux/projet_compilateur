@@ -203,10 +203,7 @@ public class ControleType {
 	}
 
 	/**
-	 * Ajoute un type de parametre sur la pile
-	 * 
-	 * @param type
-	 *            le type a ajouter
+	 * Transfere un type de parametre sur la pile
 	 */
 	public void transfertTypeParam() {
 		int type = pileT.pop();

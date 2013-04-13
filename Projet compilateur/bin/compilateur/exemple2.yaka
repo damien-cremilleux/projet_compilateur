@@ -1,8 +1,0 @@
-PROGRAMME expr
-CONST
-	a=10;
-VAR ENTIER b2;
-VAR BOOLEEN b1;
-	b1 = 10 < 20;
-	b2 = 10 < 20;
-FPROGRAMME

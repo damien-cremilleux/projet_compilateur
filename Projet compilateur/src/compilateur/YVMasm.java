@@ -46,10 +46,7 @@ public class YVMasm extends YVM {
 	}
 
 	/**
-	 * Fonction ouvrePrinc
-	 * 
-	 * @param nb
-	 *            le nombre de variables
+	 * Fonction ouvreMain
 	 */
 	@Override
 	public void ouvreMain() {

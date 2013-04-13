@@ -184,7 +184,7 @@ public class Fonction {
 	public void appelFonc() {
 		String fonctAp = fonctionAppelP.pop();
 		IdFonct id = (IdFonct) Yaka.tabIdent.chercheIdentGlobaux(fonctAp);
-		Yaka.controleT.controleFonction(id); // TODO crash a l'execution
+		Yaka.controleT.controleFonction(id);
 		Yaka.yVM.call(fonctAp);
 	}
 
